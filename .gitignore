@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+*.sqlite3
+venv/
+*.pyc
+staticfiles/
+.env
+*.xml
+.idea/
+whoosh
