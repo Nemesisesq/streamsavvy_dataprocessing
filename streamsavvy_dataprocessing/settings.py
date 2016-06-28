@@ -190,28 +190,29 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh')
 
 
-if 'HEROKU' in os.environ:
+if True:
     from elasticsearch import Elasticsearch, RequestsHttpConnection
     from requests_aws4auth import AWS4Auth
 
-    host = get_env_variable('ELASTICSEARCH_HOST')
-    awsauth = AWS4Auth(get_env_variable('DATA_EC_KEY'), get_env_variable('DATA_EC_SECRET'), 'us-west-2', 'es')
+    host = 'search-streamsavvy-elastic-search-vepbv4sq5x5p3x2nu6s7ytc66y.us-west-2.es.amazonaws.com'
+    awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
 
     HAYSTACK_CONNECTIONS = {
-        'default' : {
+        'default': {
             'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
             'URL': host,
             'INDEX_NAME': 'haystack',
             'KWARGS': {
-                'port':443,
-                'http_auth' : awsauth,
+                'port': 443,
+                'http_auth': awsauth,
                 'use_ssl': True,
-                'verify_certs':  True,
-                'connection_class' : RequestsHttpConnection,
+                'verify_certs': True,
+                'connection_class': RequestsHttpConnection,
 
             }
         }
     }
+
 else:
     HAYSTACK_CONNECTIONS = {
         'default': {
