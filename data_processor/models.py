@@ -19,7 +19,7 @@ class ServiceDescription(models.Model):
 
 class Content(models.Model):
     title = models.CharField(max_length=250, blank=True, null=True)
-    guidebox_data = JSONField(blank=True, null=True)  # This field type is a guess.
+    guidebox_data = models.TextField(blank=True, null=True)  # This field type is a guess.
     modified = models.DateTimeField()
     on_netflix = models.BooleanField()
     channels_last_checked = models.DateTimeField(blank=True, null=True)
