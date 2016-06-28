@@ -22,7 +22,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
     serializer_class = ContentSerializer
 
     def get_queryset(self):
-        sqs = SearchQuerySet().autocomplete(content_auto=self.request.GET.get('q', '')).exclude(title=Non3)[:10]
+        sqs = SearchQuerySet().autocomplete(content_auto=self.request.GET.get('q', '')).exclude(title=None)[:10]
         suggestions = [result.object for result in sqs]
 
         return suggestions
