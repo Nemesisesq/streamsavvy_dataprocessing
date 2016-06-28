@@ -218,7 +218,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',
+        'URL': 'https://jvisy41w:v4ejsc1ewi5tt0bd@elm-2370784.us-east-1.bonsai.io',
         'INDEX_NAME': 'haystack',
     }
 }
