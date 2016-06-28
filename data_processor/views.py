@@ -50,3 +50,4 @@ def autocomplete(request):
         'results': suggestions
     })
     return HttpResponse(the_data, content_type='application/json')
+
