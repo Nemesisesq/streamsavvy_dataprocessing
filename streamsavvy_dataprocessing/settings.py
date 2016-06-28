@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 def get_env_variable(var_name, default=False):
     """
     Get the environment variable or return exception
@@ -191,34 +190,34 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh')
 
 
-# if True:
-#     from elasticsearch import Elasticsearch, RequestsHttpConnection
-#     from requests_aws4auth import AWS4Auth
-#
-#     host = 'search-streamsavvy-elastic-search-vepbv4sq5x5p3x2nu6s7ytc66y.us-west-2.es.amazonaws.com'
-#     awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
-#
-#     HAYSTACK_CONNECTIONS = {
-#         'default': {
-#             'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-#             'URL': host,
-#             'INDEX_NAME': 'haystack',
-#             'KWARGS': {
-#                 'port': 443,
-#                 'http_auth': awsauth,
-#                 'use_ssl': True,
-#                 'verify_certs': True,
-#                 'connection_class': RequestsHttpConnection,
-#
-#             }
-#         }
-#     }
-#
-# else:
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'https://jvisy41w:v4ejsc1ewi5tt0bd@elm-2370784.us-east-1.bonsai.io',
-        'INDEX_NAME': 'haystack',
+if True:
+    from elasticsearch import Elasticsearch, RequestsHttpConnection
+    from requests_aws4auth import AWS4Auth
+
+    host = 'search-streamsavvy-elastic-search-vepbv4sq5x5p3x2nu6s7ytc66y.us-west-2.es.amazonaws.com'
+    awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
+
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': host,
+            'INDEX_NAME': 'haystack',
+            'KWARGS': {
+                'port': 443,
+                'http_auth': awsauth,
+                'use_ssl': True,
+                'verify_certs': True,
+                'connection_class': RequestsHttpConnection,
+
+            }
+        }
     }
-}
+
+else:
+    HAYSTACK_CONNECTIONS = {
+        'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            'URL': 'http://127.0.0.1:9200/',
+            'INDEX_NAME': 'haystack',
+        }
+    }
