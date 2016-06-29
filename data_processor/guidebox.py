@@ -248,7 +248,6 @@ class GuideBox(object):
                 try:
 
                     c.guidebox_data['sources'] = available_sources['results']
-
                     # self.process_content_for_sling_ota_banned_channels(c)
 
                     c.save()
