@@ -11,7 +11,7 @@ from django.core.cache import cache
 from fuzzywuzzy import fuzz
 
 from data_processor.constants import sling_channels, broadcast_channels, banned_channels
-from data_processor.models import Content, Channel
+from data_processor.models import Content, Channel, ServiceDescription
 from data_processor.shortcuts import try_catch
 
 
@@ -146,7 +146,7 @@ class GuideBox(object):
         # for s in c.channel.all():
         #     self.check_for_sling(s)
 
-        c.save()
+        # c.save()
         return c
 
     def check_for_over_the_air(self, s):
@@ -182,6 +182,9 @@ class GuideBox(object):
 
             if re.match(value, i[key]):
                 return True
+    allowed_services = [serv.name.lower() for serv in ServiceDescription.objects.all()]
+    allowed_services.append('fox')
+
 
     def remove_banned_channels(self, c):
 
@@ -202,15 +205,15 @@ class GuideBox(object):
 
         c.guidebox_data['sources']['web']['episodes']['all_sources'] = [i for i in web_sources
                                                                         if
-                                                                            i not in banned_channels]
+                                                                        i['display_name'].lower() in self.allowed_services]
 
         c.guidebox_data['sources']['ios']['episodes']['all_sources'] = [i for i in
                                                                         ios_sources if
-                                                                        i not in banned_channels]
+                                                                        i['display_name'].lower() in self.allowed_services]
 
         c.guidebox_data['sources']['android']['episodes']['all_sources'] = [i for i in
                                                                             android_sources if
-                                                                            i not in banned_channels]
+                                                                            i['display_name'].lower() in self.allowed_services]
 
         # c.channel = [i for i in c.channel.all() if self.check_for_banned_service(i)]
 
@@ -230,11 +233,11 @@ class GuideBox(object):
         return x
 
     def check_for_sources_date_last_checked(self, c):
-        if 'sources' not in c.guidebox_data:
+        if c.guidebox_data['sources']['web']['episodes']['all_sources']:
             c = self.add_additional_channels_for_show(c)
             # c.channels_last_checked = datetime.datetime.now(datetime.timezone.utc)
             c.save()
-            c
+
         return c
 
     def add_additional_channels_for_show(self, shows):
