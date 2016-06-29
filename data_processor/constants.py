@@ -1,6 +1,7 @@
 sling_channels = ['ESPN', 'ESPN2', 'AMC', 'Food Network', 'A&E', 'History', 'TNT', 'El Rey', 'HGTV', 'IFC',
                   'Disney Channel', 'Polaris +', 'Maker', 'TBS', 'Travel Channel', 'Adult Swim', 'CNN', 'H2',
-                  'Cartoon Network', "Comedy Central", 'ABC Family', 'Lifetime', 'Galavision', 'Bloomberg Television', 'Freeform', 'VICELAND']
+                  'Cartoon Network', "Comedy Central", 'ABC Family', 'Lifetime', 'Galavision', 'Bloomberg Television',
+                  'Freeform', 'VICELAND']
 # def add_sling(channel):
 
 broadcast_channels = ['NBC', 'FOX', 'ABC', 'CBS', 'The CW', 'CW', 'PBS']
@@ -33,4 +34,7 @@ banned_channels = ['HBO Go',
                    # 'ClevverTV',
                    ]
 
-
+allowed_services = ['OTA', 'Sling TV', 'HBO NOW', 'Showtime', 'Starz', 'Hulu', 'CBS All Access', 'NBC Streaming App',
+                    'Netflix', 'AmazonPrime', 'CW Seed', 'Seeso', 'Tubi TV', 'Google Play', 'iTunes', 'VUDU', 'YouTube',
+                    'Amazon', 'Crackle', 'Acorn TV', 'History Vault', 'Fubo TV', 'Newsy', 'mlb.tv', 'Snag Films',
+                    'Sky News', 'NBA League Pass', 'PBS Kids', 'Crunchyroll', 'Twitch', 'Machinima', 'YouTube Red', 'FOX']

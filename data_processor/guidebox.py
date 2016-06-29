@@ -10,8 +10,8 @@ import urllib.request
 from django.core.cache import cache
 from fuzzywuzzy import fuzz
 
-from data_processor.constants import sling_channels, broadcast_channels, banned_channels
-from data_processor.models import Content, Channel, ServiceDescription
+from data_processor.constants import sling_channels, broadcast_channels, banned_channels, allowed_services
+from data_processor.models import Content, Channel
 from data_processor.shortcuts import try_catch
 
 
@@ -146,7 +146,7 @@ class GuideBox(object):
         # for s in c.channel.all():
         #     self.check_for_sling(s)
 
-        # c.save()
+        c.save()
         return c
 
     def check_for_over_the_air(self, s):
@@ -182,9 +182,6 @@ class GuideBox(object):
 
             if re.match(value, i[key]):
                 return True
-    allowed_services = [serv.name.lower() for serv in ServiceDescription.objects.all()]
-    allowed_services.append('fox')
-
 
     def remove_banned_channels(self, c):
 
@@ -203,19 +200,23 @@ class GuideBox(object):
             if source == android_sources:
                 web_sources = x
 
-        c.guidebox_data['sources']['web']['episodes']['all_sources'] = [i for i in web_sources
-                                                                        if
-                                                                        i['display_name'].lower() in self.allowed_services]
+        c.guidebox_data['sources']['web']['episodes']['all_sources'] = []
+        for i in web_sources:
+            if i['display_name'] not in banned_channels:
+                c.guidebox_data['sources']['web']['episodes']['all_sources'].append(i)
 
-        c.guidebox_data['sources']['ios']['episodes']['all_sources'] = [i for i in
-                                                                        ios_sources if
-                                                                        i['display_name'].lower() in self.allowed_services]
+        c.guidebox_data['sources']['ios']['episodes']['all_sources'] = []
+        for i in ios_sources:
+            if i['display_name'] not in banned_channels:
+                c.guidebox_data['sources']['ios']['episodes']['all_sources'].append(i)
 
-        c.guidebox_data['sources']['android']['episodes']['all_sources'] = [i for i in
-                                                                            android_sources if
-                                                                            i['display_name'].lower() in self.allowed_services]
+        c.guidebox_data['sources']['android']['episodes']['all_sources'] = []
+        for i in android_sources:
+            if i['display_name'] not in banned_channels:
+                c.guidebox_data['sources']['android']['episodes']['all_sources'].append(i)
 
         # c.channel = [i for i in c.channel.all() if self.check_for_banned_service(i)]
+        # c.guidebox_data['sources']['web']['episodes']['all_sources'] = self.check_for_allowed_channels( c.guidebox_data['sources']['web']['episodes']['all_sources'])
 
         return c
 
@@ -233,7 +234,7 @@ class GuideBox(object):
         return x
 
     def check_for_sources_date_last_checked(self, c):
-        if c.guidebox_data['sources']['web']['episodes']['all_sources']:
+        if not c.guidebox_data['sources']['web']['episodes']['all_sources']:
             c = self.add_additional_channels_for_show(c)
             # c.channels_last_checked = datetime.datetime.now(datetime.timezone.utc)
             c.save()
@@ -248,6 +249,7 @@ class GuideBox(object):
                 try:
 
                     c.guidebox_data['sources'] = available_sources['results']
+
                     # self.process_content_for_sling_ota_banned_channels(c)
 
                     c.save()
@@ -433,3 +435,13 @@ class GuideBox(object):
         if matches:
             return False
         return True
+
+
+    def check_for_allowed_channels(self, list):
+
+        res = []
+        for i in list:
+            if i['display_name'] in allowed_services:
+                res.append(i['display_name'])
+
+        return res
