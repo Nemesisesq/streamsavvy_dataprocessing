@@ -30,3 +30,16 @@ class Content(models.Model):
 
     def __str__(self):
         return "{0}".format(self.title)
+
+class Channel(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+    guidebox_data = JSONField(blank=True, null=True)
+    is_on_sling = models.BooleanField(default=False)
+    modified = models.DateTimeField(auto_now=True, blank=True)
+
+    class Meta:
+        managed = False
+        db_table = 'server_channel'
+
+    def __str__(self):
+        return "{}".format(self.name)
