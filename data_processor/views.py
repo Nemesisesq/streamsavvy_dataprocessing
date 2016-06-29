@@ -7,22 +7,24 @@ from haystack.generic_views import SearchView
 from haystack.query import SearchQuerySet
 
 from data_processor.guidebox import GuideBox
-from data_processor.models import ServiceDescription
-from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer
+from data_processor.models import ServiceDescription, Channel
+from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer
 from rest_framework import viewsets
+
 
 # Create your views here.
 
 class ServiceDescriptionViewSet(viewsets.ModelViewSet):
-
     queryset = ServiceDescription.objects.all()
     serializer_class = ServiceDescriptionSerializer
     lookup_field = 'slug'
 
 
+class ChannelViewSet(viewsets.ModelViewSet):
+    queryset = Channel.objects.all()
+    serializer_class = ChannelSerializer
 
 class SearchContentViewSet(viewsets.ModelViewSet):
-
     q = ""
 
     serializer_class = ContentSerializer
@@ -74,8 +76,3 @@ class SearchContentViewSet(viewsets.ModelViewSet):
             return True
 
         return False
-
-
-
-
-

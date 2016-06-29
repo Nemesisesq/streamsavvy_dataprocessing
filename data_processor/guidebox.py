@@ -143,8 +143,8 @@ class GuideBox(object):
 
         c.guidebox_data['sources']['web']['episodes']['all_sources'] = sources
 
-        # for s in c.channel.all():
-        #     self.check_for_sling(s)
+        for s in c.channel.all():
+            self.check_for_sling(s)
 
         c.save()
         return c
@@ -250,7 +250,7 @@ class GuideBox(object):
 
                     c.guidebox_data['sources'] = available_sources['results']
 
-                    # self.process_content_for_sling_ota_banned_channels(c)
+                    self.process_content_for_sling_ota_banned_channels(c)
 
                     c.save()
 
