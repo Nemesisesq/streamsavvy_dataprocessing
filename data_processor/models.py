@@ -9,7 +9,7 @@ class ServiceDescription(models.Model):
     subscription_link = models.TextField(blank=True, null=True)
     google_play_link = models.TextField(blank=True, null=True)
     ios_appstore_link = models.TextField(blank=True, null=True)
-    viewing_windows = JSONField(blank=True, null=True)
+    viewing_windows = models.TextField(blank=True, null=True)
     tooltip_tile_link = models.TextField(blank=True, null=True)
 
     def __str__(self):
