@@ -5,6 +5,6 @@ Feature: Sorting Function
   @rest_api
   Scenario: reduce channels in content
     Given a package
-    When we pull out the chanels
+    When we pull out the channels
     Then we have a list of channels
     # Enter steps here
