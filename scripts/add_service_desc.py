@@ -3,7 +3,16 @@ import csv
 from data_processor.models import ServiceDescription
 
 
-def run ():
+def run():
+    name = ""
+    price = ""
+    description = ""
+    google_play_link = ""
+    ios_appstore_link = ""
+    subscription_link = ""
+    tooltip_tile_link = ""
+    slug = ""
+
     # name =price= description =google_play_link =ios_appstore_link =subscription_link =tooltip_title_link=slug = ""
     r = csv.DictReader(open('serv_desc.csv'))
     x = [i for i in r]
