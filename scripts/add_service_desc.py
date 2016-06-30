@@ -1,4 +1,9 @@
+import django
+
+
 import csv
+django.setup()
+
 
 from data_processor.models import ServiceDescription
 
@@ -26,6 +31,6 @@ def run():
         v.google_play_link = google_play_link
         v.ios_appstore_link = ios_appstore_link
         v.subscription_link = subscription_link
-        v.tooltip_tile_link = tooltip_title_link
+        v.tooltip_tile_link = tooltip_tile_link
         v.slug = slug
         v.save()
