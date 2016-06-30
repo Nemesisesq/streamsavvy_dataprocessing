@@ -144,6 +144,7 @@ class GuideBox(object):
         c.guidebox_data['sources']['web']['episodes']['all_sources'] = sources
 
         for s in c.channel.all():
+
             self.check_for_sling(s)
 
         c.save()
@@ -330,7 +331,7 @@ class GuideBox(object):
             return False
 
     def save_images(self, i):
-        obj = Images()
+        # obj = Images()
 
         obj.thumbnail_small = i['artwork_208x117'] if i['artwork_208x117'] else None
         obj.thumbnail_medium = i['artwork_304x171'] if i['artwork_304x171'] else None
