@@ -26,7 +26,7 @@ def run():
         locals().update(d)
         v = ServiceDescription()
         v.name = name
-        v.price = price
+        v.price = float(price)
         v.description = description
         v.google_play_link = google_play_link
         v.ios_appstore_link = ios_appstore_link
