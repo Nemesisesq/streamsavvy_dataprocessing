@@ -23,14 +23,14 @@ def run():
     x = [i for i in r]
 
     for d in x:
-        locals().update(d)
+
         v = ServiceDescription()
-        v.name = name
+        v.name = d['name']
         v.price = 0.00
-        v.description = description
-        v.google_play_link = google_play_link
-        v.ios_appstore_link = ios_appstore_link
-        v.subscription_link = subscription_link
-        v.tooltip_tile_link = tooltip_tile_link
-        v.slug = slug
+        v.description = d['description']
+        v.google_play_link = d['google_play_link']
+        v.ios_appstore_link = d['ios_appstore_link']
+        v.subscription_link = d['subscription_link']
+        v.tooltip_tile_link = d['tooltip_tile_link']
+        v.slug = d['slug']
         v.save()
