@@ -1,11 +1,13 @@
 import json
 
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
 from fuzzywuzzy import fuzz
 from haystack.generic_views import SearchView
 from haystack.query import SearchQuerySet
 
+from data_processor.constants import unwanted_show_ids
 from data_processor.guidebox import GuideBox
 from data_processor.models import ServiceDescription, Channel
 from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer
@@ -39,7 +41,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         filter_results = self.check_guidebox_for_query(suggestions, self.q)
         # filter_results['search_term'] = self
 
-        filter_results = [x for x in filter_results if x.guidebox_data['id'] not in [3084, 31168, 31150, 15935]]
+        filter_results = [x for x in filter_results if x.guidebox_data['id'] not in unwanted_show_ids]
 
         # banned server
 
@@ -76,3 +78,23 @@ class SearchContentViewSet(viewsets.ModelViewSet):
             return True
 
         return False
+
+    def filter_query(self, filtered_ids, entries):
+
+        for i in filtered_ids:
+            q = Q(guidebox_data__id=i)
+
+            if self.params:
+                self.params = self.params | q
+
+            else:
+                self.params = q
+
+        return list(filter(self.filter_by_content_provider, entries))
+
+    def filter_by_content_provider(self, x):
+        f = x.channel.filter(self.params)
+        if len(f) > 0:
+            return False
+        else:
+            return True
