@@ -14,7 +14,14 @@ def try_catch(f):
         try:
             return f(*args, **kwargs)
         except Exception as e:
+            exc_type, exc_value, exc_traceback = sys.exc_info()
             print("there was a problem with {} with {} and {}".format(f.__name__, args, kwargs))
+            print("-"*60)
+
+            print("*** print_exception:")
+            traceback.print_exception(exc_type, exc_value, exc_traceback,
+                                      limit=4, file=sys.stdout)
+            print("-"*60)
 
     return handleProblems
 

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from urllib.parse import urlparse
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def get_env_variable(var_name, default=False):
@@ -77,7 +79,8 @@ INSTALLED_APPS = [
     'django_extensions',
     # 'whoosh',
     'elasticsearch',
-    'haystack'
+    'haystack',
+    # 'django_redis',
 
 ]
 
@@ -222,3 +225,17 @@ else:
             'INDEX_NAME': 'haystack',
         }
     }
+redis_url = urlparse(os.environ.get('REDIS_URL'))
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': [
+            '{0}:{1}'.format(redis_url.hostname, redis_url.port)
+        ],
+        'OPTIONS': {
+            'PASSWORD': redis_url.password,
+            'DB': 0,
+        }
+    }
+}

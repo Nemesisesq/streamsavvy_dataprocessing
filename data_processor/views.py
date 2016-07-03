@@ -9,7 +9,7 @@ from haystack.query import SearchQuerySet
 
 from data_processor.constants import unwanted_show_ids
 from data_processor.guidebox import GuideBox
-from data_processor.models import ServiceDescription, Channel
+from data_processor.models import ServiceDescription, Channel, Content
 from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer
 from rest_framework import viewsets
 
@@ -26,10 +26,25 @@ class ChannelViewSet(viewsets.ModelViewSet):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
 
+class ContentViewSet(viewsets.ModelViewSet):
+    queryset = Content.objects.all()
+    serializer_class = ContentSerializer
+
+    def get_object(self):
+        obj = super(ContentViewSet, self).get_object()
+
+        obj = GuideBox().process_content_for_sling_ota_banned_channels(obj)
+
+        return obj
+
+
+
+
+
 class SearchContentViewSet(viewsets.ModelViewSet):
     q = ""
-
     serializer_class = ContentSerializer
+
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
@@ -47,7 +62,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
         filter_results = [show for show in filter_results if show.id != 15296]
 
-        filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
+        # filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
 
         return filter_results
 
