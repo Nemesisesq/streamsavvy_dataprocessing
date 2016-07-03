@@ -21,13 +21,14 @@ from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
-router.register(r'search', SearchContentViewSet, 'search')
+# router.register(r'search', SearchContentViewSet, 'search')
 router.register(r'content', ContentViewSet, 'content')
 router.register(r'channel', ChannelViewSet, 'channel')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    # url(r'^search/', ContentViewSet.as_view({'get':'get_object'}))
     # url(r'haystack_search', autocomplete, name='autocomplete'),
 
 ]
