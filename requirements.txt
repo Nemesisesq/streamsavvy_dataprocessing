@@ -10,7 +10,7 @@ Django==1.9.7
 django-cors-headers==1.1.0
 django-extensions==1.6.1
 django-haystack==2.5.dev1
-django-redis-cache==1.6.5
+django-redis-cache==1.6.3
 djangorestframework==3.3.3
 docutils==0.12
 elasticsearch==2.3.0
