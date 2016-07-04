@@ -32,6 +32,8 @@ banned_channels = ['HBO Go',
                    'Bravo',
                    'TV'
                    # 'ClevverTV',
+                   'TV Land',
+
                    ]
 
 allowed_services = ['OTA', 'Sling TV', 'HBO NOW', 'Showtime', 'Starz', 'Hulu', 'CBS All Access', 'NBC Streaming App',
