@@ -28,7 +28,7 @@ def get_env_variable(var_name, default=False):
     except KeyError:
         import io
         import configparser
-        env_file = os.environ.get('PROJECT_ENV_FILE', os.path.join(BASE_DIR, "/.env"))
+        env_file = os.environ.get('PROJECT_ENV_FILE', os.path.join(BASE_DIR, ".env"))
         try:
             config = io.StringIO()
             config.write("[DATA]\n")
@@ -194,11 +194,11 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh')
 
 
-if True:
+if get_env_variable('ELASTIC_SEARCH_HOST'):
     from elasticsearch import Elasticsearch, RequestsHttpConnection
     from requests_aws4auth import AWS4Auth
 
-    host = 'search-streamsavvy-elastic-search-vepbv4sq5x5p3x2nu6s7ytc66y.us-west-2.es.amazonaws.com'
+    host = get_env_variable('ELASTIC_SEARCH_HOST')
     awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
 
     HAYSTACK_CONNECTIONS = {
