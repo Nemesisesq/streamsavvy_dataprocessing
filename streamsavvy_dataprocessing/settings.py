@@ -59,9 +59,9 @@ def get_env_variable(var_name, default=False):
 SECRET_KEY = '3ra_5hm2=%jgch7^o3-z+9^$a0x$i#^lb)-v^-oi%cs=tl$h_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if get_env_variable('ENVIRONMENT') == 'PRODUCTION' else True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*.streamsavvy.tv', 'herokuapp.com' ] if get_env_variable('ENVIRONMENT') == 'PRODUCTION' else []
 
 # Application definition
 
@@ -194,9 +194,10 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh')
 
 
-if get_env_variable('ELASTIC_SEARCH_HOST') != 'False':
+if True:
     from elasticsearch import Elasticsearch, RequestsHttpConnection
     from requests_aws4auth import AWS4Auth
+
 
     host = get_env_variable('ELASTIC_SEARCH_HOST')
     awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
