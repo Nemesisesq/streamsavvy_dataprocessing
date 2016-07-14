@@ -31,14 +31,18 @@ class ViewingServicesViewSet(viewsets.ModelViewSet):
     queryset = ViewingServices.objects.all()
     serializer_class = ViewingServicesSerializer
 
-    def get_object(self):
-        q = self.request['q'].strip()
+    def get_queryset(self):
+        q = self.request.GET['q'].strip()
 
-        w = ViewingServices.objects.all()
+        w = [i.name for i in ViewingServices.objects.all()]
 
         res = process.extract(q,w, limit=1)
 
-        return res
+        t = [ViewingServices.objects.get(name=res[0][0])]
+
+
+
+        return t
 
 
 

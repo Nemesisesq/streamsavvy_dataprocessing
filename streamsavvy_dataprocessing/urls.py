@@ -25,7 +25,7 @@ router.register(r'service_description', ServiceDescriptionViewSet)
 router.register(r'search', SearchContentViewSet, 'search')
 router.register(r'content', ContentViewSet, 'content')
 router.register(r'channel', ChannelViewSet, 'channel')
-router.register(r'windows', ViewingServicesViewSet, 'viewingservices')
+router.register(r'window', ViewingServicesViewSet, 'viewingservices')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

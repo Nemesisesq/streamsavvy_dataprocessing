@@ -1,3 +1,5 @@
+import json
+
 import django
 
 
@@ -23,6 +25,10 @@ def run():
             vwlist = d['windows'].split('or')
         else:
             vwlist = d['windows'].split(',')
-        v.windows = vwlist
+        v.windows = json.dumps(vwlist)
         v.ppv = d['ppv'] or False
-        v.save()
+
+        try:
+            v.save()
+        except Exception as e:
+            print(e)
