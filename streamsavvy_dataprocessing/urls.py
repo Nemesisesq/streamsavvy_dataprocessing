@@ -17,13 +17,15 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
-from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet, ChannelViewSet, ContentViewSet
+from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet, ChannelViewSet, ContentViewSet, \
+    ViewingServicesViewSet
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
 router.register(r'search', SearchContentViewSet, 'search')
 router.register(r'content', ContentViewSet, 'content')
 router.register(r'channel', ChannelViewSet, 'channel')
+router.register(r'windows', ViewingServicesViewSet, 'viewingservices')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

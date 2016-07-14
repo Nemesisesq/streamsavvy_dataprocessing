@@ -16,6 +16,10 @@ class ContentSerializer(serializers.HyperlinkedModelSerializer):
         model= Content
         depth=2
 
+class ViewingServicesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model=ViewingServices
+
 class ChannelSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model=Channel

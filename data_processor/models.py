@@ -15,6 +15,12 @@ class ServiceDescription(models.Model):
     def __str__(self):
         return("Service Description for {}".format(self.name))
 
+class ViewingServices(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+    windows =JSONField(blank=True, null=True)
+    price = models.TextField(blank=True, null=True)
+    ppv = models.BooleanField(default=False)
+
 
 
 

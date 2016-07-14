@@ -3,14 +3,15 @@ import json
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import render
-from fuzzywuzzy import fuzz
+from fuzzywuzzy import fuzz, process
 from haystack.generic_views import SearchView
 from haystack.query import SearchQuerySet
 
 from data_processor.constants import unwanted_show_ids
 from data_processor.guidebox import GuideBox
-from data_processor.models import ServiceDescription, Channel, Content
-from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer
+from data_processor.models import ServiceDescription, Channel, Content, ViewingServices
+from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer, \
+    ViewingServicesSerializer
 from rest_framework import viewsets
 
 
@@ -25,6 +26,27 @@ class ServiceDescriptionViewSet(viewsets.ModelViewSet):
 class ChannelViewSet(viewsets.ModelViewSet):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
+
+class ViewingServicesViewSet(viewsets.ModelViewSet):
+    queryset = ViewingServices.objects.all()
+    serializer_class = ViewingServicesSerializer
+
+    def get_object(self):
+        q = self.request['q'].strip()
+
+        w = ViewingServices.objects.all()
+
+        res = process.extract(q,w, limit=1)
+
+        return res
+
+
+
+
+
+
+
+
 
 class ContentViewSet(viewsets.ModelViewSet):
     queryset = Content.objects.all()
