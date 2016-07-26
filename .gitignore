@@ -9,3 +9,4 @@ staticfiles/
 whoosh
 
 *.ipynb
+/sports_module_options.numbers

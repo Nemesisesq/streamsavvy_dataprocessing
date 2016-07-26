@@ -9,9 +9,9 @@ from haystack.query import SearchQuerySet
 
 from data_processor.constants import unwanted_show_ids
 from data_processor.guidebox import GuideBox
-from data_processor.models import ServiceDescription, Channel, Content, ViewingServices
+from data_processor.models import ServiceDescription, Channel, Content, ViewingServices, ModuleDescriptions
 from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer, \
-    ViewingServicesSerializer
+    ViewingServicesSerializer, ModuleDescriptionSerializer
 from rest_framework import viewsets
 
 
@@ -22,6 +22,17 @@ class ServiceDescriptionViewSet(viewsets.ModelViewSet):
     serializer_class = ServiceDescriptionSerializer
     lookup_field = 'slug'
 
+class ModuleDescriptionViewSet(viewsets.ModelViewSet):
+    serializer_class = ModuleDescriptionSerializer
+
+    def get_queryset(self):
+
+        if 'q' in self.request.query_params:
+            category = self.request.query_params['q'].strip().lower()
+
+            return ModuleDescriptions.objects.filter(category__iexact=category)
+        else:
+            return ModuleDescriptions.objects.all()
 
 class ChannelViewSet(viewsets.ModelViewSet):
     queryset = Channel.objects.all()

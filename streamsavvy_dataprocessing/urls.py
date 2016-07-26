@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
+from rest_framework_jwt.views import obtain_jwt_token
 
 from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet, ChannelViewSet, ContentViewSet, \
-    ViewingServicesViewSet
+    ViewingServicesViewSet, ModuleDescriptionViewSet
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
@@ -26,10 +27,12 @@ router.register(r'search', SearchContentViewSet, 'search')
 router.register(r'content', ContentViewSet, 'content')
 router.register(r'channel', ChannelViewSet, 'channel')
 router.register(r'window', ViewingServicesViewSet, 'viewingservices')
+router.register(r'modules', ModuleDescriptionViewSet, 'moduledescriptions')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'api-token-auth', obtain_jwt_token)
     # url(r'haystack_search', autocomplete, name='autocomplete'),
 
 ]
