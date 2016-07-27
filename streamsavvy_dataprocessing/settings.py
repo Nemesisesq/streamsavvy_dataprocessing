@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     # 'whoosh',
     'elasticsearch',
     'haystack',
+    'fixture_magic',
     # 'django_redis',
 
 ]

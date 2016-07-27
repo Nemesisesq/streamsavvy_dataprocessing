@@ -1,0 +1,54 @@
+[
+{
+    "model": "data_processor.moduledescriptions",
+    "pk": 5,
+    "fields": {
+        "level": "Core Package (select one)",
+        "service": "Sony Vue Core Slim",
+        "cost": "35.00",
+        "description": "Complete sports package with entire ESPN family, college football, golf, and more",
+        "networks": "\"ESPN, ESPN2 , ESPNU, BTN, FOX Sports, Golf Channel, TNT, TBS, FS1, FS2\"",
+        "category": "sports",
+        "img": "sony_vue_core"
+    }
+},
+{
+    "model": "data_processor.moduledescriptions",
+    "pk": 4,
+    "fields": {
+        "level": "Core Package (select one)",
+        "service": "Sony Vue Access Slim",
+        "cost": "30.00",
+        "description": "Base level of sports networks",
+        "networks": "\"ESPN, ESPN2 , TNT, TBS, FS1, FS2\"",
+        "category": "sports",
+        "img": "sony_vue_slim"
+    }
+},
+{
+    "model": "data_processor.moduledescriptions",
+    "pk": 3,
+    "fields": {
+        "level": "Core Package (select one)",
+        "service": "Sling TV Orange",
+        "cost": "20.00",
+        "description": "Base level of sports networks",
+        "networks": "\"ESPN, ESPN2 , TNT, TBS\"",
+        "category": "sports",
+        "img": "sling_orange"
+    }
+},
+{
+    "model": "data_processor.moduledescriptions",
+    "pk": 2,
+    "fields": {
+        "level": "Big Game (must have)",
+        "service": "OTA Over the Air",
+        "cost": "0.00",
+        "description": "Major live sporting events",
+        "networks": "\"ABC, NBC, CBS, FOX, The CW\"",
+        "category": "sports",
+        "img": "ota"
+    }
+}
+]
