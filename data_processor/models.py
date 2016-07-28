@@ -3,6 +3,7 @@ from jsonfield import JSONField
 
 class ModuleDescriptions(models.Model):
     level = models.TextField(blank=True, null=True)
+    level_description = models.TextField(blank=True, null=True)
     service = models.TextField(blank=True, null=True)
     cost = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField(blank=True, null=True)
