@@ -3,7 +3,8 @@
     "model": "data_processor.moduledescriptions",
     "pk": 5,
     "fields": {
-        "level": "Core Package (select one)",
+        "level": "Core Package",
+        "level_description": "(select one)",
         "service": "Sony Vue Core Slim",
         "cost": "35.00",
         "description": "Complete sports package with entire ESPN family, college football, golf, and more",
@@ -16,7 +17,8 @@
     "model": "data_processor.moduledescriptions",
     "pk": 4,
     "fields": {
-        "level": "Core Package (select one)",
+        "level": "Core Sports Package",
+        "level_description": "(select one)",
         "service": "Sony Vue Access Slim",
         "cost": "30.00",
         "description": "Base level of sports networks",
@@ -29,7 +31,8 @@
     "model": "data_processor.moduledescriptions",
     "pk": 3,
     "fields": {
-        "level": "Core Package (select one)",
+        "level": "Core Sports Package",
+        "level_description": "(select one)",
         "service": "Sling TV Orange",
         "cost": "20.00",
         "description": "Base level of sports networks",
@@ -42,7 +45,8 @@
     "model": "data_processor.moduledescriptions",
     "pk": 2,
     "fields": {
-        "level": "Big Game (must have)",
+        "level": "Big Game",
+        "level_description": "(must have)",
         "service": "OTA Over the Air",
         "cost": "0.00",
         "description": "Major live sporting events",
