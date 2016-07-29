@@ -28,7 +28,7 @@ class ChannelSerializer(serializers.HyperlinkedModelSerializer):
         depth = 2
 
 
-class ModuleDescriptionSerializer(serializers.ModelSerializer):
+class ModuleDescriptionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ModuleDescriptions
         depth = 2
