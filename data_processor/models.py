@@ -10,6 +10,7 @@ class ModuleDescriptions(models.Model):
     networks = JSONField(blank=True, null=True)
     category = models.TextField(blank=True, null=True)
     img = models.TextField(blank=True, null=True)
+    affiliate_link = models.TextField(blank=True, null=True)
 
 class ServiceDescription(models.Model):
     name = models.TextField(blank=True, null=True)
