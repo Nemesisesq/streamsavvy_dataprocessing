@@ -50,8 +50,8 @@ class Channel(models.Model):
 
 
 class Content(models.Model):
-    title = models.CharField(max_length=250, blank=True, null=True)
-    guidebox_data = JSONField(blank=True, null=True)  # This field type is a guess.
+    title = models.CharField(max_length=250, default='')
+    guidebox_data = JSONField(default="")  # This field type is a guess.
     modified = models.DateTimeField()
     on_netflix = models.BooleanField()
     channels_last_checked = models.DateTimeField(blank=True, null=True)
@@ -64,3 +64,17 @@ class Content(models.Model):
     def __str__(self):
         return "{0}".format(self.title)
 
+    def get_tags(self):
+        if 'detail' in self.guidebox_data:
+            return [i['tag'] for i in self.guidebox_data['detail']['tags']]
+        return []
+
+    def get_genre(self):
+        if 'detail' in self.guidebox_data:
+            return [i['title'] for i in self.guidebox_data['detail']['genres']]
+        return []
+
+    def get_cast(self):
+        if 'detail' in self.guidebox_data:
+            return [i['name'] for i in self.guidebox_data['detail']['cast']]
+        return []
