@@ -85,7 +85,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q).exclude(title=None)[:10]
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q).exclude(title=None).order_by()[:10]
         suggestions = [result.object for result in sqs]
 
         suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))

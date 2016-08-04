@@ -17,6 +17,7 @@ from urllib.parse import urlparse
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 def get_env_variable(var_name, default=False):
     """
     Get the environment variable or return exception
@@ -81,6 +82,7 @@ INSTALLED_APPS = [
     'elasticsearch',
     'haystack',
     'fixture_magic',
+    'popularity',
     # 'django_redis',
 
 ]
@@ -142,7 +144,6 @@ import dj_database_url
 
 DATABASES['default'] = dj_database_url.config(default='postgres://postgres:streamsavvy@localhost:5432/streamsavvy3')
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -199,7 +200,6 @@ if get_env_variable('ELASTIC_SEARCH_HOST') != 'False':
     from elasticsearch import Elasticsearch, RequestsHttpConnection
     from requests_aws4auth import AWS4Auth
 
-
     host = get_env_variable('ELASTIC_SEARCH_HOST')
     awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
 
@@ -250,4 +250,52 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+}
+
+#############################
+#  LOGGING                  #
+#############################
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'dbfile': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'dbtransaction.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['dbfile'],
+            'propagate': True,
+            'level': 'DEBUG',
+        },
+        'cutthecord': {
+            'handlers': ['file', 'console'],
+            'level': 'DEBUG',
+        },
+    }
 }

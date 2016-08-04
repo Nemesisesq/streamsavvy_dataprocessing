@@ -8,3 +8,8 @@ Feature: Sorting Function
     When we pull out the channels
     Then we have a list of channels
     # Enter steps here
+
+  Scenario: Getting popularity scores for Content
+    Given The Content Orange Is the New Black
+    When We call the popularity service
+    Then Content has a popularity score
