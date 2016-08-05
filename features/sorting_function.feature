@@ -9,7 +9,12 @@ Feature: Sorting Function
     Then we have a list of channels
     # Enter steps here
 
-  Scenario: Getting popularity scores for Content
-    Given The Content Orange Is the New Black
+  Scenario Outline: Getting popularity scores for Content
+    Given The Content <content>
     When We call the popularity service
     Then Content has a popularity score
+
+    Examples: Titles
+    |content                |
+    |Orange Is the New Black|
+    |Mr. Robot              |
