@@ -1,6 +1,6 @@
 import datetime
 from haystack import indexes
-from data_processor.models import Content
+from data_processor.models import Content, Sport
 
 
 # class ContentIndex(indexes.SearchIndex, indexes.Indexable):
@@ -37,3 +37,13 @@ class ContentIndex(indexes.ModelSearchIndex, indexes.Indexable):
     #     if 'detail' in obj.guidebox_data:
     #         return [i['tag'] for i in obj.guidebox_data['detail']['tags']]
     #     return []
+
+class SportIndex(indexes.ModelSearchIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+    team_auto = indexes.EdgeNgramField(use_template=True)
+
+    def get_model(self):
+        return Sport
+
+    def index_queryset(self, using=None):
+        return self.get_model().objects.all()

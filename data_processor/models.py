@@ -1,3 +1,4 @@
+import django
 from django.db import models
 from jsonfield import JSONField
 
@@ -78,3 +79,13 @@ class Content(models.Model):
         if 'detail' in self.guidebox_data:
             return [i['name'] for i in self.guidebox_data['detail']['cast']]
         return []
+
+class Sport(models.Model):
+    category = models.TextField()
+    title = models.TextField()
+    json_data = JSONField(default="")
+    date_created = models.DateTimeField(default=django.utils.timezone.now())
+
+
+    def __str__(self):
+        return "{0}".format(self.title)

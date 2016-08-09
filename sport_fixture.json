@@ -1,0 +1,1282 @@
+[
+{
+    "model": "data_processor.sport",
+    "pk": 1152,
+    "fields": {
+        "category": "College Football",
+        "title": "Wyoming Football",
+        "json_data": "{\"college_name\":\"Wyoming\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Cowboys\",\"tag_list\":[\"Laramie\",\" Wyoming\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1151,
+    "fields": {
+        "category": "College Football",
+        "title": "Wisconsin Football",
+        "json_data": "{\"college_name\":\"Wisconsin\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Badgers\",\"tag_list\":[\"Madison\",\" Wisconsin\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1150,
+    "fields": {
+        "category": "College Football",
+        "title": "Western Michigan Football",
+        "json_data": "{\"college_name\":\"Western Michigan\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Broncos\",\"tag_list\":[\"Kalamazoo\",\" Michigan\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1149,
+    "fields": {
+        "category": "College Football",
+        "title": "Western Kentucky Football",
+        "json_data": "{\"college_name\":\"Western Kentucky\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Hilltoppers\",\"tag_list\":[\"Bowling Green\",\" Kentucky\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1148,
+    "fields": {
+        "category": "College Football",
+        "title": "West Virginia Football",
+        "json_data": "{\"college_name\":\"West Virginia\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Mountaineers\",\"tag_list\":[\"Morgantown\",\" West Virginia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1147,
+    "fields": {
+        "category": "College Football",
+        "title": "Washington State Football",
+        "json_data": "{\"college_name\":\"Washington State\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Cougars\",\"tag_list\":[\"Pullman\",\" Washington\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1146,
+    "fields": {
+        "category": "College Football",
+        "title": "Washington Football",
+        "json_data": "{\"college_name\":\"Washington\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Huskies\",\"tag_list\":[\"Seattle\",\" Washington\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1145,
+    "fields": {
+        "category": "College Football",
+        "title": "Wake Forest Football",
+        "json_data": "{\"college_name\":\"Wake Forest\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Demon Deacons\",\"tag_list\":[\"Winston-Salem\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1144,
+    "fields": {
+        "category": "College Football",
+        "title": "Virginia Tech Football",
+        "json_data": "{\"college_name\":\"Virginia Tech\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Hokies\",\"tag_list\":[\"Blacksburg\",\" Virginia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1143,
+    "fields": {
+        "category": "College Football",
+        "title": "Virginia Football",
+        "json_data": "{\"college_name\":\"Virginia\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Cavaliers\",\"tag_list\":[\"Charlottesville\",\" Virginia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1142,
+    "fields": {
+        "category": "College Football",
+        "title": "Vanderbilt Football",
+        "json_data": "{\"college_name\":\"Vanderbilt\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Commodores\",\"tag_list\":[\"Nashville\",\" Tennessee\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1141,
+    "fields": {
+        "category": "College Football",
+        "title": "Utah State Football",
+        "json_data": "{\"college_name\":\"Utah State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Aggies\",\"tag_list\":[\"Logan\",\" Utah\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1140,
+    "fields": {
+        "category": "College Football",
+        "title": "Utah Football",
+        "json_data": "{\"college_name\":\"Utah\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Utes\",\"tag_list\":[\"Salt Lake City\",\" Utah\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1139,
+    "fields": {
+        "category": "College Football",
+        "title": "Tulsa Football",
+        "json_data": "{\"college_name\":\"Tulsa\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Golden Hurricane\",\"tag_list\":[\"Tulsa\",\" Oklahoma\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1138,
+    "fields": {
+        "category": "College Football",
+        "title": "Tulane Football",
+        "json_data": "{\"college_name\":\"Tulane\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Green Wave\",\"tag_list\":[\"New Orleans\",\" Louisiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1137,
+    "fields": {
+        "category": "College Football",
+        "title": "Troy Football",
+        "json_data": "{\"college_name\":\"Troy\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Trojans\",\"tag_list\":[\"Troy\",\" Alabama\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1136,
+    "fields": {
+        "category": "College Football",
+        "title": "Toledo Football",
+        "json_data": "{\"college_name\":\"Toledo\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Rockets\",\"tag_list\":[\"Toledo\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1135,
+    "fields": {
+        "category": "College Football",
+        "title": "UTSA Football",
+        "json_data": "{\"college_name\":\"UTSA\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Roadrunners\",\"tag_list\":[\"San Antonio\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1134,
+    "fields": {
+        "category": "College Football",
+        "title": "UTEP Football",
+        "json_data": "{\"college_name\":\"UTEP\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Miners\",\"tag_list\":[\"El Paso\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1133,
+    "fields": {
+        "category": "College Football",
+        "title": "Texas Tech Football",
+        "json_data": "{\"college_name\":\"Texas Tech\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Red Raiders\",\"tag_list\":[\"Lubbock\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1132,
+    "fields": {
+        "category": "College Football",
+        "title": "Texas State Football",
+        "json_data": "{\"college_name\":\"Texas State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Bobcats\",\"tag_list\":[\"San Marcos\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1131,
+    "fields": {
+        "category": "College Football",
+        "title": "Texas A&M Football",
+        "json_data": "{\"college_name\":\"Texas A&M\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Aggies\",\"tag_list\":[\"College Station\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1130,
+    "fields": {
+        "category": "College Football",
+        "title": "Texas Football",
+        "json_data": "{\"college_name\":\"Texas\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Longhorns\",\"tag_list\":[\"Austin\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1129,
+    "fields": {
+        "category": "College Football",
+        "title": "Tennessee Football",
+        "json_data": "{\"college_name\":\"Tennessee\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Volunteers\",\"tag_list\":[\"Knoxville\",\" Tennessee\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1128,
+    "fields": {
+        "category": "College Football",
+        "title": "Temple Football",
+        "json_data": "{\"college_name\":\"Temple\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Owls\",\"tag_list\":[\"Philadelphia\",\" Pennsylvania\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1127,
+    "fields": {
+        "category": "College Football",
+        "title": "TCU Football",
+        "json_data": "{\"college_name\":\"TCU\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Horned Frogs\",\"tag_list\":[\"Fort Worth\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1126,
+    "fields": {
+        "category": "College Football",
+        "title": "Syracuse Football",
+        "json_data": "{\"college_name\":\"Syracuse\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Orange\",\"tag_list\":[\"Syracuse\",\" New York\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1125,
+    "fields": {
+        "category": "College Football",
+        "title": "Stanford Football",
+        "json_data": "{\"college_name\":\"Stanford\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Cardinal\",\"tag_list\":[\"Stanford\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1124,
+    "fields": {
+        "category": "College Football",
+        "title": "Southern Miss Football",
+        "json_data": "{\"college_name\":\"Southern Miss\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Golden Eagles\",\"tag_list\":[\"Hattiesburg\",\" Mississippi\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1123,
+    "fields": {
+        "category": "College Football",
+        "title": "SMU Football",
+        "json_data": "{\"college_name\":\"SMU\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Mustangs\",\"tag_list\":[\"University Park\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1122,
+    "fields": {
+        "category": "College Football",
+        "title": "USC Football",
+        "json_data": "{\"college_name\":\"USC\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Trojans\",\"tag_list\":[\"Los Angeles\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1121,
+    "fields": {
+        "category": "College Football",
+        "title": "South Florida Football",
+        "json_data": "{\"college_name\":\"South Florida\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Bulls\",\"tag_list\":[\"Tampa\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1120,
+    "fields": {
+        "category": "College Football",
+        "title": "South Carolina Football",
+        "json_data": "{\"college_name\":\"South Carolina\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Gamecocks\",\"tag_list\":[\"Columbia\",\" South Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1119,
+    "fields": {
+        "category": "College Football",
+        "title": "South Alabama Football",
+        "json_data": "{\"college_name\":\"South Alabama\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Jaguars\",\"tag_list\":[\"Mobile\",\" Alabama\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1118,
+    "fields": {
+        "category": "College Football",
+        "title": "San Jose State Football",
+        "json_data": "{\"college_name\":\"San Jose State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Spartans\",\"tag_list\":[\"San Jose\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1117,
+    "fields": {
+        "category": "College Football",
+        "title": "San Diego State Football",
+        "json_data": "{\"college_name\":\"San Diego State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Aztecs\",\"tag_list\":[\"San Diego\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1116,
+    "fields": {
+        "category": "College Football",
+        "title": "Rutgers Football",
+        "json_data": "{\"college_name\":\"Rutgers\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Scarlet Knights\",\"tag_list\":[\"Piscataway\",\" New Jersey\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1115,
+    "fields": {
+        "category": "College Football",
+        "title": "Rice Football",
+        "json_data": "{\"college_name\":\"Rice\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Owls\",\"tag_list\":[\"Houston\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1114,
+    "fields": {
+        "category": "College Football",
+        "title": "Purdue Football",
+        "json_data": "{\"college_name\":\"Purdue\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Boilermakers\",\"tag_list\":[\"West Lafayette\",\" Indiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1113,
+    "fields": {
+        "category": "College Football",
+        "title": "Pittsburgh Football",
+        "json_data": "{\"college_name\":\"Pittsburgh\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Panthers\",\"tag_list\":[\"Pittsburgh\",\" Pennsylvania\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1112,
+    "fields": {
+        "category": "College Football",
+        "title": "Penn State Football",
+        "json_data": "{\"college_name\":\"Penn State\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Nittany Lions\",\"tag_list\":[\"State College\",\" Pennsylvania\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1111,
+    "fields": {
+        "category": "College Football",
+        "title": "Oregon State Football",
+        "json_data": "{\"college_name\":\"Oregon State\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Beavers\",\"tag_list\":[\"Corvallis\",\" Oregon\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1110,
+    "fields": {
+        "category": "College Football",
+        "title": "Oregon Football",
+        "json_data": "{\"college_name\":\"Oregon\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Ducks\",\"tag_list\":[\"Eugene\",\" Oregon\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1109,
+    "fields": {
+        "category": "College Football",
+        "title": "Old Dominion Football",
+        "json_data": "{\"college_name\":\"Old Dominion\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Monarchs\",\"tag_list\":[\"Norfolk\",\" Virginia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1108,
+    "fields": {
+        "category": "College Football",
+        "title": "Oklahoma State Football",
+        "json_data": "{\"college_name\":\"Oklahoma State\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Cowboys\",\"tag_list\":[\"Stillwater\",\" Oklahoma\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1107,
+    "fields": {
+        "category": "College Football",
+        "title": "Oklahoma Football",
+        "json_data": "{\"college_name\":\"Oklahoma\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Sooners\",\"tag_list\":[\"Norman\",\" Oklahoma\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1106,
+    "fields": {
+        "category": "College Football",
+        "title": "Ohio State Football",
+        "json_data": "{\"college_name\":\"Ohio State\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Buckeyes\",\"tag_list\":[\"Columbus\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1105,
+    "fields": {
+        "category": "College Football",
+        "title": "Ohio Football",
+        "json_data": "{\"college_name\":\"Ohio\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Bobcats\",\"tag_list\":[\"Athens\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1103,
+    "fields": {
+        "category": "College Football",
+        "title": "Northwestern Football",
+        "json_data": "{\"college_name\":\"Northwestern\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Wildcats\",\"tag_list\":[\"Evanston\",\" Illinois\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1102,
+    "fields": {
+        "category": "College Football",
+        "title": "NIU Football",
+        "json_data": "{\"college_name\":\"NIU\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Huskies\",\"tag_list\":[\"DeKalb\",\" Illinois\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1101,
+    "fields": {
+        "category": "College Football",
+        "title": "North Texas Football",
+        "json_data": "{\"college_name\":\"North Texas\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Mean Green\",\"tag_list\":[\"Denton\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1100,
+    "fields": {
+        "category": "College Football",
+        "title": "NC State Football",
+        "json_data": "{\"college_name\":\"NC State\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Wolfpack\",\"tag_list\":[\"Raleigh\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1099,
+    "fields": {
+        "category": "College Football",
+        "title": "North Carolina Football",
+        "json_data": "{\"college_name\":\"North Carolina\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Tar Heels\",\"tag_list\":[\"Chapel Hill\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1098,
+    "fields": {
+        "category": "College Football",
+        "title": "New Mexico State Football",
+        "json_data": "{\"college_name\":\"New Mexico State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Aggies\",\"tag_list\":[\"Las Cruces\",\" New Mexico\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1097,
+    "fields": {
+        "category": "College Football",
+        "title": "New Mexico Football",
+        "json_data": "{\"college_name\":\"New Mexico\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Lobos\",\"tag_list\":[\"Albuquerque\",\" New Mexico\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1096,
+    "fields": {
+        "category": "College Football",
+        "title": "UNLV Football",
+        "json_data": "{\"college_name\":\"UNLV\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Rebels\",\"tag_list\":[\"Las Vegas[n 8]\",\" Nevada\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1095,
+    "fields": {
+        "category": "College Football",
+        "title": "Nevada Football",
+        "json_data": "{\"college_name\":\"Nevada\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Wolf Pack\",\"tag_list\":[\"Reno\",\" Nevada\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1094,
+    "fields": {
+        "category": "College Football",
+        "title": "Nebraska Football",
+        "json_data": "{\"college_name\":\"Nebraska\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Cornhuskers\",\"tag_list\":[\"Lincoln\",\" Nebraska\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1093,
+    "fields": {
+        "category": "College Football",
+        "title": "Navy Football",
+        "json_data": "{\"college_name\":\"Navy\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Midshipmen\",\"tag_list\":[\"Annapolis\",\" Maryland\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1092,
+    "fields": {
+        "category": "College Football",
+        "title": "Missouri Football",
+        "json_data": "{\"college_name\":\"Missouri\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Tigers\",\"tag_list\":[\"Columbia\",\" Missouri\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1091,
+    "fields": {
+        "category": "College Football",
+        "title": "Mississippi State Football",
+        "json_data": "{\"college_name\":\"Mississippi State\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Bulldogs\",\"tag_list\":[\"Starkville\",\" Mississippi\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1090,
+    "fields": {
+        "category": "College Football",
+        "title": "Ole Miss Football",
+        "json_data": "{\"college_name\":\"Ole Miss\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Rebels\",\"tag_list\":[\"Oxford\",\" Mississippi\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1089,
+    "fields": {
+        "category": "College Football",
+        "title": "Minnesota Football",
+        "json_data": "{\"college_name\":\"Minnesota\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Golden Gophers\",\"tag_list\":[\"Minneapolis\",\" Minnesota\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1088,
+    "fields": {
+        "category": "College Football",
+        "title": "Middle Tennessee Football",
+        "json_data": "{\"college_name\":\"Middle Tennessee\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Blue Raiders\",\"tag_list\":[\"Murfreesboro\",\" Tennessee\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1087,
+    "fields": {
+        "category": "College Football",
+        "title": "Michigan State Football",
+        "json_data": "{\"college_name\":\"Michigan State\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Spartans\",\"tag_list\":[\"East Lansing\",\" Michigan\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1086,
+    "fields": {
+        "category": "College Football",
+        "title": "Michigan Football",
+        "json_data": "{\"college_name\":\"Michigan\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Wolverines\",\"tag_list\":[\"Ann Arbor\",\" Michigan\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1085,
+    "fields": {
+        "category": "College Football",
+        "title": "Miami (OH) Football",
+        "json_data": "{\"college_name\":\"Miami (OH)\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"RedHawks\",\"tag_list\":[\"Oxford\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1084,
+    "fields": {
+        "category": "College Football",
+        "title": "Miami (FL) Football",
+        "json_data": "{\"college_name\":\"Miami (FL)\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Hurricanes\",\"tag_list\":[\"Coral Gables[n 7]\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1083,
+    "fields": {
+        "category": "College Football",
+        "title": "Memphis Football",
+        "json_data": "{\"college_name\":\"Memphis\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Tigers\",\"tag_list\":[\"Memphis\",\" Tennessee\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1082,
+    "fields": {
+        "category": "College Football",
+        "title": "Massachusetts Football",
+        "json_data": "{\"college_name\":\"Massachusetts\",\"network_list\":[\"ESPN\"],\"conference\":\"Independent\",\"nickname\":\"Minutemen\",\"tag_list\":[\"Amherst[n 6]\",\" Massachusetts\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1081,
+    "fields": {
+        "category": "College Football",
+        "title": "Maryland Football",
+        "json_data": "{\"college_name\":\"Maryland\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Terrapins\",\"tag_list\":[\"College Park\",\" Maryland\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1080,
+    "fields": {
+        "category": "College Football",
+        "title": "Marshall Football",
+        "json_data": "{\"college_name\":\"Marshall\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Thundering Herd\",\"tag_list\":[\"Huntington\",\" West Virginia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1079,
+    "fields": {
+        "category": "College Football",
+        "title": "Louisville Football",
+        "json_data": "{\"college_name\":\"Louisville\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Cardinals\",\"tag_list\":[\"Louisville\",\" Kentucky\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1078,
+    "fields": {
+        "category": "College Football",
+        "title": "Louisiana-Monroe Football",
+        "json_data": "{\"college_name\":\"Louisiana-Monroe\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Warhawks\",\"tag_list\":[\"Monroe\",\" Louisiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1077,
+    "fields": {
+        "category": "College Football",
+        "title": "Louisiana-Lafayette Football",
+        "json_data": "{\"college_name\":\"Louisiana-Lafayette\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Ragin' Cajuns\",\"tag_list\":[\"Lafayette\",\" Louisiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1076,
+    "fields": {
+        "category": "College Football",
+        "title": "Louisiana Tech Football",
+        "json_data": "{\"college_name\":\"Louisiana Tech\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Bulldogs\",\"tag_list\":[\"Ruston\",\" Louisiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1075,
+    "fields": {
+        "category": "College Football",
+        "title": "LSU Football",
+        "json_data": "{\"college_name\":\"LSU\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Tigers\",\"tag_list\":[\"Baton Rouge\",\" Louisiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1074,
+    "fields": {
+        "category": "College Football",
+        "title": "Kentucky Football",
+        "json_data": "{\"college_name\":\"Kentucky\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Wildcats\",\"tag_list\":[\"Lexington\",\" Kentucky\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1073,
+    "fields": {
+        "category": "College Football",
+        "title": "Kent State Football",
+        "json_data": "{\"college_name\":\"Kent State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Golden Flashes\",\"tag_list\":[\"Kent\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1072,
+    "fields": {
+        "category": "College Football",
+        "title": "Kansas State Football",
+        "json_data": "{\"college_name\":\"Kansas State\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Wildcats\",\"tag_list\":[\"Manhattan\",\" Kansas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1071,
+    "fields": {
+        "category": "College Football",
+        "title": "Kansas Football",
+        "json_data": "{\"college_name\":\"Kansas\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Jayhawks\",\"tag_list\":[\"Lawrence\",\" Kansas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1070,
+    "fields": {
+        "category": "College Football",
+        "title": "Iowa State Football",
+        "json_data": "{\"college_name\":\"Iowa State\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Cyclones\",\"tag_list\":[\"Ames\",\" Iowa\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1069,
+    "fields": {
+        "category": "College Football",
+        "title": "Iowa Football",
+        "json_data": "{\"college_name\":\"Iowa\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Hawkeyes\",\"tag_list\":[\"Iowa City\",\" Iowa\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1068,
+    "fields": {
+        "category": "College Football",
+        "title": "Indiana Football",
+        "json_data": "{\"college_name\":\"Indiana\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Hoosiers\",\"tag_list\":[\"Bloomington\",\" Indiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1067,
+    "fields": {
+        "category": "College Football",
+        "title": "Illinois Football",
+        "json_data": "{\"college_name\":\"Illinois\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" BTN\"],\"conference\":\"Big Ten\",\"nickname\":\"Fighting Illini\",\"tag_list\":[\"Urbana\\ufffdChampaign\",\" Illinois\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1066,
+    "fields": {
+        "category": "College Football",
+        "title": "Idaho Football",
+        "json_data": "{\"college_name\":\"Idaho\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Vandals\",\"tag_list\":[\"Moscow\",\" Idaho\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1065,
+    "fields": {
+        "category": "College Football",
+        "title": "Houston Football",
+        "json_data": "{\"college_name\":\"Houston\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Cougars\",\"tag_list\":[\"Houston\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1064,
+    "fields": {
+        "category": "College Football",
+        "title": "Hawai'i Football",
+        "json_data": "{\"college_name\":\"Hawai'i\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Rainbow Warriors\",\"tag_list\":[\"Honolulu\",\" Hawai'i\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1104,
+    "fields": {
+        "category": "College Football",
+        "title": "Notre Dame Football",
+        "json_data": "{\"college_name\":\"Notre Dame\",\"network_list\":[\"NBC\"],\"conference\":\"Independent\",\"nickname\":\"Fighting Irish\",\"tag_list\":[\"South Bend\",\" Indiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1063,
+    "fields": {
+        "category": "College Football",
+        "title": "Georgia Tech Football",
+        "json_data": "{\"college_name\":\"Georgia Tech\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Yellow Jackets\",\"tag_list\":[\"Atlanta\",\" Georgia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1062,
+    "fields": {
+        "category": "College Football",
+        "title": "Georgia State Football",
+        "json_data": "{\"college_name\":\"Georgia State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Panthers\",\"tag_list\":[\"Atlanta\",\" Georgia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1061,
+    "fields": {
+        "category": "College Football",
+        "title": "Georgia Southern Football",
+        "json_data": "{\"college_name\":\"Georgia Southern\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Eagles\",\"tag_list\":[\"Statesboro\",\" Georgia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1060,
+    "fields": {
+        "category": "College Football",
+        "title": "Georgia Football",
+        "json_data": "{\"college_name\":\"Georgia\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Bulldogs\",\"tag_list\":[\"Athens\",\" Georgia\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1059,
+    "fields": {
+        "category": "College Football",
+        "title": "Florida State Football",
+        "json_data": "{\"college_name\":\"Florida State\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Seminoles\",\"tag_list\":[\"Tallahassee\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1058,
+    "fields": {
+        "category": "College Football",
+        "title": "Florida Atlantic Football",
+        "json_data": "{\"college_name\":\"Florida Atlantic\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Owls\",\"tag_list\":[\"Boca Raton\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1057,
+    "fields": {
+        "category": "College Football",
+        "title": "Florida Football",
+        "json_data": "{\"college_name\":\"Florida\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Gators\",\"tag_list\":[\"Gainesville\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1056,
+    "fields": {
+        "category": "College Football",
+        "title": "FIU Football",
+        "json_data": "{\"college_name\":\"FIU\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"Panthers\",\"tag_list\":[\"Miami\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1055,
+    "fields": {
+        "category": "College Football",
+        "title": "East Carolina Football",
+        "json_data": "{\"college_name\":\"East Carolina\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Pirates\",\"tag_list\":[\"Greenville\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1054,
+    "fields": {
+        "category": "College Football",
+        "title": "Eastern Michigan Football",
+        "json_data": "{\"college_name\":\"Eastern Michigan\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Eagles\",\"tag_list\":[\"Ypsilanti\",\" Michigan\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1053,
+    "fields": {
+        "category": "College Football",
+        "title": "Duke Football",
+        "json_data": "{\"college_name\":\"Duke\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Blue Devils\",\"tag_list\":[\"Durham\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1052,
+    "fields": {
+        "category": "College Football",
+        "title": "Connecticut Football",
+        "json_data": "{\"college_name\":\"Connecticut\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Huskies\",\"tag_list\":[\"Storrs[n 3]\",\" Connecticut\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1051,
+    "fields": {
+        "category": "College Football",
+        "title": "Colorado State Football",
+        "json_data": "{\"college_name\":\"Colorado State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Rams\",\"tag_list\":[\"Fort Collins\",\" Colorado\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1050,
+    "fields": {
+        "category": "College Football",
+        "title": "Colorado Football",
+        "json_data": "{\"college_name\":\"Colorado\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Buffaloes\",\"tag_list\":[\"Boulder\",\" Colorado\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1049,
+    "fields": {
+        "category": "College Football",
+        "title": "Clemson Football",
+        "json_data": "{\"college_name\":\"Clemson\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Tigers\",\"tag_list\":[\"Clemson\",\" South Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1048,
+    "fields": {
+        "category": "College Football",
+        "title": "Cincinnati Football",
+        "json_data": "{\"college_name\":\"Cincinnati\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Bearcats\",\"tag_list\":[\"Cincinnati\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1047,
+    "fields": {
+        "category": "College Football",
+        "title": "Charlotte Football",
+        "json_data": "{\"college_name\":\"Charlotte\",\"network_list\":[\"Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"C-USA\",\"nickname\":\"49ers\",\"tag_list\":[\"Charlotte\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1046,
+    "fields": {
+        "category": "College Football",
+        "title": "Central Michigan Football",
+        "json_data": "{\"college_name\":\"Central Michigan\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Chippewas\",\"tag_list\":[\"Mount Pleasant\",\" Michigan\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1045,
+    "fields": {
+        "category": "College Football",
+        "title": "UCF Football",
+        "json_data": "{\"college_name\":\"UCF\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\"],\"conference\":\"American\",\"nickname\":\"Knights\",\"tag_list\":[\"Orlando\",\" Florida\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1044,
+    "fields": {
+        "category": "College Football",
+        "title": "UCLA Football",
+        "json_data": "{\"college_name\":\"UCLA\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Bruins\",\"tag_list\":[\"Los Angeles\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1043,
+    "fields": {
+        "category": "College Football",
+        "title": "Fresno State Football",
+        "json_data": "{\"college_name\":\"Fresno State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Bulldogs\",\"tag_list\":[\"Fresno\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1042,
+    "fields": {
+        "category": "College Football",
+        "title": "California Football",
+        "json_data": "{\"college_name\":\"California\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Golden Bears\",\"tag_list\":[\"Berkeley\",\" California\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1041,
+    "fields": {
+        "category": "College Football",
+        "title": "BYU Football",
+        "json_data": "{\"college_name\":\"BYU\",\"network_list\":[\"BYUtv\",\" ESPN\"],\"conference\":\"Independent\",\"nickname\":\"Cougars\",\"tag_list\":[\"Provo\",\" Utah\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1040,
+    "fields": {
+        "category": "College Football",
+        "title": "Buffalo Football",
+        "json_data": "{\"college_name\":\"Buffalo\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Bulls\",\"tag_list\":[\"Buffalo\",\" New York\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1039,
+    "fields": {
+        "category": "College Football",
+        "title": "Bowling Green Football",
+        "json_data": "{\"college_name\":\"Bowling Green\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Falcons\",\"tag_list\":[\"Bowling Green\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1038,
+    "fields": {
+        "category": "College Football",
+        "title": "Boston College Football",
+        "json_data": "{\"college_name\":\"Boston College\",\"network_list\":[\"ABC\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"ACC\",\"nickname\":\"Eagles\",\"tag_list\":[\"Chestnut Hill\",\" Massachusetts\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1037,
+    "fields": {
+        "category": "College Football",
+        "title": "Boise State Football",
+        "json_data": "{\"college_name\":\"Boise State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Broncos\",\"tag_list\":[\"Boise\",\" Idaho\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1036,
+    "fields": {
+        "category": "College Football",
+        "title": "Baylor Football",
+        "json_data": "{\"college_name\":\"Baylor\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\"],\"conference\":\"Big 12\",\"nickname\":\"Bears\",\"tag_list\":[\"Waco\",\" Texas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1035,
+    "fields": {
+        "category": "College Football",
+        "title": "Ball State Football",
+        "json_data": "{\"college_name\":\"Ball State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Cardinals\",\"tag_list\":[\"Muncie\",\" Indiana\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1034,
+    "fields": {
+        "category": "College Football",
+        "title": "Auburn Football",
+        "json_data": "{\"college_name\":\"Auburn\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Tigers\",\"tag_list\":[\"Auburn\",\" Alabama\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1033,
+    "fields": {
+        "category": "College Football",
+        "title": "Army West Point Football",
+        "json_data": "{\"college_name\":\"Army West Point\",\"network_list\":[\"CBS\",\" NBC\"],\"conference\":\"Independent\",\"nickname\":\"Black Knights\",\"tag_list\":[\"West Point\",\" New York\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1032,
+    "fields": {
+        "category": "College Football",
+        "title": "Arkansas State Football",
+        "json_data": "{\"college_name\":\"Arkansas State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Red Wolves\",\"tag_list\":[\"Jonesboro\",\" Arkansas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1031,
+    "fields": {
+        "category": "College Football",
+        "title": "Arkansas Football",
+        "json_data": "{\"college_name\":\"Arkansas\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Razorbacks\",\"tag_list\":[\"Fayetteville\",\" Arkansas\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1030,
+    "fields": {
+        "category": "College Football",
+        "title": "Arizona State Football",
+        "json_data": "{\"college_name\":\"Arizona State\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Sun Devils\",\"tag_list\":[\"Tempe\",\" Arizona\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1029,
+    "fields": {
+        "category": "College Football",
+        "title": "Arizona Football",
+        "json_data": "{\"college_name\":\"Arizona\",\"network_list\":[\"ABC\",\" Fox\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" Fox Sports Networks\",\" Fox Sports 1\",\" Fox College Sports\",\" Pac-12 Network\",\" Twitter\"],\"conference\":\"Pac-12\",\"nickname\":\"Wildcats\",\"tag_list\":[\"Tucson\",\" Arizona\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1028,
+    "fields": {
+        "category": "College Football",
+        "title": "Appalachian State Football",
+        "json_data": "{\"college_name\":\"Appalachian State\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\"],\"conference\":\"Sun Belt\",\"nickname\":\"Mountaineers\",\"tag_list\":[\"Boone\",\" North Carolina\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1027,
+    "fields": {
+        "category": "College Football",
+        "title": "Alabama Football",
+        "json_data": "{\"college_name\":\"Alabama\",\"network_list\":[\"CBS\",\" ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" SEC Network\"],\"conference\":\"SEC\",\"nickname\":\"Crimson Tide\",\"tag_list\":[\"Tuscaloosa\",\" Alabama\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1026,
+    "fields": {
+        "category": "College Football",
+        "title": "Akron Football",
+        "json_data": "{\"college_name\":\"Akron\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" American Sports Network\",\" CBS Sports Network\"],\"conference\":\"MAC\",\"nickname\":\"Zips\",\"tag_list\":[\"Akron\",\" Ohio\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+},
+{
+    "model": "data_processor.sport",
+    "pk": 1025,
+    "fields": {
+        "category": "College Football",
+        "title": "Air Force Football",
+        "json_data": "{\"college_name\":\"Air Force\",\"network_list\":[\"ESPN\",\" ESPN2\",\" ESPNU\",\" ESPNEWS\",\" ESPN3\",\" CBS Sports Network\",\" Root Sports\"],\"conference\":\"Mountain West\",\"nickname\":\"Falcons\",\"tag_list\":[\"Colorado Springs\",\" Colorado\",\" NCAA\",\" College\",\" Football\",\" College Football\",\" BCS\",\" Bowl Game\",\" FBS\",\" Heisman\",\" Championship\"]}",
+        "date_created": "2016-08-09T00:52:18.940Z"
+    }
+}
+]

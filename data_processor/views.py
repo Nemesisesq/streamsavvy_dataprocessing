@@ -11,7 +11,7 @@ from data_processor.constants import unwanted_show_ids
 from data_processor.guidebox import GuideBox
 from data_processor.models import ServiceDescription, Channel, Content, ViewingServices, ModuleDescriptions
 from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer, \
-    ViewingServicesSerializer, ModuleDescriptionSerializer
+    ViewingServicesSerializer, ModuleDescriptionSerializer, SportSerializer
 from rest_framework import viewsets
 
 
@@ -75,8 +75,19 @@ class ContentViewSet(viewsets.ModelViewSet):
         return obj
 
 
+class SearchSportsViewSet(viewsets.ModelViewSet):
+    q = ""
+
+    serializer_class = SportSerializer
 
 
+    def get_queryset(self):
+        self.q = self.request.GET.get('q', '')
+        sqs = SearchQuerySet().autocomplete(team_auto=self.q)[:20]
+
+        suggestions = [result.object for result in sqs]
+
+        return suggestions
 
 class SearchContentViewSet(viewsets.ModelViewSet):
     q = ""
@@ -85,7 +96,8 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q).exclude(title=None).order_by()[:10]
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q).exclude(title=None)[:10]
+        # sqs_sports = SearchQuerySet().autocomplete(team_auto=self.q)[:10]
         suggestions = [result.object for result in sqs]
 
         suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))

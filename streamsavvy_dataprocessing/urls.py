@@ -18,11 +18,12 @@ from django.contrib import admin
 from rest_framework import routers
 
 from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet, ChannelViewSet, ContentViewSet, \
-    ViewingServicesViewSet, ModuleDescriptionViewSet
+    ViewingServicesViewSet, ModuleDescriptionViewSet, SearchSportsViewSet
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
 router.register(r'search', SearchContentViewSet, 'search')
+router.register(r'search_sports', SearchSportsViewSet, 'sport')
 router.register(r'content', ContentViewSet, 'content')
 router.register(r'channel', ChannelViewSet, 'channel')
 router.register(r'window', ViewingServicesViewSet, 'viewingservices')
