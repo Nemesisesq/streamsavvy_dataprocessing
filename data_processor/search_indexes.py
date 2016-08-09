@@ -46,4 +46,4 @@ class SportIndex(indexes.ModelSearchIndex, indexes.Indexable):
         return Sport
 
     def index_queryset(self, using=None):
-        return self.get_model().objects.all()
+        return self.get_model().objects.all().exclude(title=None)
