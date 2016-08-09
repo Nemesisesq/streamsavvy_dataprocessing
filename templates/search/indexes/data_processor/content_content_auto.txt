@@ -1,4 +1,2 @@
 {{ object.title }}
-{{ object.get_tags }}
-{{ object.get_cast }}
-{{ object.get_genre }}
+
