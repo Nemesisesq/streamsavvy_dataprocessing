@@ -12,7 +12,7 @@ from fuzzywuzzy import fuzz, process
 
 from data_processor.constants import sling_channels, broadcast_channels, banned_channels, allowed_services
 from data_processor.models import Content, Channel
-from data_processor.shortcuts import try_catch
+from data_processor.shortcuts import try_catch, asynchronous
 
 
 def is_banned_channel(i, m):
@@ -132,7 +132,7 @@ class GuideBox(object):
     @try_catch
     def process_content_for_sling_ota_banned_channels(self, c, search_query=False):
 
-        c = self.check_for_sources_date_last_checked(c)
+        self.check_for_sources_date_last_checked(c)
 
         c = self.remove_banned_channels(c)
 
@@ -253,6 +253,7 @@ class GuideBox(object):
 
         return c
 
+
     def add_additional_channels_for_show(self, shows):
 
         def execute(c):
@@ -312,9 +313,13 @@ class GuideBox(object):
 
     def save_content(self, the_json):
 
-        c = Content.objects.get_or_create(guidebox_data__id=the_json['id'])
+        try:
+            c = Content.objects.get(guidebox_data__id=the_json['id'])
+            content = c[0]
 
-        content = c[0]
+        except:
+            c = Content()
+
         content.title = the_json['title']
         content.guidebox_data = the_json
         try:

@@ -16,6 +16,7 @@ from data_processor.models import Content, Sport
 class ContentIndex(indexes.ModelSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     content_auto = indexes.EdgeNgramField(use_template=True)
+    cur_pop_score = indexes.CharField(model_attr='curr_pop_score')
 
     def get_model(self):
         return Content

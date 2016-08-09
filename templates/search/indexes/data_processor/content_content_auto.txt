@@ -1,2 +1,5 @@
 {{ object.title }}
-
+{{ object.curr_pop_score }}
+{{ object.get_tags }}
+{{ object.get_cast }}
+{{ object.get_genre }}

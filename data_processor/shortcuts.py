@@ -95,8 +95,8 @@ class asynchronous(object):
     def __init__(self, func):
         self.func = func
 
-        def threaded(*args, **kwargs):
-            self.queue.put(self.func(*args, **kwargs))
+        def threaded(c, *args, **kwargs):
+            self.queue.put(self.func(c, *args, **kwargs))
 
         self.threaded = threaded
 
@@ -129,7 +129,6 @@ class asynchronous(object):
                 self.result = self.queue.get()
 
             return self.result
-
 
 import threading, sys, functools, traceback
 

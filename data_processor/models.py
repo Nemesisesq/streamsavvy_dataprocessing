@@ -1,7 +1,9 @@
+from datetime import datetime
+
 import django
 from django.db import models
-from jsonfield import JSONField
-
+# from jsonfield import JSONField
+from django.contrib.postgres.fields import JSONField
 
 class ModuleDescriptions(models.Model):
     level = models.TextField(blank=True, null=True)
@@ -53,11 +55,12 @@ class Channel(models.Model):
 
 class Content(models.Model):
     title = models.CharField(max_length=250, default='')
-    guidebox_data = JSONField(default="")  # This field type is a guess.
+    guidebox_data = JSONField()  # This field type is a guess.
     modified = models.DateTimeField()
     on_netflix = models.BooleanField()
     channels_last_checked = models.DateTimeField(blank=True, null=True)
     channel = models.ManyToManyField(Channel, blank=True)
+    curr_pop_score = models.FloatField(default=0.1)
 
     class Meta:
         managed = False
@@ -86,7 +89,8 @@ class Sport(models.Model):
     category = models.TextField()
     title = models.TextField()
     json_data = JSONField(default="")
-    date_created = models.DateTimeField(default=django.utils.timezone.now())
+    date_created = models.DateTimeField()
 
     def __str__(self):
+        self.date_created = datetime.now()
         return "{0}".format(self.title)

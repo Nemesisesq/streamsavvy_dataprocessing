@@ -96,11 +96,13 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q).exclude(title=None)[:10]
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q).order_by("-text")
         # sqs_sports = SearchQuerySet().autocomplete(team_auto=self.q)[:10]
-        suggestions = [result.object for result in sqs]
 
-        suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))
+        print("Search returned")
+        suggestions = [result.object for result in sqs]
+        filter_results = suggestions
+        # suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))
 
         filter_results = self.check_guidebox_for_query(suggestions, self.q)
         # filter_results['search_term'] = self
@@ -112,7 +114,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         filter_results = [show for show in filter_results if show.id != 15296]
 
         # filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
-
+        print("results sent off")
         return filter_results
 
     def get_ratio(self, obj):
