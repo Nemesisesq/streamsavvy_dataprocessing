@@ -104,7 +104,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         filter_results = suggestions
         # suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))
 
-        filter_results = self.check_guidebox_for_query(suggestions, self.q)
+        # filter_results = self.check_guidebox_for_query(suggestions, self.q)
         # filter_results['search_term'] = self
 
         filter_results = [x for x in filter_results if x.guidebox_data['id'] not in unwanted_show_ids]
