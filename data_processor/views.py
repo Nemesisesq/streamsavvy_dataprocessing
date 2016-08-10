@@ -51,8 +51,6 @@ class ViewingServicesViewSet(viewsets.ModelViewSet):
 
         t = [ViewingServices.objects.get(name=res[0][0])]
 
-
-
         return t
 
 
@@ -96,11 +94,12 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q)
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q)[:20]
+        sqs_meta = SearchQuerySet().autocomplete(meta_auto=self.q)[:20]
         # sqs_sports = SearchQuerySet().autocomplete(team_auto=self.q)[:10]
 
         print("Search returned")
-        suggestions = [result.object for result in sqs]
+        suggestions = [result.object for result in sqs] + [result.object for result in sqs_meta]
         filter_results = suggestions
         # suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))
 
