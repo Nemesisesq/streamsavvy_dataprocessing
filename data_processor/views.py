@@ -96,7 +96,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q).order_by("-text")
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q)
         # sqs_sports = SearchQuerySet().autocomplete(team_auto=self.q)[:10]
 
         print("Search returned")
