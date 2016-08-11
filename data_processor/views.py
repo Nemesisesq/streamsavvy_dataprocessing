@@ -16,6 +16,8 @@ from rest_framework import viewsets
 
 
 # Create your views here.
+from streamsavvy_dataprocessing.settings import get_env_variable
+
 
 class ServiceDescriptionViewSet(viewsets.ModelViewSet):
     queryset = ServiceDescription.objects.all()
@@ -80,10 +82,18 @@ class SearchSportsViewSet(viewsets.ModelViewSet):
 
 
     def get_queryset(self):
-        self.q = self.request.GET.get('q', '')
-        sqs = SearchQuerySet().autocomplete(team_auto=self.q)[:20]
 
-        suggestions = [result.object for result in sqs]
+
+        self.q = self.request.GET.get('q', '')
+
+        if get_env_variable('ENVIRONMENT') != 'PRODUCTION':
+
+            sqs = SearchQuerySet().autocomplete(team_auto=self.q)[:20]
+
+            suggestions = [result.object for result in sqs]
+
+        else:
+            suggestions = []
 
         return suggestions
 
