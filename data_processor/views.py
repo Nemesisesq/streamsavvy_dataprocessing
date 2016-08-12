@@ -111,7 +111,6 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         print("Search returned")
         suggestions = [result.object for result in sqs] + [result.object for result in sqs_meta]
         filter_results = suggestions
-        # suggestions = list(reversed(sorted(suggestions, key=self.get_ratio)))
 
         # filter_results = self.check_guidebox_for_query(suggestions, self.q)
         # filter_results['search_term'] = self
@@ -121,13 +120,14 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         # banned server
 
         filter_results = [show for show in filter_results if show.id != 15296]
+        filter_results= list(reversed(sorted(filter_results, key=self.get_score)))
 
         # filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
         print("results sent off")
         return filter_results
 
-    def get_ratio(self, obj):
-        return fuzz.ratio(self.q, obj.title)
+    def get_score(self, obj):
+        return obj.curr_pop_score
 
     def check_guidebox_for_query(self, filter_results, query_string):
         if len(filter_results) == 0:
