@@ -2,6 +2,7 @@ import json
 
 from django.db.models import Q
 from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from fuzzywuzzy import fuzz, process
 from haystack.generic_views import SearchView
@@ -9,11 +10,11 @@ from haystack.query import SearchQuerySet
 
 from data_processor.constants import unwanted_show_ids
 from data_processor.guidebox import GuideBox
-from data_processor.models import ServiceDescription, Channel, Content, ViewingServices, ModuleDescriptions
+from data_processor.models import ServiceDescription, Channel, Content, ViewingServices, ModuleDescriptions, Schedule, \
+    Sport
 from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer, \
-    ViewingServicesSerializer, ModuleDescriptionSerializer, SportSerializer
+    ViewingServicesSerializer, ModuleDescriptionSerializer, SportSerializer, ScheduleSerializer
 from rest_framework import viewsets
-
 
 # Create your views here.
 from streamsavvy_dataprocessing.settings import get_env_variable
@@ -23,6 +24,7 @@ class ServiceDescriptionViewSet(viewsets.ModelViewSet):
     queryset = ServiceDescription.objects.all()
     serializer_class = ServiceDescriptionSerializer
     lookup_field = 'slug'
+
 
 class ModuleDescriptionViewSet(viewsets.ModelViewSet):
     serializer_class = ModuleDescriptionSerializer
@@ -36,9 +38,11 @@ class ModuleDescriptionViewSet(viewsets.ModelViewSet):
         else:
             return ModuleDescriptions.objects.all()
 
+
 class ChannelViewSet(viewsets.ModelViewSet):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
+
 
 class ViewingServicesViewSet(viewsets.ModelViewSet):
     queryset = ViewingServices.objects.all()
@@ -49,18 +53,11 @@ class ViewingServicesViewSet(viewsets.ModelViewSet):
 
         w = [i.name for i in ViewingServices.objects.all()]
 
-        res = process.extract(q,w, limit=1)
+        res = process.extract(q, w, limit=1)
 
         t = [ViewingServices.objects.get(name=res[0][0])]
 
         return t
-
-
-
-
-
-
-
 
 
 class ContentViewSet(viewsets.ModelViewSet):
@@ -75,14 +72,17 @@ class ContentViewSet(viewsets.ModelViewSet):
         return obj
 
 
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = Schedule.objects.all()
+    serializer_class = ScheduleSerializer
+
+
 class SearchSportsViewSet(viewsets.ModelViewSet):
     q = ""
 
     serializer_class = SportSerializer
 
-
     def get_queryset(self):
-
 
         self.q = self.request.GET.get('q', '')
 
@@ -97,10 +97,10 @@ class SearchSportsViewSet(viewsets.ModelViewSet):
 
         return suggestions
 
+
 class SearchContentViewSet(viewsets.ModelViewSet):
     q = ""
     serializer_class = ContentSerializer
-
 
     def get_queryset(self):
         self.q = self.request.GET.get('q', '')
@@ -120,7 +120,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         # banned server
 
         filter_results = [show for show in filter_results if show.id != 15296]
-        filter_results= list(reversed(sorted(filter_results, key=self.get_score)))
+        filter_results = list(sorted(filter_results, key=self.get_score))
 
         # filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
         print("results sent off")
@@ -173,3 +173,15 @@ class SearchContentViewSet(viewsets.ModelViewSet):
             return False
         else:
             return True
+
+
+def get_sport_schedule(request, sport_id):
+    s = Sport.objects.get(id=sport_id)
+
+    sched = ScheduleSerializer(s.schedules.all()[:1][0]).data
+
+
+
+    return JsonResponse(sched, safe=False)
+
+

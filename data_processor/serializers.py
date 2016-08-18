@@ -10,10 +10,19 @@ class ServiceDescriptionSerializer(serializers.HyperlinkedModelSerializer):
             'url': {'lookup_field': 'slug'}
         }
 
-class SportSerializer(serializers.HyperlinkedModelSerializer):
+class ScheduleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Schedule
+
+
+
+class SportSerializer(serializers.ModelSerializer):
+    schedules = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Sport
         depth = 2
+
 
 class ContentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

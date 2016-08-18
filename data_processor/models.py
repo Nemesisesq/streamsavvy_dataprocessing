@@ -4,6 +4,9 @@ import django
 from django.db import models
 # from jsonfield import JSONField
 from django.contrib.postgres.fields import JSONField
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
+
 
 class ModuleDescriptions(models.Model):
     level = models.TextField(blank=True, null=True)
@@ -94,3 +97,21 @@ class Sport(models.Model):
     def __str__(self):
         self.date_created = datetime.now()
         return "{0}".format(self.title)
+
+
+class Schedule(models.Model):
+    team_name = models.TextField()
+    data = JSONField()
+    date_created = models.DateTimeField()
+    team = models.ForeignKey(Sport, related_name='schedules')
+    team_logo = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+
+        return "{0}".format(self.team_name)
+
+
+@receiver(pre_save, sender=Schedule)
+def set_date_created(sender, instance, *args, **kwargs):
+    instance.date_created = datetime.now()
+

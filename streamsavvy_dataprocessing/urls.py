@@ -18,10 +18,11 @@ from django.contrib import admin
 from rest_framework import routers
 
 from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet, ChannelViewSet, ContentViewSet, \
-    ViewingServicesViewSet, ModuleDescriptionViewSet, SearchSportsViewSet
+    ViewingServicesViewSet, ModuleDescriptionViewSet, SearchSportsViewSet, ScheduleViewSet, get_sport_schedule
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
+router.register(r'schedule', ScheduleViewSet)
 router.register(r'search', SearchContentViewSet, 'search')
 router.register(r'search_sports', SearchSportsViewSet, 'sport')
 router.register(r'content', ContentViewSet, 'content')
@@ -32,6 +33,7 @@ router.register(r'modules', ModuleDescriptionViewSet, 'moduledescriptions')
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^sport_schedule/(?P<sport_id>\d+)', get_sport_schedule, name='sport_schedule')
     # url(r'haystack_search', autocomplete, name='autocomplete'),
 
 ]
