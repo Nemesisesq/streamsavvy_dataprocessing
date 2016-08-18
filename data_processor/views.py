@@ -120,7 +120,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
         # banned server
 
         filter_results = [show for show in filter_results if show.id != 15296]
-        filter_results = list(sorted(filter_results, key=self.get_score))
+        filter_results= list(reversed(sorted(filter_results, key=self.get_score)))
 
         # filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
         print("results sent off")
