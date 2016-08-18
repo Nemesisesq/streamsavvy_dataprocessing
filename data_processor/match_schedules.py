@@ -32,12 +32,12 @@ def add_ncaaf_schedules():
         # print(results)
 
 
-def process_data(i):
+def process_data(raw_data):
     sched = Schedule()
-    sched.team_name = i['name'] if type(i['name']) is str else i['name'][0]
-    sched.data = i['games']
-    sched.team_logo = i['logo']
-    sched_team_name = i['name'][0]
+    sched.team_name = raw_data['name'] if type(raw_data['name']) is str else raw_data['name'][0]
+    sched.data = raw_data['games']
+    sched.team_logo = raw_data['logo']
+    sched_team_name = raw_data['name'][0]
 
     if sched_team_name == 'Northern Illinois Huskies':
         sched_team_name = sched_team_name.replace('Northern Illinois', 'NIU')
@@ -64,4 +64,8 @@ def process_data(i):
         sched.team = result[0]
     else:
         sched.team = nick_obj_list[0]
+
+    sched.team.json_data['logo'] = raw_data['logo']
+    sched.team.save()
+
     sched.save()
