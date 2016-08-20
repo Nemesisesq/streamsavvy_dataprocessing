@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     'fixture_magic',
     'popularity',
     # 'django_redis',
+    'djcelery',
 
 ]
 
@@ -229,18 +230,18 @@ else:
     }
 redis_url = urlparse(os.environ.get('REDIS_URL'))
 
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': [
-            '{0}:{1}'.format(redis_url.hostname, redis_url.port)
-        ],
-        'OPTIONS': {
-            'PASSWORD': redis_url.password,
-            'DB': 0,
-        }
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': [
+#             '{0}:{1}'.format(redis_url.hostname, redis_url.port)
+#         ],
+#         'OPTIONS': {
+#             'PASSWORD': redis_url.password,
+#             'DB': 0,
+#         }
+#     }
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
@@ -299,3 +300,25 @@ LOGGING = {
         },
     }
 }
+
+BROKER_URL = get_env_variable('RABBITMQ_URL')
+
+# List of modules to import when celery starts.
+# CELERY_IMPORTS = ('myapp.tasks', )
+
+## Using the database to store task state and results.
+
+CELERY_ACCEPT_CONTENT = ['json', 'application/x-python-serialize']
+CELERY_TASK_SERIALZIER = 'json'
+CELERY_RESULT_SERIALZIER = 'json'
+
+CELERY_TIMEZONE = 'US/Eastern'
+
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+CELERYD_MAX_TASKS_PER_CHILD = 1
+
+from kombu import serialization
+
+serialization.registry._decoders.pop("application/x-python-serialize")

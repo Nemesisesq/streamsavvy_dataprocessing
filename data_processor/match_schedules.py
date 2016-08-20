@@ -64,8 +64,32 @@ def process_data(raw_data):
         sched.team = result[0]
     else:
         sched.team = nick_obj_list[0]
-
     sched.team.json_data['logo'] = raw_data['logo']
     sched.team.save()
 
     sched.save()
+
+
+def get_team_name_for_schedule(sched_team_name):
+    if sched_team_name == 'Northern Illinois Huskies':
+        sched_team_name = sched_team_name.replace('Northern Illinois', 'NIU')
+
+    if sched_team_name == 'Southern Mississippi Golden Eagles':
+        return Sport.objects.get(title='Southern Miss Football')
+
+    if sched_team_name == 'TCU Horned Frogs':
+        return Sport.objects.get(title='TCU Football')
+
+    by_name = process.extract(sched_team_name, sport_data, scorer=token_sort_ratio)
+    by_nick = process.extract(sched_team_name, tag_data, limit=10)
+    name_obj = [Sport.objects.filter(title__startswith=x[0]) for x in by_name]
+    nick_obj = [Sport.objects.filter(json_data__nickname=x[0]) for x in by_nick]
+    name_obj_list = list(itertools.chain.from_iterable(name_obj))
+    nick_obj_list = list(itertools.chain.from_iterable(nick_obj))
+    result = [i for i in nick_obj_list if i in [d for d in name_obj_list]]
+
+    if result:
+        return result[0]
+    else:
+         return nick_obj_list[0]
+
