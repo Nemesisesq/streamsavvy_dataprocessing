@@ -85,6 +85,7 @@ redis-structures==0.1.6
 requests==2.10.0
 requests-aws4auth==0.9
 Scrapy==1.1.1
+scrapy-djangoitem==1.1.1
 selenium==2.53.5
 service-identity==16.0.0
 simplegeneric==0.8.1
