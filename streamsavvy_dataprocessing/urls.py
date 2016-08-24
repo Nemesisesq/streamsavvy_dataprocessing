@@ -19,6 +19,7 @@ from rest_framework import routers
 
 from data_processor.views import ServiceDescriptionViewSet, SearchContentViewSet, ChannelViewSet, ContentViewSet, \
     ViewingServicesViewSet, ModuleDescriptionViewSet, SearchSportsViewSet, ScheduleViewSet, get_sport_schedule
+from guide.views import RoviChannelGridView
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
@@ -33,7 +34,9 @@ router.register(r'modules', ModuleDescriptionViewSet, 'moduledescriptions')
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^sport_schedule/(?P<sport_id>\d+)', get_sport_schedule, name='sport_schedule')
+    url(r'^sport_schedule/(?P<sport_id>\d+)', get_sport_schedule, name='sport_schedule'),
+    url(r'^api/guide/(?P<zip>\d{5})', RoviChannelGridView.as_view(), name='rovi_channel_grid_view'),
+
     # url(r'haystack_search', autocomplete, name='autocomplete'),
 
 ]
