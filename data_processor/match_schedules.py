@@ -3,6 +3,7 @@ import json
 import itertools
 from multiprocessing.dummy import Pool
 
+from django.db.models import Q
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 from fuzzywuzzy.fuzz import token_sort_ratio, token_set_ratio
@@ -10,10 +11,10 @@ from fuzzywuzzy.fuzz import token_sort_ratio, token_set_ratio
 from data_processor.models import Sport, Schedule
 from data_processor.shortcuts import try_catch
 
-ncaaf_teams = Sport.objects.filter(category='College Football')
+football_teams = Sport.objects.filter(Q(category='College Football') | Q(category='NFL'))
 
-sport_data = [i.title.replace('Football', '') for i in ncaaf_teams]
-tag_data = [i.json_data['nickname'] for i in ncaaf_teams]
+sport_data = [i.title.replace('Football', '') for i in football_teams]
+tag_data = [i.json_data['nickname'] for i in football_teams if 'nickanme' in i.json_data]
 
 
 @try_catch
@@ -71,6 +72,15 @@ def process_data(raw_data):
 
 
 def get_team_name_for_schedule(sched_team_name):
+
+    try:
+
+        return Sport.objects.get(title=sched_team_name[0])
+
+    except Exception as e:
+        print(e)
+
+
     if sched_team_name == 'Northern Illinois Huskies':
         sched_team_name = sched_team_name.replace('Northern Illinois', 'NIU')
 
@@ -90,6 +100,8 @@ def get_team_name_for_schedule(sched_team_name):
 
     if result:
         return result[0]
-    else:
+    elif nick_obj_list:
          return nick_obj_list[0]
+    else:
+        return name_obj_list[0]
 

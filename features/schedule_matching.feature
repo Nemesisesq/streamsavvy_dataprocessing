@@ -7,4 +7,9 @@ Feature: Schedule Matching
     Given a list of ncaaf teams
     When we match all the schedules
     Then the teams in the Sport model have schedules
+
+
+  Scenario: Load NFL teams
+    When we run the nfl script
+    Then we have teams
     # Enter steps here

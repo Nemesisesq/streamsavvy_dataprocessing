@@ -22,9 +22,5 @@ class CollegeFootballScraperItem(DjangoItem):
     # logo = scrapy.Field()
 
 
-class ProFootballScraperItem(scrapy.Item):
-
-
-    date_crated = scrapy.Field()
-    name = scrapy.Field()
-    games = scrapy.Field()
+class ProFootballScraperItem(DjangoItem):
+    django_model = Schedule

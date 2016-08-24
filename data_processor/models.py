@@ -92,10 +92,9 @@ class Sport(models.Model):
     category = models.TextField()
     title = models.TextField()
     json_data = JSONField(default="")
-    date_created = models.DateTimeField()
+    date_created = models.DateTimeField(auto_now_add=True )
 
     def __str__(self):
-        self.date_created = datetime.now()
         return "{0}".format(self.title)
 
 
@@ -115,3 +114,6 @@ class Schedule(models.Model):
 def set_date_created(sender, instance, *args, **kwargs):
     instance.date_created = datetime.now()
 
+@receiver(pre_save, sender=Schedule)
+def set_team_logo(sender, instance, *args, **kwargs):
+    instance.team.json_data['logo'] = instance.team_logo

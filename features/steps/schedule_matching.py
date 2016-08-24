@@ -2,6 +2,7 @@ from behave import *
 
 from data_processor.match_schedules import add_ncaaf_schedules
 from data_processor.models import Sport
+from scripts.add_nfl import run
 
 use_step_matcher("re")
 
@@ -29,3 +30,17 @@ def step_impl(context):
 
 
         file.close()
+
+
+@when("we run the nfl script")
+def step_impl(context):
+
+    run()
+
+
+@then("we have teams")
+def step_impl(context):
+    s = Sport.objects.filter(category='NFL').count()
+
+    assert s > 0
+    pass

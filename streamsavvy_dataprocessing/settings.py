@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'data_processor',
+    'guide',
     'rest_framework',
     'jsonfield',
     'corsheaders',
@@ -281,21 +282,20 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
         },
-        'dbfile': {
+        'dbconsole': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'dbtransaction.log',
+            'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['dbfile'],
+            'handlers': ['console'],
             'propagate': True,
             'level': 'DEBUG',
         },
         'cutthecord': {
-            'handlers': ['file', 'console'],
+            'handlers': ['console'],
             'level': 'DEBUG',
         },
     }

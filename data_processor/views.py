@@ -1,22 +1,16 @@
-import json
-
 from django.db.models import Q
-from django.http import HttpResponse
 from django.http import JsonResponse
-from django.shortcuts import render
-from fuzzywuzzy import fuzz, process
-from haystack.generic_views import SearchView
+from fuzzywuzzy import process
 from haystack.query import SearchQuerySet
+from rest_framework import viewsets
 
 from data_processor.constants import unwanted_show_ids
+from data_processor.data_helper import process_content_for_sling_ota_banned_channels, save_content
 from data_processor.guidebox import GuideBox
 from data_processor.models import ServiceDescription, Channel, Content, ViewingServices, ModuleDescriptions, Schedule, \
     Sport
 from data_processor.serializers import ServiceDescriptionSerializer, ContentSerializer, ChannelSerializer, \
     ViewingServicesSerializer, ModuleDescriptionSerializer, SportSerializer, ScheduleSerializer
-from rest_framework import viewsets
-
-# Create your views here.
 from streamsavvy_dataprocessing.settings import get_env_variable
 
 
@@ -67,7 +61,7 @@ class ContentViewSet(viewsets.ModelViewSet):
     def get_object(self):
         obj = super(ContentViewSet, self).get_object()
 
-        obj = GuideBox().process_content_for_sling_ota_banned_channels(obj)
+        obj = process_content_for_sling_ota_banned_channels(obj)
 
         return obj
 
@@ -103,27 +97,23 @@ class SearchContentViewSet(viewsets.ModelViewSet):
     serializer_class = ContentSerializer
 
     def get_queryset(self):
+
         self.q = self.request.GET.get('q', '')
+
         sqs = SearchQuerySet().autocomplete(content_auto=self.q)[:20]
+
         sqs_meta = SearchQuerySet().autocomplete(meta_auto=self.q)[:20]
-        # sqs_sports = SearchQuerySet().autocomplete(team_auto=self.q)[:10]
 
-        print("Search returned")
         suggestions = [result.object for result in sqs] + [result.object for result in sqs_meta]
-        filter_results = suggestions
 
-        # filter_results = self.check_guidebox_for_query(suggestions, self.q)
-        # filter_results['search_term'] = self
+        filter_results = suggestions
 
         filter_results = [x for x in filter_results if x.guidebox_data['id'] not in unwanted_show_ids]
 
-        # banned server
-
         filter_results = [show for show in filter_results if show.id != 15296]
-        filter_results= list(reversed(sorted(filter_results, key=self.get_score)))
 
-        # filter_results = [GuideBox().process_content_for_sling_ota_banned_channels(show) for show in filter_results]
-        print("results sent off")
+        filter_results = list(reversed(sorted(filter_results, key=self.get_score)))
+
         return filter_results
 
     def get_score(self, obj):
@@ -141,7 +131,7 @@ class SearchContentViewSet(viewsets.ModelViewSet):
                 result_list = []
 
                 for show in result:
-                    result_list.append(g.save_content(show))
+                    result_list.append(save_content(show))
 
                 filter_results = self.filter_query([165], result_list)
 
@@ -180,8 +170,4 @@ def get_sport_schedule(request, sport_id):
 
     sched = ScheduleSerializer(s.schedules.all()[:1][0]).data
 
-
-
     return JsonResponse(sched, safe=False)
-
-

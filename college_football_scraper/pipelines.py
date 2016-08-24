@@ -6,7 +6,7 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-class CollegeFootballScraperPipeline(object):
+class DjangoItemScraperPipeline(object):
     def process_item(self, item, spider):
         item.save()
         return item

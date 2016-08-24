@@ -74,7 +74,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'college_football_scraper.pipelines.CollegeFootballScraperPipeline': 300,
+   'college_football_scraper.pipelines.DjangoItemScraperPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
