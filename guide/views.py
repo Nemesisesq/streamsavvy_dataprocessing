@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from guide.models import RoviListings, RoviGridSchedule, RoviProgramImages
 from guide.serializers import RoviGridScheduleSerializers
 from data_processor.constants import sling_channels
-from data_processor.shortcuts import lazy_thunkify
+from data_processor.shortcuts import lazy_thunkify, try_catch
 
 
 class RoviAPI(object):
@@ -52,6 +52,7 @@ class RoviAPI(object):
             return False
 
     @classmethod
+    @try_catch
     def retrieve_schedule_from_db(cls, zipcode):
         return RoviGridSchedule.objects.filter(postal_code=zipcode).latest('date_added')
 
@@ -115,7 +116,7 @@ def filter_sling_channels(chan):
 class RoviChannelGridView(APIView):
     def get(self, request, zip, format=None):
 
-        show_grids = [RoviAPI.retrieve_schedule_from_db(zip)]
+        show_grids = RoviAPI.retrieve_schedule_from_db(zip)
 
         if not show_grids:
 
