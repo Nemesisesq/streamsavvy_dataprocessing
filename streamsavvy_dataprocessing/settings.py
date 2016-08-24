@@ -301,7 +301,7 @@ LOGGING = {
     }
 }
 
-BROKER_URL = get_env_variable('RABBITMQ_URL')
+BROKER_URL = get_env_variable('RABBITMQ_BIGWIG_URL')
 
 # List of modules to import when celery starts.
 # CELERY_IMPORTS = ('myapp.tasks', )
