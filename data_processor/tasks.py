@@ -45,7 +45,7 @@ def ncaaf_scraper():
 
 @periodic_task(serializer='json', run_every=(crontab(day_of_week="3,4,5", month_of_year="1, 2, 8, 9, 10, 11, 12")), name='NFL scraper', ignore_results=True)
 def nfl_scraper():
-    logger('pro football scraper start' + time.strftime("%c"))
+    # logger('pro football scraper start' + time.strftime("%c"))
     process = CrawlerProcess(get_project_settings())
     process.crawl(ProFootballSpider)
     process.start()
