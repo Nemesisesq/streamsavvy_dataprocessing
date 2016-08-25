@@ -31,7 +31,7 @@ class ProFootballSpider(scrapy.Spider):
         item['team_name'] = response.css('.sub-brand-title b::text').extract()
         item['data'] = []
 
-        owning_team = get_team_name_for_schedule(item['team_name'])
+        owning_team = get_team_name_for_schedule(item['team_name'], 'nfl')
 
         item['team'] = owning_team
 

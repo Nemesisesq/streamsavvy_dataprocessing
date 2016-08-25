@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from fuzzywuzzy import process
 from haystack.query import SearchQuerySet
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from data_processor.constants import unwanted_show_ids
 from data_processor.data_helper import process_content_for_sling_ota_banned_channels, save_content
@@ -100,9 +102,9 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
         self.q = self.request.GET.get('q', '')
 
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q)[:20]
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q)[:10]
 
-        sqs_meta = SearchQuerySet().autocomplete(meta_auto=self.q)[:20]
+        sqs_meta = SearchQuerySet().autocomplete(meta_auto=self.q)[:10]
 
         suggestions = [result.object for result in sqs] + [result.object for result in sqs_meta]
 
@@ -165,9 +167,11 @@ class SearchContentViewSet(viewsets.ModelViewSet):
             return True
 
 
-def get_sport_schedule(request, sport_id):
-    s = Sport.objects.get(id=sport_id)
+class SportScheduleView(APIView):
 
-    sched = ScheduleSerializer(s.schedules.all()[:1][0]).data
+    def get(self, request, sport_id):
+        s = Sport.objects.get(id=sport_id)
 
-    return JsonResponse(sched, safe=False)
+        serializer = ScheduleSerializer(s.schedules.all().latest('date_created'))
+
+        return Response(serializer.data)

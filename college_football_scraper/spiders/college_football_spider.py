@@ -34,7 +34,7 @@ class CollegeFootballSpider(scrapy.Spider):
         item['data'] = []
 
 
-        owning_team = get_team_name_for_schedule(item['team_name'])
+        owning_team = get_team_name_for_schedule(item['team_name'], 'ncaaf')
 
         item['team'] = owning_team
 
@@ -48,7 +48,7 @@ class CollegeFootballSpider(scrapy.Spider):
 
                 },
                 'result_time': {
-                    'time': game.css('td')[2].xpath('text()').extract()[0],
+                    'time': self.get_time(game),
                     'network': self.get_network(game)
 
                 }
@@ -74,7 +74,7 @@ class CollegeFootballSpider(scrapy.Spider):
         if game.css('td')[2].xpath('text()').extract()[0] == 'TBD':
             return 'TBD'
 
-        d = game.css('td')[2].xpath('text()').extract()[0].split()[:2]
+        d = game.css('td')[2].xpath('text()').extract()[0].split()[:3]
 
         return " ".join(d)
 

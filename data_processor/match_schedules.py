@@ -71,7 +71,9 @@ def process_data(raw_data):
     sched.save()
 
 
-def get_team_name_for_schedule(sched_team_name):
+def get_team_name_for_schedule(sched_team_name, filter=None):
+
+
 
     try:
 
@@ -81,14 +83,17 @@ def get_team_name_for_schedule(sched_team_name):
         print(e)
 
 
-    if sched_team_name == 'Northern Illinois Huskies':
+    if sched_team_name[0] == 'Northern Illinois Huskies':
         sched_team_name = sched_team_name.replace('Northern Illinois', 'NIU')
 
-    if sched_team_name == 'Southern Mississippi Golden Eagles':
+    if sched_team_name[0] == 'Southern Mississippi Golden Eagles':
         return Sport.objects.get(title='Southern Miss Football')
 
-    if sched_team_name == 'TCU Horned Frogs':
+    if sched_team_name[0] == 'TCU Horned Frogs':
         return Sport.objects.get(title='TCU Football')
+
+    if sched_team_name[0] == 'Miami Hurricanes':
+        return Sport.objects.get(title__icontains='Miami (FL)')
 
     by_name = process.extract(sched_team_name, sport_data, scorer=token_sort_ratio)
     by_nick = process.extract(sched_team_name, tag_data, limit=10)

@@ -117,3 +117,4 @@ def set_date_created(sender, instance, *args, **kwargs):
 @receiver(pre_save, sender=Schedule)
 def set_team_logo(sender, instance, *args, **kwargs):
     instance.team.json_data['logo'] = instance.team_logo
+    instance.team.save()
