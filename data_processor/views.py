@@ -84,7 +84,7 @@ class SearchSportsViewSet(viewsets.ModelViewSet):
 
         if get_env_variable('ENVIRONMENT') != 'PRODUCTION':
 
-            sqs = SearchQuerySet().autocomplete(team_auto=self.q)
+            sqs = SearchQuerySet().autocomplete(team_auto=self.q)[:20]
 
             suggestions = [result.object for result in sqs]
 
@@ -102,9 +102,9 @@ class SearchContentViewSet(viewsets.ModelViewSet):
 
         self.q = self.request.GET.get('q', '')
 
-        sqs = SearchQuerySet().autocomplete(content_auto=self.q)
+        sqs = SearchQuerySet().autocomplete(content_auto=self.q)[:10]
 
-        sqs_meta = SearchQuerySet().autocomplete(meta_auto=self.q)
+        sqs_meta = SearchQuerySet().autocomplete(meta_auto=self.q)[:10]
 
         suggestions = [result.object for result in sqs] + [result.object for result in sqs_meta]
 
