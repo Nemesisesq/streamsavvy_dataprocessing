@@ -129,7 +129,7 @@ class RoviChannelGridView(APIView):
 
             show_grids = [RoviAPI.save_channel_grid(zip, grid) for grid in grid_list]
 
-        serializer = RoviGridScheduleSerializers(show_grids, many=True)
+        serializer = RoviGridScheduleSerializers(show_grids)
 
         # cache.set(zip, serializer.data, timeout=600)
 
