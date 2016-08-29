@@ -35,7 +35,7 @@ def scraper_example(a, b):
 
 @periodic_task(serializer='json', run_every=(crontab( day_of_week="2,3,4")), name=' college football scraper', ignore_results=True)
 def ncaaf_scraper():
-    print('college football scraper is runninh' + time.strftime("%c"))
+    # print('college football scraper is runninh' + time.strftime("%c"))
     process = CrawlerProcess(get_project_settings())
     process.crawl(CollegeFootballSpider)
     process.start()
