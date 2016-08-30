@@ -3,6 +3,7 @@ from datetime import datetime
 import scrapy
 from scrapy.shell import inspect_response
 
+from college_football_scraper.helpers import isTimeString
 from college_football_scraper.items import ProFootballScraperItem
 from data_processor.match_schedules import get_team_name_for_schedule
 
@@ -69,7 +70,12 @@ class ProFootballSpider(scrapy.Spider):
 
     def get_time(self, game):
         if game.css('td')[3].xpath('text()') and len(game.css('td')[3].xpath('text()').extract()[0].split(' ')) > 1:
-            return " ".join(game.css('td')[3].xpath('text()').extract()[0].split(' ')[:2])
+            d = (game.css('td')[3].xpath('text()').extract()[0].split(' ')[:2])
+
+            d = [i for i in d if isTimeString(i)]
+
+            return " ".join(d)
+
         return False
 
     def get_status(self, game):

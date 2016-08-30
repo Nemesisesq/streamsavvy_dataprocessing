@@ -2,9 +2,13 @@ from datetime import datetime
 
 import scrapy
 from scrapy.shell import inspect_response
+import re
 
+from college_football_scraper.helpers import isTimeString
 from college_football_scraper.items import CollegeFootballScraperItem as CFItem
 from data_processor.match_schedules import get_team_name_for_schedule
+
+
 
 
 class CollegeFootballSpider(scrapy.Spider):
@@ -75,6 +79,8 @@ class CollegeFootballSpider(scrapy.Spider):
             return 'TBD'
 
         d = game.css('td')[2].xpath('text()').extract()[0].split()[:3]
+
+        d = [i for i in d if isTimeString(i)]
 
         return " ".join(d)
 
