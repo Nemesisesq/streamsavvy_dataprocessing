@@ -1,4 +1,3 @@
 web: gunicorn streamsavvy_dataprocessing.wsgi --log-file -
-celery: ./manage.py celeryd --verbosity=2 --loglevel=INFO
-celery_beat: ./manage.py celerybeat --verbosity=2 --loglevel=INFO
-migrate: ./manage.py
+celery: $ celery -A streamsavvy_dataprocessing worker -B
+
