@@ -87,19 +87,29 @@ class RoviAPI(object):
     @classmethod
     def save_channel_grid(cls, zip, grid):
 
-        g = RoviGridSchedule(
-            listing=RoviListings.objects.get(service_id=str(grid['GridScheduleResult']['ServiceId']), postal_code=zip),
-            locale='en-US', data=grid, postal_code=zip)
+        g = RoviGridSchedule()
+
+
+        if type(grid) == str:
+            grid = json.loads(grid)
+
+        g.listing = RoviListings.objects.filter(service_id=grid['GridScheduleResult']['ServiceId'])[0]
+
+        g.locale = 'en-US'
+        g.data = grid
+        g.postal_code = zip
 
         g.save()
 
         return g
 
+
+
     @classmethod
-    def refresh_grid_schedule(cls, i, zip):
+    def refresh_grid_schedule(cls, i):
         sched = cls.get_schedule_from_rovi_api(i)
 
-        cls.save_channel_grid(zip, sched)
+        cls.save_channel_grid(i.postal_code, sched)
 
         pass
 
@@ -129,7 +139,10 @@ class RoviChannelGridView(APIView):
 
             show_grids = [RoviAPI.save_channel_grid(zip, grid) for grid in grid_list]
 
-        serializer = RoviGridScheduleSerializers(show_grids)
+        else :
+            show_grids =[show_grids]
+
+        serializer = RoviGridScheduleSerializers(show_grids, many=True)
 
         # cache.set(zip, serializer.data, timeout=600)
 
