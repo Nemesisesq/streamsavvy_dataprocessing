@@ -12,7 +12,8 @@ from rest_framework.views import APIView
 from guide.models import RoviListings, RoviGridSchedule, RoviProgramImages
 from guide.serializers import RoviGridScheduleSerializers
 from data_processor.constants import sling_channels
-from data_processor.shortcuts import lazy_thunkify, try_catch
+from data_processor.shortcuts import lazy_thunkify, try_catch, api_json_post
+from streamsavvy_dataprocessing.settings import get_env_variable
 
 
 class RoviAPI(object):
@@ -89,7 +90,6 @@ class RoviAPI(object):
 
         g = RoviGridSchedule()
 
-
         if type(grid) == str:
             grid = json.loads(grid)
 
@@ -103,11 +103,29 @@ class RoviAPI(object):
 
         return g
 
-
+    @classmethod
+    def filter_for_live_services(self, chan):
+        headers = {'Content-Type': 'application/json'}
+        url = "{base}/{path}".format(base=get_env_variable('NODE_DATA_SERVICE'), path='guide')
+        res = requests.post(url, data=json.dumps(chan), headers=headers)
+        return res.json()
 
     @classmethod
     def refresh_grid_schedule(cls, i):
         sched = cls.get_schedule_from_rovi_api(i)
+
+        sched = json.loads(sched)
+
+        pool = Pool(5)
+
+        results = pool.map(cls.filter_for_live_services, sched['GridScheduleResult']['GridChannels'])
+        pool.close()
+        pool.join()
+
+        sched['GridScheduleResult']['GridChannels'] = [chan for chan in
+                                                       sched['GridScheduleResult'][
+                                                           'GridChannels'] if
+                                                       filter_sling_channels(chan)()]
 
         cls.save_channel_grid(i.postal_code, sched)
 
@@ -118,35 +136,49 @@ class RoviAPI(object):
 def filter_sling_channels(chan):
     for i in sling_channels:
         z = chan['CallLetters']
-        if fuzz.token_set_ratio(chan['SourceLongName'], i) > 95 and not re.search("HD", chan['CallLetters']):
+        x = "HD"
+        if fuzz.token_set_ratio(chan['SourceLongName'], i) > 95 and not re.search('HD', chan['CallLetters']):
             return True
     return False
 
 
 class RoviChannelGridView(APIView):
-    def get(self, request, zip, format=None):
 
-        show_grids = RoviAPI.retrieve_schedule_from_db(zip)
+    def get(self, request, lat, long):
+
+        zip_code = self.get_zip_code_from_coords(lat, long)
+
+        show_grids = RoviAPI.retrieve_schedule_from_db(zip_code)
 
         if not show_grids:
 
-            service_listings = RoviListings.objects.filter(postal_code=zip)
+            service_listings = RoviListings.objects.filter(postal_code=zip_code)
 
             if not service_listings:
-                service_listings = self.process_new_listings(service_listings, zip)
+                service_listings = self.process_new_listings(service_listings, zip_code)
 
             grid_list = self.process_new_grid_listing(service_listings)
 
             show_grids = [RoviAPI.save_channel_grid(zip, grid) for grid in grid_list]
 
-        else :
-            show_grids =[show_grids]
+        else:
+            show_grids = [show_grids]
 
         serializer = RoviGridScheduleSerializers(show_grids, many=True)
 
         # cache.set(zip, serializer.data, timeout=600)
 
         return Response(serializer.data)
+
+    def get_zip_code_from_coords(self, lat, long):
+
+        url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long+ '&sensor=true'
+
+        res = requests.get(url)
+
+        zip_code = res.json()['results'][0]['address_components'][7]['long_name']
+
+        return zip_code
 
     def process_new_grid_listing(self, service_listings):
         # broadcast_services = [x for x in service_listings if x.data['Type'] == 'Broadcast'][0]
@@ -155,6 +187,10 @@ class RoviChannelGridView(APIView):
         satellite_grid_response = RoviAPI.get_schedule_from_rovi_api(satellite_services)
         # broadcast_grid_list = json.loads(broadcast_grid_response)
         satellite_grid_list = json.loads(satellite_grid_response)
+        satellite_grid_list['GridScheduleResult']['GridChannels'] = [chan for chan in
+                                                                     satellite_grid_list['GridScheduleResult'][
+                                                                         'GridChannels'] if
+                                                                     filter_sling_channels(chan)()]
 
         grid_list = [satellite_grid_list]
 

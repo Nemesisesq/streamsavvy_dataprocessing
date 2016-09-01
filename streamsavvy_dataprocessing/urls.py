@@ -34,7 +34,8 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^sport_schedule/(?P<sport_id>\d+)', SportScheduleView.as_view(), name='sport_schedule'),
-    url(r'^api/guide/(?P<zip>\d{5})', RoviChannelGridView.as_view(), name='rovi_channel_grid_view'),
+    url(r'^api/guide/(?P<lat>\d{1,2}\.\d{1,20})/(?P<long>-?\d{1,3}\.\d{1,20})', RoviChannelGridView.as_view(),
+        name='rovi_channel_grid_view'),
 
     # url(r'haystack_search', autocomplete, name='autocomplete'),
 
