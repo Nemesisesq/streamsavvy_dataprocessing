@@ -110,26 +110,79 @@ class RoviAPI(object):
         res = requests.post(url, data=json.dumps(chan), headers=headers)
         return res.json()
 
+    result_dict = {}
+
     @classmethod
     def refresh_grid_schedule(cls, i):
         sched = cls.get_schedule_from_rovi_api(i)
 
         sched = json.loads(sched)
 
-        pool = Pool(5)
+        sched = cls.filter_schedule(sched)
 
-        results = pool.map(cls.filter_for_live_services, sched['GridScheduleResult']['GridChannels'])
+        truncated_chan = cls.create_payload_dict(sched['GridScheduleResult']['GridChannels'])
+
+        pool = Pool(20)
+
+        results = pool.map(cls.filter_for_live_services, truncated_chan)
         pool.close()
         pool.join()
 
+        for chan in results:
+            cls.result_dict[chan['SourceId']] = chan
+
+        # sched['GridScheduleResult']['GridChannels'] = [chan for chan in results]
+
+        new_sched = [cls.match_streaming_services(i) for i in sched['GridScheduleResult']['GridChannels']]
+
         sched['GridScheduleResult']['GridChannels'] = [chan for chan in
-                                                       sched['GridScheduleResult'][
-                                                           'GridChannels'] if
+                                                       sched['GridScheduleResult']
+                                                       ['GridChannels'] if
                                                        filter_sling_channels(chan)()]
 
         cls.save_channel_grid(i.postal_code, sched)
 
-        pass
+    @classmethod
+    def filter_schedule(cls, sched):
+
+        filter_list = ['SIRIUS', 'VOD', 'SXM', 'XM']
+
+        filter_chans = [x for x in sched['GridScheduleResult']['GridChannels'] if x['CallLetters'] not in filter_list]
+
+        filter_chans = [x for x in filter_chans if not re.search("(HD)", x['CallLetters'])]
+
+        filter_chans = cls.remove_duplicates(filter_chans)
+
+        sched['GridScheduleResult']['GridChannels'] = filter_chans
+
+        return sched
+
+    @classmethod
+    def create_payload_dict(cls, chan):
+        return {
+            'CallLeters': chan['CallLetters'],
+            'DisplayName': chan['DisplayName'],
+            'SourceLongName': chan['SourceLongName'],
+            'SourceId': chan['SourceId']
+
+        }
+
+    @classmethod
+    def remove_duplicates(cls, chans):
+        checked_array = []
+        new_array = []
+
+        for c in chans:
+            if c['CallLetters'] not in checked_array:
+                checked_array.append(c['CallLetters'])
+                new_array.append(c)
+
+        return new_array
+
+    @classmethod
+    def match_streaming_services(cls, i):
+        i['streamingServices'] = cls.result_dict[i['sourceId']]['streamingService']
+        return i
 
 
 @lazy_thunkify
@@ -143,7 +196,6 @@ def filter_sling_channels(chan):
 
 
 class RoviChannelGridView(APIView):
-
     def get(self, request, lat, long):
 
         zip_code = self.get_zip_code_from_coords(lat, long)
@@ -172,7 +224,7 @@ class RoviChannelGridView(APIView):
 
     def get_zip_code_from_coords(self, lat, long):
 
-        url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long+ '&sensor=true'
+        url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&sensor=true'
 
         res = requests.get(url)
 
