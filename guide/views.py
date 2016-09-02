@@ -120,27 +120,26 @@ class RoviAPI(object):
 
         sched = cls.filter_schedule(sched)
 
-        truncated_chan = cls.create_payload_dict(sched['GridScheduleResult']['GridChannels'])
+        sched = cls.process_chans_for_streaming(sched)
 
+        cls.save_channel_grid(i.postal_code, sched)
+
+    @classmethod
+    def process_chans_for_streaming(cls, sched):
+        truncated_chan = [cls.create_payload_dict(i) for i in sched['GridScheduleResult']['GridChannels']]
         pool = Pool(20)
-
         results = pool.map(cls.filter_for_live_services, truncated_chan)
         pool.close()
         pool.join()
-
         for chan in results:
             cls.result_dict[chan['SourceId']] = chan
 
         # sched['GridScheduleResult']['GridChannels'] = [chan for chan in results]
-
         new_sched = [cls.match_streaming_services(i) for i in sched['GridScheduleResult']['GridChannels']]
 
-        sched['GridScheduleResult']['GridChannels'] = [chan for chan in
-                                                       sched['GridScheduleResult']
-                                                       ['GridChannels'] if
-                                                       filter_sling_channels(chan)()]
+        sched['GridScheduleResult']['GridChannels'] = new_sched
 
-        cls.save_channel_grid(i.postal_code, sched)
+        return sched
 
     @classmethod
     def filter_schedule(cls, sched):
@@ -181,11 +180,10 @@ class RoviAPI(object):
 
     @classmethod
     def match_streaming_services(cls, i):
-        i['streamingServices'] = cls.result_dict[i['sourceId']]['streamingService']
+        i['streamingServices'] = cls.result_dict[i['SourceId']]['streamingServices']
         return i
 
 
-@lazy_thunkify
 def filter_sling_channels(chan):
     for i in sling_channels:
         z = chan['CallLetters']
@@ -211,7 +209,7 @@ class RoviChannelGridView(APIView):
 
             grid_list = self.process_new_grid_listing(service_listings)
 
-            show_grids = [RoviAPI.save_channel_grid(zip, grid) for grid in grid_list]
+            show_grids = [RoviAPI.save_channel_grid(zip_code, grid) for grid in grid_list]
 
         else:
             show_grids = [show_grids]
@@ -239,12 +237,10 @@ class RoviChannelGridView(APIView):
         satellite_grid_response = RoviAPI.get_schedule_from_rovi_api(satellite_services)
         # broadcast_grid_list = json.loads(broadcast_grid_response)
         satellite_grid_list = json.loads(satellite_grid_response)
-        satellite_grid_list['GridScheduleResult']['GridChannels'] = [chan for chan in
-                                                                     satellite_grid_list['GridScheduleResult'][
-                                                                         'GridChannels'] if
-                                                                     filter_sling_channels(chan)()]
 
-        grid_list = [satellite_grid_list]
+        sched = RoviAPI.process_chans_for_streaming(satellite_grid_list)
+
+        grid_list = [sched]
 
         return grid_list
 
