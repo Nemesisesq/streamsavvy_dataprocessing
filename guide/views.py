@@ -228,7 +228,7 @@ class RoviChannelGridView(APIView):
 
         res = requests.get(url)
 
-        zip_code = res.json()['results'][0]['address_components'][7]['long_name']
+        zip_code = res.json()['results'][0]['address_components'][8]['long_name']
 
         return zip_code
 
