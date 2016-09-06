@@ -126,18 +126,18 @@ class RoviAPI(object):
 
     @classmethod
     def process_chans_for_streaming(cls, sched):
-        truncated_chan = [cls.create_payload_dict(i) for i in sched['GridScheduleResult']['GridChannels']]
-        pool = Pool(20)
-        results = pool.map(cls.filter_for_live_services, truncated_chan)
-        pool.close()
-        pool.join()
-        for chan in results:
-            cls.result_dict[chan['SourceId']] = chan
+        # truncated_chan = [cls.create_payload_dict(i) for i in sched['GridScheduleResult']['GridChannels']]
+        # pool = Pool(20)
+        # results = pool.map(cls.filter_for_live_services, truncated_chan)
+        # pool.close()
+        # pool.join()
+        # for chan in results:
+        #     cls.result_dict[chan['SourceId']] = chan
+        #
+        # # sched['GridScheduleResult']['GridChannels'] = [chan for chan in results]
+        # new_sched = [cls.match_streaming_services(i) for i in sched['GridScheduleResult']['GridChannels']]
 
-        # sched['GridScheduleResult']['GridChannels'] = [chan for chan in results]
-        new_sched = [cls.match_streaming_services(i) for i in sched['GridScheduleResult']['GridChannels']]
-
-        sched['GridScheduleResult']['GridChannels'] = new_sched
+        # sched['GridScheduleResult']['GridChannels'] = new_sched
 
         return sched
 
