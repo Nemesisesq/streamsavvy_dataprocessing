@@ -17,7 +17,8 @@ from streamsavvy_dataprocessing.settings import get_env_variable
 
 
 class RoviAPI(object):
-    api_key = 'rj5pcy96h2uee7gmesf755ay'
+    # api_key = 'rj5pcy96h2uee7gmesf755ay'
+    api_key = 'p3nh3333exq3umj9ka8uqhee' #Key for the siceone account on rovi
     BASE_URL = 'http://api.rovicorp.com/TVlistings/v9/listings/'
 
     @classmethod
