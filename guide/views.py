@@ -120,7 +120,7 @@ class RoviAPI(object):
 
         sched = cls.filter_schedule(sched)
 
-        sched = cls.process_chans_for_streaming(sched)
+        # sched = cls.process_chans_for_streaming(sched)
 
         cls.save_channel_grid(service_id.postal_code, sched)
 
