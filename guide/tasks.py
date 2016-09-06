@@ -25,4 +25,4 @@ def get_tv_schedules():
     service_listings = RoviListings.objects.all()
 
     for i in service_listings:
-        RoviAPI.refresh_grid_schedule(i)
+        RoviAPI.get_grid_schedule_for_service_id(i)

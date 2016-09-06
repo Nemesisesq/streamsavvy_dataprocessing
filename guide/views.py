@@ -113,8 +113,8 @@ class RoviAPI(object):
     result_dict = {}
 
     @classmethod
-    def refresh_grid_schedule(cls, i):
-        sched = cls.get_schedule_from_rovi_api(i)
+    def get_grid_schedule_for_service_id(cls, service_id):
+        sched = cls.get_schedule_from_rovi_api(service_id)
 
         sched = json.loads(sched)
 
@@ -122,22 +122,24 @@ class RoviAPI(object):
 
         sched = cls.process_chans_for_streaming(sched)
 
-        cls.save_channel_grid(i.postal_code, sched)
+        cls.save_channel_grid(service_id.postal_code, sched)
+
+        return sched
 
     @classmethod
     def process_chans_for_streaming(cls, sched):
-        # truncated_chan = [cls.create_payload_dict(i) for i in sched['GridScheduleResult']['GridChannels']]
-        # pool = Pool(20)
-        # results = pool.map(cls.filter_for_live_services, truncated_chan)
-        # pool.close()
-        # pool.join()
-        # for chan in results:
-        #     cls.result_dict[chan['SourceId']] = chan
-        #
-        # # sched['GridScheduleResult']['GridChannels'] = [chan for chan in results]
-        # new_sched = [cls.match_streaming_services(i) for i in sched['GridScheduleResult']['GridChannels']]
+        truncated_chan = [cls.create_payload_dict(i) for i in sched['GridScheduleResult']['GridChannels']]
+        pool = Pool(20)
+        results = pool.map(cls.filter_for_live_services, truncated_chan)
+        pool.close()
+        pool.join()
+        for chan in results:
+            cls.result_dict[chan['SourceId']] = chan
 
-        # sched['GridScheduleResult']['GridChannels'] = new_sched
+        # sched['GridScheduleResult']['GridChannels'] = [chan for chan in results]
+        new_sched = [cls.match_streaming_services(i) for i in sched['GridScheduleResult']['GridChannels']]
+        #
+        sched['GridScheduleResult']['GridChannels'] = new_sched
 
         return sched
 
@@ -226,19 +228,22 @@ class RoviChannelGridView(APIView):
 
         res = requests.get(url)
 
-        zip_code = res.json()['results'][0]['address_components'][7]['long_name']
+        res = res.json()['results']
+
+        zip_code = self.extract_zip_code_from_geocode(res)
 
         return zip_code
 
-    def process_new_grid_listing(self, service_listings):
-        # broadcast_services = [x for x in service_listings if x.data['Type'] == 'Broadcast'][0]
-        satellite_services = [x for x in service_listings if x.data['SystemName'] == 'Dish Network'][0]
-        # broadcast_grid_response = RoviAPI.get_schedule_from_rovi_api(broadcast_services)
-        satellite_grid_response = RoviAPI.get_schedule_from_rovi_api(satellite_services)
-        # broadcast_grid_list = json.loads(broadcast_grid_response)
-        satellite_grid_list = json.loads(satellite_grid_response)
+    def extract_zip_code_from_geocode(self, res):
+        for i in res:
+            for x in i['address_components']:
+                if 'postal_code' in x['types']:
+                    return x['long_name']
 
-        sched = RoviAPI.process_chans_for_streaming(satellite_grid_list)
+    def process_new_grid_listing(self, service_listings):
+        satellite_service = [x for x in service_listings if x.data['SystemName'] == 'Dish Network'][0]
+        sched = RoviAPI.get_grid_schedule_for_service_id(satellite_service)
+        # sched = RoviAPI.process_chans_for_streaming(satellite_grid_list)
 
         grid_list = [sched]
 
