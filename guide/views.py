@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 
 from guide.models import RoviListings, RoviGridSchedule, RoviProgramImages
 from guide.serializers import RoviGridScheduleSerializers
-from data_processor.constants import sling_channels
+from data_processor.constants import sling_channels, live_channel_filter_list
 from data_processor.shortcuts import lazy_thunkify, try_catch, api_json_post
 from streamsavvy_dataprocessing.settings import get_env_variable
 
@@ -147,13 +147,13 @@ class RoviAPI(object):
     @classmethod
     def filter_schedule(cls, sched):
 
-        filter_list = ['SIRIUS', 'VOD', 'SXM', 'XM']
+        filter_list = live_channel_filter_list
 
         filter_chans = [x for x in sched['GridScheduleResult']['GridChannels'] if x['CallLetters'] not in filter_list]
 
         filter_chans = [x for x in filter_chans if not re.search("(HD)", x['CallLetters'])]
 
-        filter_chans = cls.remove_duplicates(filter_chans)
+        filter_chans = cls.remove_duplicates(filter_chans)[:260]
 
         sched['GridScheduleResult']['GridChannels'] = filter_chans
 
