@@ -34,6 +34,7 @@ class RoviAPI(object):
                   'duration': 20160,
                   'format': 'json',
                   'apikey': cls.api_key,
+
                   }
 
         url = program_detail_url + urllib.parse.urlencode(params)
@@ -44,7 +45,13 @@ class RoviAPI(object):
     def get_listings_for_zip_code(cls, zip):
 
         listing_url = "{}services/postalcode/{}/info?".format(cls.BASE_URL, zip)
-        params = {'locale': 'en-US', 'countrycode': 'US', 'format': 'json', 'apikey': cls.api_key}
+        params = {
+            'locale': 'en-US',
+            'countrycode': 'US',
+            'format': 'json',
+            'apikey': cls.api_key,
+            'sourceFilterExclude': 'HD, PPV, Music'
+        }
 
         url = listing_url + urllib.parse.urlencode(params)
 
@@ -94,9 +101,6 @@ class RoviAPI(object):
 
         g = RoviGridSchedule()
 
-
-
-
         if type(grid) == str:
             grid = json.loads(grid)
 
@@ -109,7 +113,6 @@ class RoviAPI(object):
         g.save()
 
         return g
-
 
     @classmethod
     def filter_for_live_services(self, chan):
@@ -128,12 +131,9 @@ class RoviAPI(object):
 
         sched = cls.filter_schedule(sched)
 
-
         grid_obj = cls.save_channel_grid(service_id.postal_code, sched)
 
-
-        grid_obj= cls.fix_show_time(grid_obj)
-
+        grid_obj = cls.fix_show_time(grid_obj)
 
         grid_obj.save()
         # sched = cls.process_chans_for_streaming(sched)
@@ -147,8 +147,7 @@ class RoviAPI(object):
         for i in sched.data['GridScheduleResult']['GridChannels']:
             offset = sched.data['GridScheduleResult']['TimeZones'][0]['Offset']
             for a in i['Airings']:
-
-                utc_time = a['AiringTime'].replace('Z','UTC')
+                utc_time = a['AiringTime'].replace('Z', 'UTC')
 
                 z = datetime.datetime.strptime(utc_time, '%Y-%m-%dT%H:%M:%S%Z')
                 # z = pytz.utc.localize(z)
