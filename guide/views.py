@@ -1,8 +1,11 @@
+import datetime
 import json
 import urllib
 from multiprocessing.dummy import Pool
 
 import re
+
+import pytz
 import requests
 from django.core.cache import cache
 from fuzzywuzzy import fuzz
@@ -17,8 +20,8 @@ from streamsavvy_dataprocessing.settings import get_env_variable
 
 
 class RoviAPI(object):
-    # api_key = 'rj5pcy96h2uee7gmesf755ay'
-    api_key = 'p3nh3333exq3umj9ka8uqhee' #Key for the siceone account on rovi
+    api_key = 'rj5pcy96h2uee7gmesf755ay'
+    # api_key = 'p3nh3333exq3umj9ka8uqhee' #Key for the siceone account on rovi
     BASE_URL = 'http://api.rovicorp.com/TVlistings/v9/listings/'
 
     @classmethod
@@ -91,6 +94,9 @@ class RoviAPI(object):
 
         g = RoviGridSchedule()
 
+
+
+
         if type(grid) == str:
             grid = json.loads(grid)
 
@@ -103,6 +109,7 @@ class RoviAPI(object):
         g.save()
 
         return g
+
 
     @classmethod
     def filter_for_live_services(self, chan):
@@ -121,9 +128,34 @@ class RoviAPI(object):
 
         sched = cls.filter_schedule(sched)
 
+
+        grid_obj = cls.save_channel_grid(service_id.postal_code, sched)
+
+
+        grid_obj= cls.fix_show_time(grid_obj)
+
+
+        grid_obj.save()
         # sched = cls.process_chans_for_streaming(sched)
 
-        cls.save_channel_grid(service_id.postal_code, sched)
+
+        return sched
+
+    @classmethod
+    def fix_show_time(cls, sched):
+
+        for i in sched.data['GridScheduleResult']['GridChannels']:
+            offset = sched.data['GridScheduleResult']['TimeZones'][0]['Offset']
+            for a in i['Airings']:
+
+                utc_time = a['AiringTime'].replace('Z','UTC')
+
+                z = datetime.datetime.strptime(utc_time, '%Y-%m-%dT%H:%M:%S%Z')
+                # z = pytz.utc.localize(z)
+                td = datetime.timedelta(minutes=offset)
+                fixed_time = z + td
+
+                a['AiringTime'] = fixed_time.strftime('%Y-%m-%dT%H:%M:%S%Z') + 'Z'
 
         return sched
 
@@ -216,6 +248,8 @@ class RoviChannelGridView(APIView):
 
         else:
             show_grids = [show_grids]
+
+        show_grids = [RoviAPI.fix_show_time(g) for g in show_grids]
 
         serializer = RoviGridScheduleSerializers(show_grids, many=True)
 
