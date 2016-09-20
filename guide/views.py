@@ -144,8 +144,8 @@ class RoviAPI(object):
     @classmethod
     def fix_show_time(cls, sched):
 
+        offset = sched.data['GridScheduleResult']['TimeZones'][0]['Offset']
         for i in sched.data['GridScheduleResult']['GridChannels']:
-            offset = sched.data['GridScheduleResult']['TimeZones'][0]['Offset']
             for a in i['Airings']:
                 utc_time = a['AiringTime'].replace('Z', 'UTC')
 
@@ -248,7 +248,7 @@ class RoviChannelGridView(APIView):
         else:
             show_grids = [show_grids]
 
-        show_grids = [RoviAPI.fix_show_time(g) for g in show_grids]
+        # show_grids = [RoviAPI.fix_show_time(g) for g in show_grids]
 
         serializer = RoviGridScheduleSerializers(show_grids, many=True)
 
