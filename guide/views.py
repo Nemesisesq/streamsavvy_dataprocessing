@@ -258,8 +258,8 @@ class RoviChannelGridView(APIView):
 
     def get_zip_code_from_coords(self, lat, long):
 
-        url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + long + '&sensor=true'
-
+        url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{long}&key=AIzaSyBKbr-04-_phVgOMbr1xwQD9CBi-fHZ0QY'
+        url = url.format(lat=lat, long=long)
         res = requests.get(url)
 
         res = res.json()['results']
@@ -284,7 +284,8 @@ class RoviChannelGridView(APIView):
         return grid_list
 
     def process_new_listings(self, service_listings, zip):
-        s = RoviAPI.get_listings_for_zip_code(zip)
-        s = json.loads(s['ServicesResult']['Services']['Service'])
-        service_listings = [RoviAPI.save_listing(zip, x) for x in s if x['SystemName'] == 'Dish Network']
+        res = RoviAPI.get_listings_for_zip_code(zip)
+        the_json = json.loads(res)
+        services = the_json['ServicesResult']['Services']['Service']
+        service_listings = [RoviAPI.save_listing(zip, x) for x in services if x['SystemName'] == 'Dish Network']
         return service_listings
