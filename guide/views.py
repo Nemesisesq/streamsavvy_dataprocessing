@@ -285,6 +285,6 @@ class RoviChannelGridView(APIView):
 
     def process_new_listings(self, service_listings, zip):
         s = RoviAPI.get_listings_for_zip_code(zip)
-        s = json.loads(s)['ServicesResult']['Services']['Service']
+        s = json.loads(s['ServicesResult']['Services']['Service'])
         service_listings = [RoviAPI.save_listing(zip, x) for x in s if x['SystemName'] == 'Dish Network']
         return service_listings
