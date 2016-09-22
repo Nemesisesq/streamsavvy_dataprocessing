@@ -72,8 +72,13 @@ class RoviAPI(object):
     def get_schedule_from_rovi_api(cls, service_id):
 
         listing_url = "{}gridschedule/{}/info?".format(cls.BASE_URL, service_id)
-        params = {'locale': 'en-US', 'duration': 60, 'includechannelimages': 'true', 'format': 'json',
-                  'apikey': cls.api_key}
+        params = {
+            'locale': 'en-US',
+            'duration': 60,
+            'includechannelimages': 'true',
+            'format': 'json',
+            'apikey': cls.api_key
+        }
 
         url = listing_url + urllib.parse.urlencode(params)
 
@@ -180,13 +185,39 @@ class RoviAPI(object):
 
         filter_list = live_channel_filter_list
 
-        filter_chans = [x for x in sched['GridScheduleResult']['GridChannels'] if x['CallLetters'] not in filter_list]
+        filter_chans = sched['GridScheduleResult']['GridChannels']
 
-        filter_chans = [x for x in filter_chans if not re.search("(HD)", x['CallLetters'])]
+        filter_chans = [x for x in filter_chans if not re.search(r"HD", x['CallLetters'])]
 
-        filter_chans = cls.remove_duplicates(filter_chans)[:260]
+        filter_chans = [x for x in filter_chans if not re.search(r"SPRTS", x['CallLetters'])]
 
-        sched['GridScheduleResult']['GridChannels'] = filter_chans
+        filter_chans = [x for x in filter_chans if not re.search(r"TVB", x['CallLetters'])]
+
+        filter_chans = [x for x in filter_chans if not re.search(r"ET", x['CallLetters'])]
+
+        filter_chans = [x for x in filter_chans if x['Order'] < 6000000]
+
+        filter_chans = [x for x in filter_chans if not x['SourceAttributes'] == '8']
+
+        filter_chans = [x for x in filter_chans if not re.search(r"HD", x['SourceLongName'])]
+
+        filter_chans = [x for x in filter_chans if not re.search(r"Mid-Atlantic", x['SourceLongName'])]
+
+        filter_chans = [x for x in filter_chans if not re.search(r"DISH", x['CallLetters'])]
+
+        filter_chans = [x for x in filter_chans if not re.search(r"CSN", x['CallLetters'])]
+
+        filter_chans = [x for x in filter_chans if not re.search(r"ALT", x['CallLetters'])]
+
+        filtered_chans = []
+        for x in filter_chans:
+            letters_ = x['CallLetters']
+            if letters_ not in filter_list:
+                filtered_chans.append(x)
+
+        filtered_chans = cls.remove_duplicates(filtered_chans)
+
+        sched['GridScheduleResult']['GridChannels'] = filtered_chans
 
         return sched
 
