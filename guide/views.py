@@ -1,14 +1,17 @@
 import datetime
 import json
+import logging
 import urllib
 from multiprocessing.dummy import Pool
 
 import re
+from time import sleep
 
 import pytz
 import requests
 from django.core.cache import cache
 from fuzzywuzzy import fuzz
+from pymongo import MongoClient
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -18,28 +21,37 @@ from data_processor.constants import sling_channels, live_channel_filter_list
 from data_processor.shortcuts import lazy_thunkify, try_catch, api_json_post
 from streamsavvy_dataprocessing.settings import get_env_variable
 
+logger = logging.getLogger('cutthecord')
+
 
 class RoviAPI(object):
-    api_key = 'rj5pcy96h2uee7gmesf755ay'
-    # api_key = 'p3nh3333exq3umj9ka8uqhee' #Key for the siceone account on rovi
+    # api_key = 'rj5pcy96h2uee7gmesf755ay'
+    api_key = 'p3nh3333exq3umj9ka8uqhee' #Key for the siceone account on rovi
     BASE_URL = 'http://api.rovicorp.com/TVlistings/v9/listings/'
 
     @classmethod
-    def get_images_url(cls, program_id):
+    @try_catch
+    def get_images_for_show_id(cls, program_id):
         program_detail_url = "{}programdetails/{}/info?".format(cls.BASE_URL, program_id)
         params = {'local': 'en-US',
                   'copytextformat': 'PlainText',
                   'include': 'Image',
-                  'imagecount': 10,
+                  'imagecount': 5,
                   'duration': 20160,
                   'format': 'json',
-                  'apikey': cls.api_key,
+                  'apikey': '9d4zzdxbzvguqgykwjnz2g7n',
 
                   }
 
         url = program_detail_url + urllib.parse.urlencode(params)
 
-        return url
+        try:
+            with urllib.request.urlopen(url) as response:
+                the_json = json.loads(response.read().decode('utf-8'))
+            return the_json
+        except urllib.error.URLError as e:
+            print(e)
+            return {}
 
     @classmethod
     def get_listings_for_zip_code(cls, zip):
@@ -61,7 +73,7 @@ class RoviAPI(object):
             return the_json
         except urllib.error.URLError as e:
             print(e)
-            return False
+            return {}
 
     @classmethod
     @try_catch
@@ -88,7 +100,7 @@ class RoviAPI(object):
             return the_json
         except urllib.error.URLError as e:
             print(e)
-            return False
+            return {}
 
     @classmethod
     def save_listing(cls, zip, x):
@@ -248,6 +260,26 @@ class RoviAPI(object):
         i['streamingServices'] = cls.result_dict[i['SourceId']]['streamingServices']
         return i
 
+    @classmethod
+    @try_catch
+    def get_show_images(cls, show_id):
+        client = MongoClient(get_env_variable('MONGODB_URI'))
+        db = client.roviDb
+        collection = db.showImages
+
+        img = collection.find_one({"showId": show_id})
+        if not img:
+            sleep(.2)
+            logger.info("{} not found".format(show_id))
+            res = cls.get_images_for_show_id(show_id)
+            res["showId"] = show_id
+            collection.insert_one(res)
+            return res
+        else:
+            logger.info("{} found".format(show_id))
+
+        return img
+
 
 def filter_sling_channels(chan):
     for i in sling_channels:
@@ -280,6 +312,13 @@ class RoviChannelGridView(APIView):
             show_grids = [show_grids]
 
         # show_grids = [RoviAPI.fix_show_time(g) for g in show_grids]
+
+        for chan in show_grids[0].data['GridScheduleResult']['GridChannels']:
+            for airing in chan['Airings']:
+
+                images = RoviAPI.get_show_images(airing['ProgramId'])
+                airing['images'] = images['ProgramDetailsResult']['Program']['ProgramImages']
+
 
         serializer = RoviGridScheduleSerializers(show_grids, many=True)
 
