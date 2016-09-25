@@ -361,8 +361,10 @@ def get_program_images(show_grids):
         for airing in chan['Airings']:
             if 'images' not in airing:
                 images = get_show_images(airing['ProgramId'])
-                airing['images'] = images['ProgramDetailsResult']['Program']['ProgramImages']
-
+                try:
+                    airing['images'] = images['ProgramDetailsResult']['Program']['ProgramImages']
+                except:
+                    pass
                 show_grids[0].save()
 
 
