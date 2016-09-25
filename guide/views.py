@@ -6,6 +6,7 @@ from multiprocessing.dummy import Pool
 
 import re
 from time import sleep
+from urllib.parse import urlparse
 
 import pytz
 import requests
@@ -368,8 +369,10 @@ def get_program_images(show_grids):
 @try_catch
 def get_show_images(show_id):
     print('imf iring')
+    url_fragments = urlparse(get_env_variable('MONGODB_URI'))
+
     client = MongoClient(get_env_variable('MONGODB_URI'))
-    db = client.roviDb
+    db = client[url_fragments[1:]]
     collection = db.showImages
 
     img = collection.find_one({"showId": show_id})
