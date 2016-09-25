@@ -404,6 +404,7 @@ def get_images_for_show_id(program_id):
 
               }
     url = program_detail_url + urllib.parse.urlencode(params)
+    print(url)
 
     try:
         with urllib.request.urlopen(url) as response:
