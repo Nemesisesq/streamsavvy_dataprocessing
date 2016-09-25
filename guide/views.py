@@ -9,16 +9,20 @@ from time import sleep
 
 import pytz
 import requests
+from celery import shared_task
+from celery.task import task
 from django.core.cache import cache
 from fuzzywuzzy import fuzz
 from pymongo import MongoClient
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from data_processor.tasks import scraper_example
 from guide.models import RoviListings, RoviGridSchedule, RoviProgramImages
 from guide.serializers import RoviGridScheduleSerializers
 from data_processor.constants import sling_channels, live_channel_filter_list
 from data_processor.shortcuts import lazy_thunkify, try_catch, api_json_post
+from streamsavvy_dataprocessing.celery import app
 from streamsavvy_dataprocessing.settings import get_env_variable
 
 logger = logging.getLogger('cutthecord')
@@ -26,12 +30,13 @@ logger = logging.getLogger('cutthecord')
 
 class RoviAPI(object):
     # api_key = 'rj5pcy96h2uee7gmesf755ay'
-    api_key = 'p3nh3333exq3umj9ka8uqhee' #Key for the siceone account on rovi
+    api_key = 'p3nh3333exq3umj9ka8uqhee'  # Key for the siceone account on rovi
     BASE_URL = 'http://api.rovicorp.com/TVlistings/v9/listings/'
 
     @classmethod
     @try_catch
     def get_images_for_show_id(cls, program_id):
+        print('im making call to rovi')
         program_detail_url = "{}programdetails/{}/info?".format(cls.BASE_URL, program_id)
         params = {'local': 'en-US',
                   'copytextformat': 'PlainText',
@@ -260,25 +265,6 @@ class RoviAPI(object):
         i['streamingServices'] = cls.result_dict[i['SourceId']]['streamingServices']
         return i
 
-    @classmethod
-    @try_catch
-    def get_show_images(cls, show_id):
-        client = MongoClient(get_env_variable('MONGODB_URI'))
-        db = client.roviDb
-        collection = db.showImages
-
-        img = collection.find_one({"showId": show_id})
-        if not img:
-            sleep(.2)
-            logger.info("{} not found".format(show_id))
-            res = cls.get_images_for_show_id(show_id)
-            res["showId"] = show_id
-            collection.insert_one(res)
-            return res
-        else:
-            logger.info("{} found".format(show_id))
-
-        return img
 
 
 def filter_sling_channels(chan):
@@ -290,8 +276,14 @@ def filter_sling_channels(chan):
     return False
 
 
+
+
 class RoviChannelGridView(APIView):
     def get(self, request, lat, long):
+
+        hello.delay()
+
+        scraper_example.delay(3,4)
 
         zip_code = self.get_zip_code_from_coords(lat, long)
 
@@ -313,12 +305,7 @@ class RoviChannelGridView(APIView):
 
         # show_grids = [RoviAPI.fix_show_time(g) for g in show_grids]
 
-        for chan in show_grids[0].data['GridScheduleResult']['GridChannels']:
-            for airing in chan['Airings']:
-
-                images = RoviAPI.get_show_images(airing['ProgramId'])
-                airing['images'] = images['ProgramDetailsResult']['Program']['ProgramImages']
-
+        get_program_images.delay(show_grids)
 
         serializer = RoviGridScheduleSerializers(show_grids, many=True)
 
@@ -359,3 +346,64 @@ class RoviChannelGridView(APIView):
         services = the_json['ServicesResult']['Services']['Service']
         service_listings = [RoviAPI.save_listing(zip, x) for x in services if x['SystemName'] == 'Dish Network']
         return service_listings
+
+
+
+@shared_task(name='cell test')
+def hello():
+    print('world')
+
+@shared_task(name='get_async_show_images')
+def get_program_images(show_grids):
+
+    for chan in show_grids[0].data['GridScheduleResult']['GridChannels']:
+        for airing in chan['Airings']:
+            if 'images' not in airing:
+                images = get_show_images(airing['ProgramId'])
+                airing['images'] = images['ProgramDetailsResult']['Program']['ProgramImages']
+
+                show_grids[0].save()
+
+
+@try_catch
+def get_show_images(show_id):
+    print('imf iring')
+    client = MongoClient(get_env_variable('MONGODB_URI'))
+    db = client.roviDb
+    collection = db.showImages
+
+    img = collection.find_one({"showId": show_id})
+    if not img:
+        sleep(.2)
+        logger.info("{} not found".format(show_id))
+        res = get_images_for_show_id(show_id)
+        res["showId"] = show_id
+        collection.insert_one(res)
+        return res
+    else:
+        logger.info("{} found".format(show_id))
+
+    return img
+
+@try_catch
+def get_images_for_show_id(program_id):
+    print('im making call to rovi')
+    program_detail_url = "{}programdetails/{}/info?".format(RoviAPI.BASE_URL, program_id)
+    params = {'local': 'en-US',
+              'copytextformat': 'PlainText',
+              'include': 'Image',
+              'imagecount': 5,
+              'duration': 20160,
+              'format': 'json',
+              'apikey': '9d4zzdxbzvguqgykwjnz2g7n',
+
+              }
+    url = program_detail_url + urllib.parse.urlencode(params)
+
+    try:
+        with urllib.request.urlopen(url) as response:
+            the_json = json.loads(response.read().decode('utf-8'))
+        return the_json
+    except urllib.error.URLError as e:
+        print(e)
+        return {}

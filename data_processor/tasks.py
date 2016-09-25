@@ -2,6 +2,7 @@ import requests
 import scrapy
 from celery.schedules import crontab
 from celery.task import periodic_task
+from celery.task import task
 from celery.utils.log import get_task_logger
 from datetime import datetime, time
 
@@ -15,8 +16,9 @@ from college_football_scraper.spiders.pro_football_spider import ProFootballSpid
 logger = get_task_logger(__name__)
 
 
+@task
 def scraper_example(a, b):
-    return a + b
+    print(a + b)
 
 
 # A periodic task that will run every minute (the symbol "*" means every)

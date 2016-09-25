@@ -291,7 +291,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console'],
-            'propagate': True,
+            'propagate': False,
             'level': 'DEBUG',
         },
         'cutthecord': {
@@ -319,6 +319,6 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 CELERYD_MAX_TASKS_PER_CHILD = 1
 
-from kombu import serialization
-
-serialization.registry._decoders.pop("application/x-python-serialize")
+# from kombu import serialization
+#
+# serialization.registry._decoders.pop("application/x-python-serialize")
