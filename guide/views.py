@@ -372,7 +372,7 @@ def get_show_images(show_id):
     url_fragments = urlparse(get_env_variable('MONGODB_URI'))
 
     client = MongoClient(get_env_variable('MONGODB_URI'))
-    db = client[url_fragments[1:]]
+    db = client[url_fragments.path[1:]]
     collection = db.showImages
 
     img = collection.find_one({"showId": show_id})
