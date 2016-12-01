@@ -231,18 +231,12 @@ else:
     }
 redis_url = urlparse(os.environ.get('REDIS_URL'))
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'redis_cache.RedisCache',
-#         'LOCATION': [
-#             '{0}:{1}'.format(redis_url.hostname, redis_url.port)
-#         ],
-#         'OPTIONS': {
-#             'PASSWORD': redis_url.password,
-#             'DB': 0,
-#         }
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

@@ -1,10 +1,12 @@
 from datetime import datetime
 
 import django
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
+from jsonfield import JSONField
+
 from data_processor.models import Content
 
 
@@ -22,5 +24,16 @@ class Popularity(models.Model):
         return super(Popularity, self).save(*args, **kwargs)
 
 
+class TMDB(models.Model):
+    data = JSONField(blank=True, null=True)
+    content = models.ForeignKey(Content)
+    date_created = models.DateTimeField()
 
+    class Meta:
+        get_latest_by = 'date_created'
+
+    def save(self, *args, **kwargs):
+        # self.content.curr_pop_score = self.score
+        self.date_created = datetime.now()
+        return super(TMDB, self).save(*args, **kwargs)
 
