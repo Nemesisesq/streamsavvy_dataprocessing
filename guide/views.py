@@ -18,7 +18,7 @@ from pymongo import MongoClient
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from data_processor.tasks import scraper_example
+# from data_processor.tasks import scraper_example
 from guide.models import RoviListings, RoviGridSchedule, RoviProgramImages
 from guide.serializers import RoviGridScheduleSerializers
 from data_processor.constants import sling_channels, live_channel_filter_list
@@ -284,7 +284,7 @@ class RoviChannelGridView(APIView):
 
         hello.delay()
 
-        scraper_example.delay(3,4)
+        # scraper_example.delay(3,4)
 
         zip_code = self.get_zip_code_from_coords(lat, long)
 

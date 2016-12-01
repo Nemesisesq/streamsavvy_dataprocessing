@@ -322,3 +322,8 @@ CELERYD_MAX_TASKS_PER_CHILD = 1
 # from kombu import serialization
 #
 # serialization.registry._decoders.pop("application/x-python-serialize")
+
+from django.shortcuts import render
+
+# Create your views here.
+

@@ -3,12 +3,13 @@ import logging
 import urllib
 
 import requests
+from celery.schedules import crontab
+from celery.task import periodic_task
 
 from data_processor.models import Content
 from data_processor.shortcuts import api_json_post, try_catch
 from popularity.models import Popularity
 from streamsavvy_dataprocessing.settings import get_env_variable
-
 
 logger = logging.getLogger('cutthecord')
 
@@ -18,6 +19,7 @@ def update_content_popularity():
 
     for i in c:
         get_popularity_score(i)
+
 
 @try_catch
 def get_popularity_score(i):
@@ -34,4 +36,7 @@ def get_popularity_score(i):
     logger.info("popularity for {} saved".format(i.title))
 
 
-
+@periodic_task(serializer='json', run_every=(crontab()), name='helloworld',
+               ignore_result=True)
+def hello():
+    print("hello world")

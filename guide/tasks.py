@@ -19,10 +19,10 @@ def scraper_example(a, b):
     return a + b
 
 # A periodic task that will run every minute (the symbol "*" means every)
-@periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='helloworld', ignore_result=True)
-def get_tv_schedules():
-
-    service_listings = RoviListings.objects.all()
-
-    for i in service_listings:
-        RoviAPI.get_grid_schedule_for_service_id(i)
+# @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='helloworld', ignore_result=True)
+# def get_tv_schedules():
+#
+#     service_listings = RoviListings.objects.all()
+#
+#     for i in service_listings:
+#         RoviAPI.get_grid_schedule_for_service_id(i)
