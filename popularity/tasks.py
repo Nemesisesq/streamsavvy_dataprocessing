@@ -54,6 +54,7 @@ def set_popularity_score(json):
 
             t[0].save()
             p.save()
+    logger.info("Added Popularity to {}".format(c))
 
 
 @periodic_task(serializer='json', run_every=(crontab()), name='helloworld',
