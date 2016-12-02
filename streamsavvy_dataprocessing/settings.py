@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'popularity',
     # 'django_redis',
     'djcelery',
+    'secret_sauce'
 
 ]
 

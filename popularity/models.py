@@ -20,7 +20,7 @@ class Popularity(models.Model):
 
     def save(self, *args, **kwargs):
         self.content.curr_pop_score = self.score
-        self.date_created = datetime.now()
+        self.date_created = datetime.utcnow()
         return super(Popularity, self).save(*args, **kwargs)
 
 
@@ -34,6 +34,6 @@ class TMDB(models.Model):
 
     def save(self, *args, **kwargs):
         # self.content.curr_pop_score = self.score
-        self.date_created = datetime.now()
+        self.date_created = datetime.utcnow()
         return super(TMDB, self).save(*args, **kwargs)
 

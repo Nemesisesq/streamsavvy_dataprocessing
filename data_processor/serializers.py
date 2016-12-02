@@ -29,6 +29,11 @@ class ContentSerializer(serializers.HyperlinkedModelSerializer):
         model = Content
         depth = 2
 
+class SuggestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Content
+        depth = 2
+
 
 class ViewingServicesSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

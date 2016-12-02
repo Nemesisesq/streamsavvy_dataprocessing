@@ -42,7 +42,7 @@ def set_popularity_score(json):
     from data_processor.models import Content
     from popularity.models import Popularity
 
-    c = Content.objects.filter(title_iexact=json["name"])
+    c = Content.objects.filter(title__iexact=json["name"])
 
     if c:
         for i in c:
@@ -57,10 +57,6 @@ def set_popularity_score(json):
     logger.info("Added Popularity to {}".format(c))
 
 
-@periodic_task(serializer='json', run_every=(crontab()), name='helloworld',
-               ignore_result=True)
-def hello():
-    print("hello world")
 
 
 def callback(ch, method, properties, body):

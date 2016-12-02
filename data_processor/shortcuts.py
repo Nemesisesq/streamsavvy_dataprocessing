@@ -16,12 +16,12 @@ def try_catch(f):
         except Exception as e:
             exc_type, exc_value, exc_traceback = sys.exc_info()
             print("there was a problem with {} with {} and {}".format(f.__name__, args, kwargs))
-            print("-"*60)
+            print("-" * 60)
 
             print("*** print_exception:")
             traceback.print_exception(exc_type, exc_value, exc_traceback,
                                       limit=4, file=sys.stdout)
-            print("-"*60)
+            print("-" * 60)
 
     return handleProblems
 
@@ -130,6 +130,7 @@ class asynchronous(object):
 
             return self.result
 
+
 import threading, sys, functools, traceback
 
 
@@ -207,19 +208,25 @@ with logging.INFO level.
             return f_result
 
         return wrapper
+
+
 def debounce(wait):
     """ Decorator that will postpone a functions
         execution until after wait seconds
         have elapsed since the last time it was invoked. """
+
     def decorator(fn):
         def debounced(*args, **kwargs):
             def call_it():
                 fn(*args, **kwargs)
+
             try:
                 debounced.t.cancel()
             except(AttributeError):
                 pass
             debounced.t = threading.Timer(wait, call_it)
             debounced.t.start()
+
         return debounced
+
     return decorator
