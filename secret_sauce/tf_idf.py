@@ -1,4 +1,5 @@
 import string
+from functools import partial
 
 import pandas as pd
 import time
@@ -109,6 +110,8 @@ class ContentEngine:
             for idx, row in ds.iterrows():
                 print(idx, row['title'], row['id'])
                 self.process_dataset_row(cosine_similarities, ds, idx, row, category)
+
+
 
         def process_dataset_row(self, cosine_similarities, ds, idx, row, category):
             similar_indices = cosine_similarities[idx].argsort()[:-100:-1]

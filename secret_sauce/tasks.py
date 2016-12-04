@@ -4,12 +4,14 @@ from functools import partial
 from multiprocessing.pool import ThreadPool
 
 import itertools
+
+import logging
 import pika
 
 from data_processor.shortcuts import debounce
 from streamsavvy_dataprocessing.settings import get_env_variable
 
-
+logger = logging.getLogger('cutthecord')
 def runner(func):
     return func()
 
@@ -48,28 +50,30 @@ def convert_ids(id, suggestion_id_list):
 
 def callback(ch, method, properties, body):
     the_json = json.loads(body.decode('utf-8'))
-    flat = get_recomendations(the_json)
-    shows = convert_ids(the_json, flat)
-    publish_recomendations(shows)
+    from data_processor.models import Content
+    c = Content.objects.get(guidebox_data__id=the_json)
+    publish_recomendations(c)
 
 
 rmq_tx_url = get_env_variable('RABBITMQ_BIGWIG_TX_URL')
 
 tx_url_params = pika.URLParameters(rmq_tx_url)
-
+count = 0
 def publish_recomendations(p):
     from data_processor.serializers import SuggestionSerializer
-    payload = SuggestionSerializer(p, many=True).data
+    payload = SuggestionSerializer(p).data
     payload = json.dumps(payload)
     connection = pika.BlockingConnection(tx_url_params)
     channel = connection.channel()
 
-    channel.queue_declare(queue='reco_engine_results')
+    if p:
+        channel.queue_declare(queue='reco_engine_results')
+        logger.info('sending result for {}'.format(p))
 
-    channel.basic_publish(exchange='',
-                          routing_key='reco_engine_results',
-                          body=payload)
-    connection.close()
+        channel.basic_publish(exchange='',
+                              routing_key='reco_engine_results',
+                              body=payload)
+        # connection.close()
 
 
 @debounce(10)

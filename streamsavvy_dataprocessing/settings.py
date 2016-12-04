@@ -145,7 +145,7 @@ DATABASES = {
 
 import dj_database_url
 
-DATABASES['default'] = dj_database_url.config(default='postgres://postgres:streamsavvy@localhost:5432/streamsavvy3')
+DATABASES['default'] = dj_database_url.config(default='postgres://fgroihyrodfasi:LH4ZgcpeinzZnKn9T2B8I2GRyO@ec2-54-221-229-37.compute-1.amazonaws.com:5432/d4v9vao91951pj')
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
