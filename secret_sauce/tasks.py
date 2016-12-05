@@ -111,3 +111,9 @@ def check_for_training_on_startup():
     if len(keys) == 0:
         c_e.train()
         logger.info("performing initial training of database")
+
+@periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='helloworld', ignore_result=True)
+def get_tv_schedules():
+
+    print('Hello world')
+#
