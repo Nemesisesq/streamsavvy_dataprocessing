@@ -8,10 +8,29 @@ https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
 
 import os
+
+import logging
 from whitenoise.django import DjangoWhiteNoise
 from django.core.wsgi import get_wsgi_application
+
+from popularity.tasks import listen_to_messenger_for_popularity
+from secret_sauce.tasks import listen_to_messenger_for_id, check_for_training_on_startup
+
+logger = logging.getLogger('cutthecord')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "streamsavvy_dataprocessing.settings")
 
 application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
+
+
+logger.info("listening for popularity")
+listen_to_messenger_for_popularity()
+
+logger.info("listening for show recomendations")
+listen_to_messenger_for_id()
+
+logger.info("checking if the db is trained on startup")
+check_for_training_on_startup()
+
+

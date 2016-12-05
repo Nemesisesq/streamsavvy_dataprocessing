@@ -222,8 +222,8 @@ def debounce(wait):
 
             try:
                 debounced.t.cancel()
-            except(AttributeError):
-                pass
+            except(AttributeError) as e:
+                print(e)
             debounced.t = threading.Timer(wait, call_it)
             debounced.t.start()
 

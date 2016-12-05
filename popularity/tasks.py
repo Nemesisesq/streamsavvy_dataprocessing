@@ -69,6 +69,7 @@ def listen_to_messenger_for_popularity():
 
     url_params = pika.URLParameters(rmq_url)
 
+
     connection = pika.BlockingConnection(url_params)
 
     channel = connection.channel()

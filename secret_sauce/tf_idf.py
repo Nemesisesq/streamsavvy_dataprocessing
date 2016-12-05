@@ -10,7 +10,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import logging
 
-from data_processor.models import Content
+
 from streamsavvy_dataprocessing.settings import get_env_variable
 
 logger = logging.getLogger('cutthecord')
@@ -31,15 +31,16 @@ class StringTemplate(object):
 
 class ContentEngine:
     class __ContentEngine(object):
-        SIMKEY = StringTemplate('p:${cat}:${id}')
+        SIMKEY = StringTemplate('ss_reco:${cat}:${id}')
 
         def __init__(self):
+
             self._r = redis.StrictRedis.from_url(get_env_variable('REDISCLOUD_URL'))
-
-
+            self.r = self._r
 
         def train(self):
             start = time.time()
+            from data_processor.models import Content
             v = [x["guidebox_data"] for x in Content.objects.all().values() if x]
             v = [x for x in v if x]
             v = [x for x in v if 'detail' in x]
@@ -110,7 +111,7 @@ class ContentEngine:
             tfid_matrix = tf.fit_transform(series)
             cosine_similarities = linear_kernel(tfid_matrix, tfid_matrix)
             for idx, row in ds.iterrows():
-                print(idx, row['title'], row['id'])
+                # print(idx, row['title'], row['id'])
                 self.process_dataset_row(cosine_similarities, ds, idx, row, category)
 
 
@@ -171,8 +172,3 @@ class ContentEngine:
 
 # content_engine = ContentEngine()
 
-
-@periodic_task(serializer='json', run_every=(crontab(hour="0", minute="0", day_of_week="6")), name='helloworld', ignore_result=True)
-def train():
-    x = ContentEngine()
-    x.train()

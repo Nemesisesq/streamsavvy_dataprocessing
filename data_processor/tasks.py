@@ -1,19 +1,19 @@
-# import requests
-# import scrapy
-# from celery.schedules import crontab
-# from celery.task import periodic_task
-# from celery.task import task
-# from celery.utils.log import get_task_logger
-# from datetime import datetime, time
+import requests
+import scrapy
+from celery.schedules import crontab
+from celery.task import periodic_task
+from celery.task import task
+from celery.utils.log import get_task_logger
+from datetime import datetime, time
+
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+
+from college_football_scraper.spiders.college_football_spider import CollegeFootballSpider
+from college_football_scraper.spiders.example import ExampleSpider
+from college_football_scraper.spiders.pro_football_spider import ProFootballSpider
 #
-# from scrapy.crawler import CrawlerProcess
-# from scrapy.utils.project import get_project_settings
-#
-# from college_football_scraper.spiders.college_football_spider import CollegeFootballSpider
-# from college_football_scraper.spiders.example import ExampleSpider
-# from college_football_scraper.spiders.pro_football_spider import ProFootballSpider
-#
-# logger = get_task_logger(__name__)
+logger = get_task_logger(__name__)
 #
 #
 # @task
@@ -25,15 +25,15 @@
 # @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='helloworld',
 #                ignore_result=True)
 # def scraper_runner():
-#     # print('hello world')
-#     # r = requests.get('http://localhost:8081')
-#
-#     # print(r.text )
-#
-#     logger.info("Start task")
-#     now = datetime.now()
-#     result = scraper_example(now.day, now.minute)
-#     logger.info("Task finished: result = %i" % result)
+#     print('hello world')
+    # r = requests.get('http://localhost:8081')
+
+    # print(r.text )
+
+    # logger.info("Start task")
+    # now = datetime.now()
+    # result = scraper_example(now.day, now.minute)
+    # logger.info("Task finished: result = %i" % result)
 #
 #
 # @periodic_task(serializer='json',

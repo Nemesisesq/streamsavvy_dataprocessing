@@ -7,8 +7,11 @@ import itertools
 
 import logging
 import pika
+from celery.schedules import crontab
+from celery.task import periodic_task
 
 from data_processor.shortcuts import debounce
+from secret_sauce.tf_idf import ContentEngine
 from streamsavvy_dataprocessing.settings import get_env_variable
 
 logger = logging.getLogger('cutthecord')
@@ -94,3 +97,22 @@ def listen_to_messenger_for_id():
     mq_recieve_thread = threading.Thread(target=channel.start_consuming)
     mq_recieve_thread.start()
     print("when the sun goes down")
+#
+#
+# @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='train content engine', ignore_result=True)
+# def train_engine():
+#     c_e = ContentEngine()
+#     c_e.train()
+
+@periodic_task(serializer='json', run_every=(crontab(hour="0", minute="0", day_of_week="1")), name='train_content_engine', ignore_result=True)
+def train():
+    c_e = ContentEngine()
+    c_e.train()
+
+
+def check_for_training_on_startup():
+    c_e = ContentEngine()
+    keys = c_e.r.keys("ss_reco:*")
+    if len(keys) == 0:
+        c_e.train()
+        logger.info("performing initial training of database")

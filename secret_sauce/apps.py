@@ -7,5 +7,6 @@ class SecretSauceConfig(AppConfig):
     name = 'secret_sauce'
     verbose_name = "This is to start the show id listener for recomndations"
     def ready(self):
-        listen_to_messenger_for_id()
-        print("listening for show ids for recomendation")
+        pass
+        # listen_to_messenger_for_id()
+        # print("listening for show ids for recomendation")
