@@ -4,6 +4,8 @@ from functools import partial
 import pandas as pd
 import time
 import redis
+from celery.schedules import crontab
+from celery.task import periodic_task
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import logging
@@ -32,7 +34,7 @@ class ContentEngine:
         SIMKEY = StringTemplate('p:${cat}:${id}')
 
         def __init__(self):
-            self._r = redis.StrictRedis.from_url(get_env_variable('REDIS_URL'))
+            self._r = redis.StrictRedis.from_url(get_env_variable('REDISCLOUD_URL'))
 
 
 
@@ -169,3 +171,8 @@ class ContentEngine:
 
 # content_engine = ContentEngine()
 
+
+@periodic_task(serializer='json', run_every=(crontab(hour="0", minute="0", day_of_week="6")), name='helloworld', ignore_result=True)
+def train():
+    x = ContentEngine()
+    x.train()
