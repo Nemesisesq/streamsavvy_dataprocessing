@@ -97,14 +97,9 @@ def listen_to_messenger_for_id():
     mq_recieve_thread = threading.Thread(target=channel.start_consuming)
     mq_recieve_thread.start()
     print("when the sun goes down")
-#
-#
-# @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='train content engine', ignore_result=True)
-# def train_engine():
-#     c_e = ContentEngine()
-#     c_e.train()
 
-@periodic_task(serializer='json', run_every=(crontab(hour="0", minute="0", day_of_week="1")), name='train_content_engine', ignore_result=True)
+
+@periodic_task(serializer='json', run_every=(crontab(minute=0, hour=0, day_of_week="sun")), name='train_content_engine', ignore_result=True)
 def train():
     c_e = ContentEngine()
     c_e.train()

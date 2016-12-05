@@ -18,7 +18,6 @@ from django.contrib import admin
 from rest_framework import routers
 
 from data_processor.views import *
-from guide.views import RoviChannelGridView
 
 router = routers.DefaultRouter()
 router.register(r'service_description', ServiceDescriptionViewSet)
@@ -33,9 +32,9 @@ router.register(r'modules', ModuleDescriptionViewSet, 'moduledescriptions')
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
-    url(r'^sport_schedule/(?P<sport_id>\d+)', SportScheduleView.as_view(), name='sport_schedule'),
-    url(r'^api/guide/(?P<lat>\d{1,2}\.\d{1,20})/(?P<long>-?\d{1,3}\.\d{1,20})', RoviChannelGridView.as_view(),
-        name='rovi_channel_grid_view'),
+    # url(r'^sport_schedule/(?P<sport_id>\d+)', SportScheduleView.as_view(), name='sport_schedule'),
+    # url(r'^api/guide/(?P<lat>\d{1,2}\.\d{1,20})/(?P<long>-?\d{1,3}\.\d{1,20})', RoviChannelGridView.as_view(),
+    #     name='rovi_channel_grid_view'),
 
     # url(r'haystack_search', autocomplete, name='autocomplete'),
 
