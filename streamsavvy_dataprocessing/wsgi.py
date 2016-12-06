@@ -31,6 +31,6 @@ logger.info("listening for show recomendations")
 listen_to_messenger_for_id()
 
 logger.info("checking if the db is trained on startup")
-# check_for_training_on_startup()
+check_for_training_on_startup()
 
 

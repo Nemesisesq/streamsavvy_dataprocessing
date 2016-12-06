@@ -83,7 +83,7 @@ def publish_recomendations(p):
         # connection.close()
 
 
-@debounce(10)
+@periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='listen to messenger for id', ignore_result=True)
 def listen_to_messenger_for_id():
     rmq_rx_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
 
@@ -97,10 +97,11 @@ def listen_to_messenger_for_id():
 
     channel.basic_consume(callback, queue='reco_engine', no_ack=True)
 
-    print("I feel like I want to be around you")
-    mq_recieve_thread = threading.Thread(target=channel.start_consuming)
-    mq_recieve_thread.start()
-    print("when the sun goes down")
+    if not channel.is_open():
+        print("I feel like I want to be around you")
+        mq_recieve_thread = threading.Thread(target=channel.start_consuming)
+        mq_recieve_thread.start()
+        print("when the sun goes down")
 
 
 @periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='train_content_engine', ignore_result=True)

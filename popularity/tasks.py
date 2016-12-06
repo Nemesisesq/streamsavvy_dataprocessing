@@ -63,7 +63,7 @@ def callback(ch, method, properties, body):
     the_json = json.loads(body.decode('utf-8'))
     set_popularity_score(the_json)
 
-@debounce(2)
+@periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='listen to messenger for popularity', ignore_result=True)
 def listen_to_messenger_for_popularity():
     rmq_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
 
@@ -78,8 +78,10 @@ def listen_to_messenger_for_popularity():
 
     channel.basic_consume(callback, queue='popularity', no_ack=True)
 
+
+
     yb = cache.get("yeah_baby")
-    if not yb:
+    if not channel.is_open():
         print("lay down the threat is real")
         mq_recieve_thread = threading.Thread(target=channel.start_consuming)
         mq_recieve_thread.start()
