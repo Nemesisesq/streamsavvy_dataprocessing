@@ -11,6 +11,7 @@ from celery.schedules import crontab
 from celery.task import periodic_task
 
 from data_processor.shortcuts import debounce
+from secret_sauce.autoscale import scale, scale_down
 from secret_sauce.tf_idf import ContentEngine
 from streamsavvy_dataprocessing.settings import get_env_variable
 
@@ -101,15 +102,21 @@ def listen_to_messenger_for_id():
 
 @periodic_task(serializer='json', run_every=(crontab(minute=0, hour=0, day_of_week="sun")), name='train_content_engine', ignore_result=True)
 def train():
+    scale(2, "standard-1X")
     c_e = ContentEngine()
-    c_e.train()
+    # c_e.train()
 
+    logger.info("")
+    scale(0, "hobby")
+    scale_down("web")
+    scale_down("celery")
 
 def check_for_training_on_startup():
+
     c_e = ContentEngine()
     keys = c_e.r.keys("ss_reco:*")
     if len(keys) == 0:
-        c_e.train()
+        train()
         logger.info("performing initial training of database")
 
 @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='helloworld', ignore_result=True)
