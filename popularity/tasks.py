@@ -58,7 +58,6 @@ class PopularityService:
         the_json = json.loads(body.decode('utf-8'))
         self.set_popularity_score(the_json)
 
-    # @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='listen to messenger for popularity', ignore_result=True)
     def listen_to_messenger_for_popularity(self):
         rmq_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
 
@@ -78,3 +77,7 @@ class PopularityService:
         print("with his sight goes red again")
 
         cache.set('yeah_baby', "Naw")
+
+@periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='b', ignore_result=True)
+def edd():
+    PopularityService.listen_to_messenger_for_popularity()

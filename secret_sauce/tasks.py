@@ -108,7 +108,7 @@ class RecomendationService:
         print("when the sun goes down")
 
 
-@periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='train_content_engine', ignore_result=True)
+@periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='a', ignore_result=True)
 def train():
     # scale(1, "web" "standard-1X")
     # scale(1, "celery" "standard-2X")
@@ -132,7 +132,7 @@ def check_for_training_on_startup():
         logger.info("performing initial training of database")
         train()
 
-@periodic_task(serializer='json', run_every=(crontab(hour="0", minute="0", day_of_week="*")), name='helloworld', ignore_result=True)
+@periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*", day_of_week="*")), name='a', ignore_result=True)
 def get_tv_schedules():
 
     print('Hello world')

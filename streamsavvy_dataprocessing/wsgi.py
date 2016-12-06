@@ -24,15 +24,15 @@ application = get_wsgi_application()
 application = DjangoWhiteNoise(application)
 
 
-# logger.info("listening for popularity")
-# p = PopularityService
-# p.listen_to_messenger_for_popularity()
-
-
-# logger.info("listening for show recomendations")
-# RecomendationService.listen_to_messenger_for_id()
-
-logger.info("checking if the db is trained on startup")
+logger.info("listening for popularity")
+p = PopularityService
+p.listen_to_messenger_for_popularity()
+#
+#
+logger.info("listening for show recomendations")
+RecomendationService.listen_to_messenger_for_id()
+#
+# logger.info("checking if the db is trained on startup")
 # check_for_training_on_startup()
 
 
