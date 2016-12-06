@@ -102,7 +102,7 @@ def listen_to_messenger_for_id():
     print("when the sun goes down")
 
 
-@periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='traincontentengine', ignore_result=True)
+@periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='train_content_engine', ignore_result=True)
 def train():
     scale(1, "web" "standard-1X")
     scale(1, "celery" "standard-2X")
