@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
-from popularity.tasks import listen_to_messenger_for_popularity
+# from popularity.tasks import listen_to_messenger_for_popularity
 
 
 class PopularityConfig(AppConfig):

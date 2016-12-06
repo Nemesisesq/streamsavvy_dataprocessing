@@ -10,7 +10,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import logging
 
-
+from data_processor.shortcuts import print_progress
 from streamsavvy_dataprocessing.settings import get_env_variable
 
 logger = logging.getLogger('cutthecord')
@@ -38,26 +38,31 @@ class ContentEngine:
             self._r = redis.StrictRedis.from_url(get_env_variable('REDISCLOUD_URL'))
             self.r = self._r
 
+        training = False
+
+
         def train(self):
-            start = time.time()
-            from data_processor.models import Content
-            v = [x["guidebox_data"] for x in Content.objects.all().values() if x]
-            v = [x for x in v if x]
-            v = [x for x in v if 'detail' in x]
+
+            if not self.training:
+                start = time.time()
+                from data_processor.models import Content
+                v = [x["guidebox_data"] for x in Content.objects.all().values() if x]
+                v = [x for x in v if x]
+                v = [x for x in v if 'detail' in x]
 
 
-            ds = pd.DataFrame(v)
-            # print(ds)
-            logger.info("Training data injested in %s seconds" % (time.time() - start))
+                ds = pd.DataFrame(v)
+                # print(ds)
+                logger.info("Training data injested in %s seconds" % (time.time() - start))
 
-            self._r.flushdb()
+                self._r.flushdb()
 
-            start = time.time()
-            self._train(ds)
-            logger.info("Engine trained in %s seconds" % (time.time() - start))
+                start = time.time()
+                self._train(ds)
+                logger.info("Engine trained in %s seconds" % (time.time() - start))
 
         def _train(self, ds):
-            pass
+            self.training = True
 
             """
             Train the engine.
@@ -106,11 +111,13 @@ class ContentEngine:
             for i in ['genres', 'tags', 'cast']:
                 series = collection_data_frame[i]
                 self.find_and_save_recomendations(series, ds, tf, i)
+                self.training = False
 
         def find_and_save_recomendations(self, series, ds, tf, category):
             tfid_matrix = tf.fit_transform(series)
             cosine_similarities = linear_kernel(tfid_matrix, tfid_matrix)
             for idx, row in ds.iterrows():
+                print_progress(idx+1, len(ds), prefix=category)
                 # print(idx, row['title'], row['id'])
                 self.process_dataset_row(cosine_similarities, ds, idx, row, category)
 

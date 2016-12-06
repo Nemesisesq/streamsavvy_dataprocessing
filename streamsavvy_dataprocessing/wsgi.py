@@ -13,8 +13,8 @@ import logging
 from whitenoise.django import DjangoWhiteNoise
 from django.core.wsgi import get_wsgi_application
 
-from popularity.tasks import listen_to_messenger_for_popularity
-from secret_sauce.tasks import listen_to_messenger_for_id, check_for_training_on_startup
+from popularity.tasks import PopularityService
+from secret_sauce.tasks import RecomendationService, check_for_training_on_startup
 
 logger = logging.getLogger('cutthecord')
 
@@ -25,10 +25,12 @@ application = DjangoWhiteNoise(application)
 
 
 logger.info("listening for popularity")
-listen_to_messenger_for_popularity()
+p = PopularityService
+p.listen_to_messenger_for_popularity()
+
 
 logger.info("listening for show recomendations")
-listen_to_messenger_for_id()
+RecomendationService.listen_to_messenger_for_id()
 
 logger.info("checking if the db is trained on startup")
 check_for_training_on_startup()
