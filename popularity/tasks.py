@@ -81,7 +81,7 @@ def listen_to_messenger_for_popularity():
 
 
     yb = cache.get("yeah_baby")
-    if not channel.is_open():
+    if not channel.is_open:
         print("lay down the threat is real")
         mq_recieve_thread = threading.Thread(target=channel.start_consuming)
         mq_recieve_thread.start()

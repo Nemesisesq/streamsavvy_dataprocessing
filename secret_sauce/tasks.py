@@ -97,7 +97,7 @@ def listen_to_messenger_for_id():
 
     channel.basic_consume(callback, queue='reco_engine', no_ack=True)
 
-    if not channel.is_open():
+    if not channel.is_open:
         print("I feel like I want to be around you")
         mq_recieve_thread = threading.Thread(target=channel.start_consuming)
         mq_recieve_thread.start()
