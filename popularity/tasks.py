@@ -80,4 +80,4 @@ class PopularityService:
 
 @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='b', ignore_result=True)
 def edd():
-    PopularityService.listen_to_messenger_for_popularity()
+    PopularityService().listen_to_messenger_for_popularity()
