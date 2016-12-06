@@ -11,6 +11,7 @@ from time import sleep
 import pika
 from celery.schedules import crontab
 from celery.task import periodic_task
+from celery import shared_task
 
 from data_processor.shortcuts import debounce
 from secret_sauce.autoscale import scale, scale_down
@@ -104,16 +105,19 @@ def listen_to_messenger_for_id():
 
 @periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='train_content_engine', ignore_result=True)
 def train():
-    scale(1, "web" "standard-1X")
-    scale(1, "celery" "standard-2X")
+    # scale(1, "web" "standard-1X")
+    # scale(1, "celery" "standard-2X")
     c_e = ContentEngine()
     c_e.train()
-
     logger.info("I'm training the recomendation engine")
     sleep (120)
-    scale(0, "hobby")
-    scale_down("web")
-    scale_down("celery")
+    # scale(0, "hobby")
+    # scale_down("web")
+    # scale_down("celery")
+
+@shared_task
+def train_async():
+    train()
 
 def check_for_training_on_startup():
 
