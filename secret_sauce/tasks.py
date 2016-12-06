@@ -6,6 +6,8 @@ from multiprocessing.pool import ThreadPool
 import itertools
 
 import logging
+from time import sleep
+
 import pika
 from celery.schedules import crontab
 from celery.task import periodic_task
@@ -100,13 +102,14 @@ def listen_to_messenger_for_id():
     print("when the sun goes down")
 
 
-@periodic_task(serializer='json', run_every=(crontab(minute=0, hour=0, day_of_week="sun")), name='train_content_engine', ignore_result=True)
+@periodic_task(serializer='json', run_every=(crontab(minute="*", hour="*", day_of_week="*")), name='train_content_engine', ignore_result=True)
 def train():
     scale(2, "standard-1X")
     c_e = ContentEngine()
     # c_e.train()
 
-    logger.info("")
+    logger.info("I'm training the recomendation engine")
+    sleep (120)
     scale(0, "hobby")
     scale_down("web")
     scale_down("celery")
