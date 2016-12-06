@@ -64,6 +64,8 @@ class RecomendationService:
     tx_url_params = pika.URLParameters(rmq_tx_url)
     count = 0
 
+    chan = None
+
     def callback(self, ch, method, properties, body):
         the_json = json.loads(body.decode('utf-8'))
         from data_processor.models import Content
@@ -89,23 +91,24 @@ class RecomendationService:
 
     # @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='listen to messenger for id', ignore_result=True)
     def listen_to_messenger_for_id(self):
-        rmq_rx_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
+        if self.chan == None:
+            rmq_rx_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
 
-        url_params = pika.URLParameters(rmq_rx_url)
+            url_params = pika.URLParameters(rmq_rx_url)
 
-        connection = pika.BlockingConnection(url_params)
+            connection = pika.BlockingConnection(url_params)
 
-        channel = connection.channel()
+            channel = connection.channel()
 
-        channel.queue_declare(queue='reco_engine')
+            channel.queue_declare(queue='reco_engine')
 
-        channel.basic_consume(self.callback, queue='reco_engine', no_ack=True)
+            channel.basic_consume(self.callback, queue='reco_engine', no_ack=True)
 
 
-        print("I feel like I want to be around you")
-        mq_recieve_thread = threading.Thread(target=channel.start_consuming)
-        mq_recieve_thread.start()
-        print("when the sun goes down")
+            print("I feel like I want to be around you")
+            mq_recieve_thread = threading.Thread(target=channel.start_consuming)
+            mq_recieve_thread.start()
+            print("when the sun goes down")
 
 
 @periodic_task(serializer='json', run_every=(crontab(minute="0", hour="0", day_of_week="*")), name='a', ignore_result=True)
