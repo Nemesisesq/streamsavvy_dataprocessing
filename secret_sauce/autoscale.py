@@ -23,18 +23,18 @@ HEADERS = {
 }
 
 
-def scale(quantity, size):
+def scale(quantity, type, size):
     payload = {
         "updates": [
             {
                 "quantity": quantity,
                 "size": size,
-                "type": "web",
+                "type": type,
             },
             {
                 "quantity": quantity,
                 "size": size,
-                "type": "celery",
+                "type": type,
             }
         ],
     }
