@@ -37,7 +37,7 @@ class PopularityService:
 
         logger.info("popularity for {} saved".format(i.title))
 
-    def set_popularity_score(json):
+    def set_popularity_score(self,json):
         from data_processor.models import Content
         from popularity.models import Popularity
 
