@@ -59,7 +59,7 @@ def convert_ids(id, suggestion_id_list):
 @singleton
 class RecomendationService:
 
-    rmq_tx_url = get_env_variable('RABBITMQ_BIGWIG_TX_URL')
+    rmq_tx_url = get_env_variable('RABBITMQ_URL')
 
     tx_url_params = pika.URLParameters(rmq_tx_url)
     count = 0
@@ -92,7 +92,7 @@ class RecomendationService:
     # @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='listen to messenger for id', ignore_result=True)
     def listen_to_messenger_for_id(self):
         if self.chan == None:
-            rmq_rx_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
+            rmq_rx_url = get_env_variable('RABBITMQ_URL')
 
             url_params = pika.URLParameters(rmq_rx_url)
 

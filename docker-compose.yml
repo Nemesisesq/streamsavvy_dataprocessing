@@ -1,0 +1,31 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: gunicorn streamsavvy_dataprocessing.wsgi
+    ports:
+      - "8000:8000"
+#    links:
+#      - redis
+#      - rabbitmq
+#      - mongodb
+#      - db
+
+
+
+#  db:
+#    image: postgres
+#
+#  redis:
+#    image: redis
+#
+#  rabbitmq:
+#    image: rabbitmq
+#
+#  mongodb:
+#    image: mongo
+
+networks:
+  default:
+    external:
+      name: ssnetwork

@@ -59,8 +59,10 @@ class PopularityService:
         self.set_popularity_score(the_json)
 
     def listen_to_messenger_for_popularity(self):
-        rmq_url = get_env_variable('RABBITMQ_BIGWIG_RX_URL')
 
+        rmq_url = get_env_variable('RABBITMQ_URL')
+
+        print("\n redis_url {} \n".format(rmq_url))
         url_params = pika.URLParameters(rmq_url)
 
         connection = pika.BlockingConnection(url_params)
