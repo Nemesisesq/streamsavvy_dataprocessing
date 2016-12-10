@@ -3,3 +3,4 @@ packages:
     git: []
     postgresql95-devel: []
     libjpeg-turbo-devel: []
+    libjpeg-dev: []
