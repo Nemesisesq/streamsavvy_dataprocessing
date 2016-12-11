@@ -7,3 +7,4 @@ packages:
     gcc-c++: []
     python27-devel: []
     python43-devel: []
+    libffi-devel: []
