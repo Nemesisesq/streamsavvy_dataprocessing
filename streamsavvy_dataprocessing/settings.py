@@ -62,7 +62,7 @@ SECRET_KEY = '3ra_5hm2=%jgch7^o3-z+9^$a0x$i#^lb)-v^-oi%cs=tl$h_1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if get_env_variable('ENVIRONMENT') == 'PRODUCTION' else True
 
-ALLOWED_HOSTS = ['.streamsavvy.tv', '.herokuapp.com', ] if get_env_variable('ENVIRONMENT') == 'PRODUCTION' else ['*']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -86,7 +86,8 @@ INSTALLED_APPS = [
     'popularity',
     # 'django_redis',
     'djcelery',
-    'secret_sauce'
+    'secret_sauce',
+    'server'
 
 ]
 
@@ -138,14 +139,18 @@ WSGI_APPLICATION = 'streamsavvy_dataprocessing.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': get_env_variable('RDS_NAME'),
+        'USER': get_env_variable('RDS_USER'),
+        'PASSWORD': get_env_variable('RDS_PASSWORD'),
+        'HOST': get_env_variable('RDS_HOST'),
+        'PORT': get_env_variable('RDS_PORT')
     }
 }
 
-import dj_database_url
-
-DATABASES['default'] = dj_database_url.config(default='postgres://postgres:streamsavvy@localhost:5432/streamsavvy3')
+# import dj_database_url
+#
+# DATABASES['default'] = dj_database_url.config(default='postgres://postgres:streamsavvy@localhost:5432/streamsavvy3')
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -230,6 +235,7 @@ else:
             'INDEX_NAME': 'haystack',
         }
     }
+
 redis_url = urlparse(os.environ.get('REDIS_URL'))
 
 CACHES = {
@@ -296,7 +302,7 @@ LOGGING = {
     }
 }
 
-BROKER_URL = get_env_variable('RABBITMQ_BIGWIG_URL')
+BROKER_URL = get_env_variable('RABBITMQ_URL')
 
 # List of modules to import when celery starts.
 # CELERY_IMPORTS = ('myapp.tasks', )
