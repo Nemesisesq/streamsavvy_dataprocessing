@@ -4,3 +4,6 @@ packages:
     postgresql95-devel: []
     libjpeg-turbo-devel: []
     libjpeg-dev: []
+    gcc-c++: []
+    python27-devel: []
+    python43-devel: []
