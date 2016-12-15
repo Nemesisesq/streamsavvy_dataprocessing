@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>data_processor.models.Schedule</OriginalElement>
+  <nodes>
+    <node x="38.0" y="0.0">_collections_abc.Hashable</node>
+    <node x="9.5" y="79.0">django.db.models.base.Model</node>
+    <node x="0.0" y="158.0">data_processor.models.Schedule</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="django.db.models.base.Model" target="_collections_abc.Hashable">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="data_processor.models.Schedule" target="django.db.models.base.Model">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="117.5" y="93.5" />
+  <SelectedNodes>
+    <node>data_processor.models.Schedule</node>
+  </SelectedNodes>
+  <Categories />
+</Diagram>
+

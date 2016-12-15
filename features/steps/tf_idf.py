@@ -3,7 +3,7 @@ from functools import partial
 from behave import *
 
 from data_processor.models import Content
-from secret_sauce.tasks import get_recomendations, publish_recomendations
+from secret_sauce.tasks import RecomendationService, get_recomendations
 from secret_sauce.tf_idf import ContentEngine
 
 
@@ -34,36 +34,36 @@ def step_impl(context):
     """
     :type context: behave.runner.Context
     """
-    predict_genres = partial(context.c_e.predict, 'genres', 28164, 10)
-    predict_tags = context.c_e.predict('tags', 28164, 500)
-    predict_cast = context.c_e.predict('cast', 28164, 500)
+    predict_genres = partial(context.c_e.predict, 'genres', 134, 10)
+    predict_tags = context.c_e.predict('tags', 134, 500)
+    predict_cast = context.c_e.predict('cast', 134, 500)
 
-    g = convert_ids(28164, predict_genres())
-    t = convert_ids(28164, predict_tags)
-    c = convert_ids(28164, predict_cast)
+    g = convert_ids(134, predict_genres())
+    t = convert_ids(134, predict_tags)
+    c = convert_ids(134, predict_cast)
 
     print("\n", g)
     print("\n", t)
     print("\n", c)
 
-    g_ids = [int(x[0].decode("utf-8")) for x in predict_genres]
+    # g_ids = [int(x[0].decode("utf-8")) for x in predict_genres]
     t_ids = [int(x[0].decode("utf-8")) for x in predict_tags]
     c_ids = [int(x[0].decode("utf-8")) for x in predict_cast]
 
-    print("\n", g_ids)
+    # print("\n", g_ids)
     print("\n", t_ids)
     print("\n", c_ids)
 
-    s1 = set(g_ids).intersection(t_ids)
-    s2 = set(g_ids).intersection(c_ids)
+    # s1 = set(g_ids).intersection(t_ids)
+    # s2 = set(g_ids).intersection(c_ids)
     s3 = set(c_ids).intersection(t_ids)
 
-    print("\n", s1)
-    print("\n", s2)
+    # print("\n", s1)
+    # print("\n", s2)
     print("\n", s3)
 
-    print([Content.objects.get(guidebox_data__id=x) for x in s1])
-    print([Content.objects.get(guidebox_data__id=x) for x in s2])
+    # print([Content.objects.get(guidebox_data__id=x) for x in s1])
+    # print([Content.objects.get(guidebox_data__id=x) for x in s2])
     print([Content.objects.get(guidebox_data__id=x) for x in s3])
 
 
@@ -121,7 +121,7 @@ def step_impl(context):
 @then("we publish the payload to RabbitMQ")
 
 def step_impl(context):
-    publish_recomendations(context.payload)
+    RecomendationService().publish_recomendations(context.payload)
     assert True
 
     """

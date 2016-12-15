@@ -1,6 +1,7 @@
 import string
+from _decimal import Decimal
 from functools import partial
-
+import threading
 import pandas as pd
 import time
 import redis
@@ -9,13 +10,29 @@ from celery.task import periodic_task
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import logging
+import sys
 
 from data_processor.shortcuts import print_progress
 from streamsavvy_dataprocessing.settings import get_env_variable
 
 logger = logging.getLogger('cutthecord')
+
+
+def up():
+    # My terminal breaks if we don't flush after the escape-code
+    sys.stdout.write('\x1b[1A')
+    sys.stdout.flush()
+
+
+def down():
+    # I could use '\x1b[1B' here, but newline is faster and easier
+    sys.stdout.write('\n')
+    sys.stdout.flush()
+
+
 class StringTemplate(object):
     orig = ''
+
     def __init__(self, template):
         self.template = string.Template(template)
         self.partial_substituted_str = None
@@ -35,21 +52,25 @@ class ContentEngine:
 
         def __init__(self):
 
-            self._r = redis.StrictRedis.from_url(get_env_variable('REDISCLOUD_URL'))
+            self._r = redis.StrictRedis.from_url(get_env_variable('REDIS_URL'))
             self.r = self._r
 
         training = False
-
 
         def train(self):
 
             if not self.training:
                 start = time.time()
                 from data_processor.models import Content
-                v = [x["guidebox_data"] for x in Content.objects.all().values() if x]
+                v = []
+                for x in Content.objects.all().values():
+                    if x and "guidebox_data" in x and x['guidebox_data']:
+                        raw_data_composed = x["guidebox_data"]
+                        if "curr_pop_score" in x:
+                            raw_data_composed["popularity_score"] = x["curr_pop_score"]
+                        v.append(raw_data_composed)
                 v = [x for x in v if x]
                 v = [x for x in v if 'detail' in x]
-
 
                 ds = pd.DataFrame(v)
                 # print(ds)
@@ -87,7 +108,7 @@ class ContentEngine:
             """
 
             tf = TfidfVectorizer(analyzer='word',
-                                 ngram_range=(1,3),
+                                 ngram_range=(1, 3),
                                  min_df=0,
                                  stop_words='english')
 
@@ -95,46 +116,54 @@ class ContentEngine:
             The dataset for the content needs to be split up in to
             """
 
-
-
-
             collection = [self.category_dicts_to_string(x) for x in ds.detail]
 
             """
             Unwind the collection object in to attributes on the ds object
             """
 
-            collection_data_frame  = pd.DataFrame(collection)
+            collection_data_frame = pd.DataFrame(collection)
             # ds.genres = pd.Series(attr_list)
 
 
             for i in ['genres', 'tags', 'cast']:
                 series = collection_data_frame[i]
-                self.find_and_save_recomendations(series, ds, tf, i)
+                snf = partial(self.find_and_save_recomendations, series, ds, tf, i)
+                training_thread = threading.Thread(target=snf)
+                training_thread.start()
                 self.training = False
 
         def find_and_save_recomendations(self, series, ds, tf, category):
             tfid_matrix = tf.fit_transform(series)
             cosine_similarities = linear_kernel(tfid_matrix, tfid_matrix)
+
             for idx, row in ds.iterrows():
-                print_progress(idx+1, len(ds), prefix=category)
+                if category == 'genres':
+
+                if category == 'tags':
+                    down()
+                if category == 'cast':
+                    down()
+
+                print_progress(idx + 1, len(ds), prefix=category)
                 # print(idx, row['title'], row['id'])
                 self.process_dataset_row(cosine_similarities, ds, idx, row, category)
 
-
-
         def process_dataset_row(self, cosine_similarities, ds, idx, row, category):
             similar_indices = cosine_similarities[idx].argsort()[:-100:-1]
-            smilar_items = [(cosine_similarities[idx][i], ds['id'][i]) for i in similar_indices]
+            smilar_items = []
+            for i in similar_indices:
+                weighted_similarity = Decimal(cosine_similarities[idx][i]) ** Decimal(ds['popularity_score'][i])
+                smilar_items.append((weighted_similarity, ds['id'][i]))
+                sorted_items = sorted(smilar_items, key=lambda x: x[0])
             flattened = sum(smilar_items[1:], ())
-            self._r.zadd(self.SIMKEY.format(cat=category,id=row['id']), *flattened)
+            self._r.zadd(self.SIMKEY.format(cat=category, id=row['id']), *flattened)
 
         def category_dicts_to_string(self, x):
             y = {'genres': '', 'tags': '', 'cast': ''}
             if 'genres' in x:
                 z = [c['title'] for c in x['genres']]
                 y['genres'] = " ".join(z)
-
 
             if 'tags' in x:
                 z = [c['tag'] for c in x['tags']]
@@ -143,7 +172,6 @@ class ContentEngine:
             if 'cast' in x:
                 z = [c['name'] for c in x['cast']]
                 y['cast'] = " ".join(z)
-
 
             return y
 
@@ -165,7 +193,9 @@ class ContentEngine:
                                   num - 1,
                                   withscores=True,
                                   desc=True)
+
     instance = None
+
     def __init__(self):
         if not ContentEngine.instance:
             ContentEngine.instance = ContentEngine.__ContentEngine()
@@ -173,9 +203,6 @@ class ContentEngine:
     def __getattr__(self, item):
         return getattr(self.instance, item)
 
-    # def __setattr__(self, key, value):
-
-
+        # def __setattr__(self, key, value):
 
 # content_engine = ContentEngine()
-

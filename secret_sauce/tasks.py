@@ -1,20 +1,16 @@
+import itertools
 import json
+import logging
 import threading
 from functools import partial
 from multiprocessing.pool import ThreadPool
 
-import itertools
-
-import logging
-from time import sleep
-
 import pika
+from celery import shared_task
 from celery.schedules import crontab
 from celery.task import periodic_task
-from celery import shared_task
 
-from data_processor.shortcuts import debounce, singleton
-from secret_sauce.autoscale import scale, scale_down
+from data_processor.shortcuts import singleton
 from secret_sauce.tf_idf import ContentEngine
 from streamsavvy_dataprocessing.settings import get_env_variable
 
@@ -68,6 +64,7 @@ class RecomendationService:
 
     def callback(self, ch, method, properties, body):
         the_json = json.loads(body.decode('utf-8'))
+        logger.info("got message for {}".format(the_json))
         from data_processor.models import Content
         c = Content.objects.get(guidebox_data__id=the_json)
         self.publish_recomendations(c)
@@ -86,7 +83,7 @@ class RecomendationService:
             channel.basic_publish(exchange='',
                                   routing_key='reco_engine_results',
                                   body=payload)
-            # connection.close()
+        connection.close()
 
 
     # @periodic_task(serializer='json', run_every=(crontab(hour="*", minute="*/10")), name='listen to messenger for id', ignore_result=True)
@@ -99,9 +96,9 @@ class RecomendationService:
             connection = pika.BlockingConnection(url_params)
 
             channel = connection.channel()
-
+            logger.info("declaring channel")
             channel.queue_declare(queue='reco_engine')
-
+            logger.info("defining queue")
             channel.basic_consume(self.callback, queue='reco_engine', no_ack=True)
 
 
@@ -139,4 +136,22 @@ def check_for_training_on_startup():
 def get_tv_schedules():
 
     print('Hello world')
+
+for i in range(1,100):
+
+    rmq_tx_url = get_env_variable('RABBITMQ_URL')
+
+    tx_url_params = pika.URLParameters(rmq_tx_url)
+    connection = pika.BlockingConnection(tx_url_params)
+    channel = connection.channel()
+
+    channel.queue_declare(queue='reco_engine_results')
+    logger.info('sending result for {}'.format(i))
+
+    channel.basic_publish(exchange='',
+                          routing_key='reco_engine_results',
+                              body=str(i))
+
+
+
 #
