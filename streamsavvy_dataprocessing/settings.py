@@ -204,11 +204,11 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # WHOOSH_INDEX = os.path.join(BASE_DIR, 'whoosh')
 
 
-if get_env_variable('ELASTIC_SEARCH_HOST') != 'False':
+if True:
     from elasticsearch import Elasticsearch, RequestsHttpConnection
     from requests_aws4auth import AWS4Auth
 
-    host = get_env_variable('ELASTIC_SEARCH_HOST')
+    host = 'search-streamsavvy-elastic-search-vepbv4sq5x5p3x2nu6s7ytc66y.us-west-2.es.amazonaws.com'
     awsauth = AWS4Auth('AKIAJPGUDPBGX3GSMCGQ', '6zg1YBTW4lmp6V2GhYRAVtdKaqSHor0qKdkK6u4V', 'us-west-2', 'es')
 
     HAYSTACK_CONNECTIONS = {
