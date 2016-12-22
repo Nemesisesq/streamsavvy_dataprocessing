@@ -10,10 +10,10 @@ class ServiceDescriptionSerializer(serializers.HyperlinkedModelSerializer):
             'url': {'lookup_field': 'slug'}
         }
 
+
 class ScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schedule
-
 
 
 class SportSerializer(serializers.ModelSerializer):
@@ -29,10 +29,11 @@ class ContentSerializer(serializers.HyperlinkedModelSerializer):
         model = Content
         depth = 2
 
+
 class SuggestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Content
-        depth = 2
+        fields = ('title', 'curr_pop_score', 'guidebox_data')
 
 
 class ViewingServicesSerializer(serializers.HyperlinkedModelSerializer):

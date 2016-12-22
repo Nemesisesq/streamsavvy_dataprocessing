@@ -10,7 +10,7 @@ from celery import shared_task
 from celery.schedules import crontab
 from celery.task import periodic_task
 
-from data_processor.shortcuts import singleton
+from data_processor.shortcuts import singleton, try_catch
 from secret_sauce.tf_idf import ContentEngine
 from streamsavvy_dataprocessing.settings import get_env_variable
 
@@ -50,6 +50,10 @@ def convert_ids(id, suggestion_id_list):
 
     return show_list
 
+@try_catch
+def g(i):
+    from server.models import Content
+    return Content.objects.get(guidebox_data__id=int(i))
 
 
 @singleton
@@ -65,9 +69,16 @@ class RecomendationService:
     def callback(self, ch, method, properties, body):
         the_json = json.loads(body.decode('utf-8'))
         logger.info("got message for {}".format(the_json))
-        from data_processor.models import Content
-        c = Content.objects.get(guidebox_data__id=the_json)
-        self.publish_recomendations(c)
+
+        pool = ThreadPool(10)
+        # c = [partial(g,x) for x in the_json]
+        p = pool.map(g,the_json)
+
+        pool.close()
+        pool.join()
+
+        for c in p:
+            self.publish_recomendations(c)
 
     def publish_recomendations(self,p):
         from data_processor.serializers import SuggestionSerializer
@@ -137,20 +148,6 @@ def get_tv_schedules():
 
     print('Hello world')
 
-for i in range(1,100):
-
-    rmq_tx_url = get_env_variable('RABBITMQ_URL')
-
-    tx_url_params = pika.URLParameters(rmq_tx_url)
-    connection = pika.BlockingConnection(tx_url_params)
-    channel = connection.channel()
-
-    channel.queue_declare(queue='reco_engine_results')
-    logger.info('sending result for {}'.format(i))
-
-    channel.basic_publish(exchange='',
-                          routing_key='reco_engine_results',
-                              body=str(i))
 
 
 

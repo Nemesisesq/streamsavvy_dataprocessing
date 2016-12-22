@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from urllib.parse import urlparse
 
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -150,7 +152,7 @@ DATABASES = {
 
 # import dj_database_url
 #
-# DATABASES['default'] = dj_database_url.config(default='postgres://postgres:streamsavvy@localhost:5432/streamsavvy3')
+DATABASES['default'] = dj_database_url.config(default='postgres://nemesisesq:plude007@streamsavvy.cgeyprdcsip8.us-east-1.rds.amazonaws.com:5432/streamsavvy3')
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
