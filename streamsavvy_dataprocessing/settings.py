@@ -62,7 +62,7 @@ def get_env_variable(var_name, default=False):
 SECRET_KEY = '3ra_5hm2=%jgch7^o3-z+9^$a0x$i#^lb)-v^-oi%cs=tl$h_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if get_env_variable('ENVIRONMENT') == 'PRODUCTION' else True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
