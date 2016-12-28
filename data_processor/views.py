@@ -22,26 +22,6 @@ class ServiceDescriptionViewSet(viewsets.ModelViewSet):
     lookup_field = 'slug'
 
 
-
-
-class PopularShowsViewSet(viewsets.ModelViewSet):
-    # queryset = get_popular_shows()
-    serializer_class = ContentSerializer
-    http_method_names = ['get']
-
-    def get_queryset(self):
-        res = Content.objects.annotate(p=Max('popularity__score')).annotate(p_count=Count('popularity')).exclude(
-            p_count=0).order_by('-p')
-
-        filter_results = [x for x in res if x.guidebox_data and x.guidebox_data['id'] not in unwanted_show_ids]
-
-        # banned server
-
-        filter_results = [show for show in filter_results if show.id != 15296]
-
-        return filter_results
-
-
 class ModuleDescriptionViewSet(viewsets.ModelViewSet):
     serializer_class = ModuleDescriptionSerializer
 

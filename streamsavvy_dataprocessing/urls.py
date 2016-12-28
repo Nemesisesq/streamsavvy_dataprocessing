@@ -20,7 +20,6 @@ from rest_framework import routers
 from data_processor.views import *
 
 router = routers.DefaultRouter()
-router.register(r'popular-shows', PopularShowsViewSet, 'popular_shows')
 router.register(r'service_description', ServiceDescriptionViewSet)
 router.register(r'schedule', ScheduleViewSet)
 router.register(r'search', SearchContentViewSet, 'search')

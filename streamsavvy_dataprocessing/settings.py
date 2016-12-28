@@ -62,7 +62,7 @@ def get_env_variable(var_name, default=False):
 SECRET_KEY = '3ra_5hm2=%jgch7^o3-z+9^$a0x$i#^lb)-v^-oi%cs=tl$h_1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -152,7 +152,7 @@ DATABASES = {
 
 # import dj_database_url
 #
-DATABASES['default'] = dj_database_url.config(default='postgres://nemesisesq:plude007@streamsavvy.cgeyprdcsip8.us-east-1.rds.amazonaws.com:5432/streamsavvy3')
+# DATABASES['default'] = dj_database_url.config(default='postgres://nemesisesq:plude007@streamsavvy.cgeyprdcsip8.us-east-1.rds.amazonaws.com:5432/streamsavvy3')
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
