@@ -89,7 +89,6 @@ INSTALLED_APPS = [
     # 'django_redis',
     'djcelery',
     'secret_sauce',
-    'server'
 
 ]
 
