@@ -21,7 +21,7 @@ def convert_content_pg_mongoneo():
     driver = GraphDatabase.driver(neo_url, auth=auth_token)
 
     session = driver.session()
-    session.begin_transaction()
+
 
     db_name = get_env_variable("MGO_CONTENT_DB")
 
@@ -32,18 +32,42 @@ def convert_content_pg_mongoneo():
 
     shows = chunks(shows, 20)
 
+
     for i in shows:
 
+        session.begin_transaction()
+        tx = session.transaction
         show_json = MigrationContentSerializer(i, many=True).data
 
-        for show in show_json:
-            mongo_id = collection.update_one(show, upsert=True)
 
-            with session.transaction as tx:
-                tx.run("MERGE (c:Content {title:{title}})", title=show['title'])
-                tx.run("MERGE (m:MongoRecord {mongo_id:{mongo_id}})", mongo_id=mongo_id)
-                tx.run("MERGE (m)-[:DETAIL {source:'guidebox', datastore:'mongodb', mongo_id:{mongo_id}}]->(c)", mongo_id=mongo_id)
 
-                tx.commit()
+        save_block_to_neo(collection, show_json, tx)
+
+        tx.commit()
 
     return "it worked"
+
+
+def save_block_to_neo(collection, show_json, tx):
+    for show in show_json:
+        try:
+            mongo_id = collection.update_one({"guidebox_data.id": show['guidebox_data']['id']}, {"$set": show},
+                                             upsert=True)
+        except:
+            if show['title'] is not None:
+                mongo_id = collection.update_one({"id": show['id']}, {"$set": show}, upsert=True)
+            else:
+                continue
+
+        if mongo_id.upserted_id is None:
+            mongo_id = collection.find_one({"guidebox_data.id": show['guidebox_data']['id']})
+            id = str(mongo_id['_id'])
+        else:
+            id = str(mongo_id.upserted_id)
+
+        if mongo_id is not None:
+            tx.run("MERGE (c:Content {title:{title}})", {"title": show['title']})
+            tx.run("MERGE (m:MongoRecord {mongo_id:{mongo_id}})", {"mongo_id": id})
+            tx.run("MERGE (m)-[:DETAIL {source:'guidebox', datastore:'mongodb', mongo_id:{mongo_id}}]->(c)",
+                 {"mongo_id": id})
+
