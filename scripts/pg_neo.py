@@ -22,7 +22,6 @@ def convert_content_pg_mongoneo():
 
     session = driver.session()
 
-
     db_name = get_env_variable("MGO_CONTENT_DB")
 
     db = mongo_client[db_name]
@@ -32,14 +31,10 @@ def convert_content_pg_mongoneo():
 
     shows = chunks(shows, 20)
 
-
     for i in shows:
-
         session.begin_transaction()
         tx = session.transaction
         show_json = MigrationContentSerializer(i, many=True).data
-
-
 
         save_block_to_neo(collection, show_json, tx)
 
@@ -60,14 +55,16 @@ def save_block_to_neo(collection, show_json, tx):
                 continue
 
         if mongo_id.upserted_id is None:
-            mongo_id = collection.find_one({"guidebox_data.id": show['guidebox_data']['id']})
-            id = str(mongo_id['_id'])
+            id = None
+            if 'guidebox_data' in show and 'id' in show['guidebox_data']:
+                mongo_id = collection.find_one({"guidebox_data.id": show['guidebox_data']['id']})
+                id = str(mongo_id['_id'])
         else:
             id = str(mongo_id.upserted_id)
 
-        if mongo_id is not None:
-            tx.run("MERGE (c:Content {title:{title}})", {"title": show['title']})
-            tx.run("MERGE (m:MongoRecord {mongo_id:{mongo_id}})", {"mongo_id": id})
-            tx.run("MERGE (m)-[:DETAIL {source:'guidebox', datastore:'mongodb', mongo_id:{mongo_id}}]->(c)",
-                 {"mongo_id": id})
+        if mongo_id is not None and id is not None:
+            tx.run("MERGE (c:Content {title:{title}}) "
+                   "MERGE (m:MongoRecord {mongo_id:{mongo_id}}) "
+                   "MERGE (m)-[:DETAIL {source:'guidebox', datastore:'mongodb', mongo_id:{mongo_id}}]->(c) ",
+                   {"mongo_id": id, "title": show['title']})
 
