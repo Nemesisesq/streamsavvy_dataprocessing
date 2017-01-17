@@ -17,7 +17,7 @@ def convert_content_pg_mongoneo():
     neo_url = get_env_variable("NEO4JBOLT")
 
     mongo_client = MongoClient(mongo_url)
-    auth_token = basic_auth("nem", "prelude")
+    auth_token = basic_auth("nem", r"06z2Hm#5P8pg")
     driver = GraphDatabase.driver(neo_url, auth=auth_token)
 
     session = driver.session()
@@ -68,3 +68,7 @@ def save_block_to_neo(collection, show_json, tx):
                    "MERGE (m)-[:DETAIL {source:'guidebox', datastore:'mongodb', mongo_id:{mongo_id}}]->(c) ",
                    {"mongo_id": id, "title": show['title']})
 
+
+
+def run():
+    convert_content_pg_mongoneo()

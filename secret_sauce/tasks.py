@@ -55,7 +55,7 @@ def convert_ids(id, suggestion_id_list):
 
 @try_catch
 def g(i):
-    from server.models import Content
+    from data_processor.models import Content
     return Content.objects.get(guidebox_data__id=int(i))
 
 
